@@ -1,5 +1,5 @@
 <template>
-    <div :class="'px-'+paddingX + ' ' + 'py-' + paddingY + ' ' + 'bg-teal-100 rounded-full cursor-pointer'">
+    <div :class="'px-'+paddingX + ' ' + 'py-' + paddingY + ' ' + ' ' + bgColor + ' rounded-full cursor-pointer'">
         <VFlex>
             <slot />
             <VGap :width="10" />
@@ -22,6 +22,10 @@ export default {
         paddingY: {
             type: String,
             default: '2'
+        },
+        bgColor: {
+            type: String,
+            default: 'bg-teal-100'
         }
     }
 }

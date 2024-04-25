@@ -73,9 +73,15 @@ export default {
       isValidOTP: false,
       timer: 0,
       loginToken: "",
+      storage: null
     }
   },
   methods: {
+    async init() {
+
+      this.storage = await localStorage;
+
+    },
     getInput(input) {
 
 
@@ -139,6 +145,8 @@ export default {
 
           if(data.value.status) {
 
+            
+
             this.loginToken = data.value.data.token;
                 this.isOTPSent = true;
                 this.otpValidTime();
@@ -146,29 +154,6 @@ export default {
               userStore.token = this.loginToken;
 
           }
-
-
-          // await $fetch('https://testapi.remarkhr.com/auth/login',{
-          //   method :'POST',
-          //   body: formData
-          // })
-          // .then((response) => {
-          //   console.log('response');
-          //   console.log(response);
-
-
-          
-
-            
-          // })
-          // .catch((error) => {
-          //   console.log('error');
-          //   console.log(error.statusCode);
-          // })
-
-
-
-
           
       }
       }
@@ -206,17 +191,23 @@ export default {
 
       if(data.value.status) {
 
+        
+
         // this.loginToken = data.value.data.token;
         // const storage = await useLocalStorage();
+        this.storage.setItem('isLogged', true);
+        this.storage.setItem('user', JSON.stringify(data.value.user));
 
-        console.log(userStore)
-        data.value.user.isLogged = true;
-        userStore.setUser(data.value.user);
+        location.href = '';
+        
 
       }
 
     }
   },
+  async created() {
+    await this.init();
+  }
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-    <button v-if="!isLink" @click="onClick" :class="['bg-' + bgColor + '-' + colorShade , 'text-' + textColor, 'px-' + paddingX, 'py-' + paddingY, isDisabled ? 'not-clickable' : '']" >
+    <button v-if="!isLink" @click="onClick" :class="['bg-' + bgColor + '-' + colorShade.toString() , 'text-' + textColor, 'px-' + paddingX, 'py-' + paddingY, isDisabled ? 'not-clickable' : '', 'rounded-'+rounded]" >
         <slot />
     </button>
-    <NuxtLink :to="to"  @click="onClick" v-if="isLink" class="px-10 py-2" :class="['bg-' + bgColor + '-' + colorShade , 'text-' + textColor]">
+    <a :href="to"  @click="onClick" v-if="isLink" :class="[ fullBgColor == '' ? 'bg-' + bgColor + '-' + colorShade.toString() : fullBgColor , 'text-' + textColor, 'px-' + paddingX, 'py-' + paddingY, isDisabled ? 'not-clickable' : '', 'rounded-'+rounded]">
         <slot />
-    </NuxtLink>
+    </a>
 </template>
 
 <script>
@@ -15,6 +15,10 @@ export default {
         bgColor: {
             type: String,
             default: 'teal',
+        },
+        fullBgColor: {
+            type: String,
+            default: ''
         },
         colorShade: {
             type: String,
@@ -47,6 +51,10 @@ export default {
         isDisabled: {
             type: Boolean,
             default: false,
+        },
+        rounded: {
+            type: String,
+            default: '0'
         }
 
     }

@@ -1,5 +1,5 @@
 <template>
-    <input v-model="input" @keyup="$emit('inputChanged', {[model]: input})" class="v-input" :type="type" :placeholder="placeholder" />
+    <input v-model="input" @oldValue="setValue" @keyup="$emit('inputChanged', {[model]: input})" class="v-input" :type="type" :placeholder="placeholder" />
 </template>
 
 <script>
@@ -22,6 +22,11 @@ export default {
     data() {
         return {
             input: ''
+        }
+    },
+    methods: {
+        setValue(value) {
+            this.input = value;
         }
     }
 }

@@ -1,13 +1,79 @@
 <template>
-  <VGap :height="60" />
 
+  
   <!-- FILTER SECTION -->
-  <VContainer :width="80">
-    <VFlex justifyContent="space-between" alignItem="start" class="gap-x-3">
-      <VContainer :width="60"  :style="{'height': '800px'}" class="bg-remark-light rounded-lg shadow-xl">
+  <VContainer :width="isSearched ? 90 : 70" class="h-screen">
+    <VFlex v-if="!isLoadingJobs" justifyContent="space-between" alignItem="start" class="gap-x-3">
+      <VContainer v-if="showFilter && jobs.length > 0" :width="60" :style="{ 'height': '800px' }"  class="bg-remark-light rounded-lg shadow-xl sticky top-0 px-3" >
         <VContainer :width="80" class="px-1 py-5">
           <p class="text-lg font-bold">Filters</p>
+        </VContainer>
+        <VGap :height="20" />
+        
+        <VContainer :width="100" :style="{ 'height': '300px' }" class="block overflow-y-scroll border p-3 rounded-xl border-teal-100">
+          <VContainer class="px-3">
+            <VFlex justifyContent="space-between">
+              <p class="font-semibold">Skills</p>
+              <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm ">Selected ({{ filterSkills.all.filter((sk) => sk.selected == true).length }})</a>
+              <!-- <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm underline" @click="toggleShowAllSkills" >See all</a> -->
+            </VFlex>
+            <VGap :height="10" />
+            <div class="flex flex-wrap gap-x-2 h-auto">
+              <VChip @click="quickSelectSkill(skill)" v-for="(skill, i) in filterSkills.all" :key="i" class="my-1" :bgColor="skill.selected ? 'bg-teal-800 text-white' : 'bg-teal-100'" >
+                <p class="text-sm">{{skill.skill}} ({{ skill.count }})</p>
+              </VChip>
+            </div>
+            <VContainer v-if="seeAll.skills" :style="{'width': '400px', 'height': '300px', 'margin-left': '270px' , 'margin-top' : '100px' }" class="absolute top-0 p-3 bg-white rounded-xl shadow-xl">
+              <p class="text-xs font-semibold text-teal-800">All Skills</p>
+              <VGap :height="10" />
+              <VContainer :width="100" :style="{ 'height': '200px' }" class="overflow-y-scroll scroll-smooth">
+              <VFlex class="gap-x-2 flex-wrap bg-white p-2 ">
+                <VChip  @click="selectSkill(skill.skill)" v-for="(skill, i) in filterSkills.all" :key="i" class="my-1" :bgColor=" skill.tempSelected ? 'bg-teal-800 text-white' : 'bg-teal-100' " >
+                  <p class="text-sm">{{skill.skill}} ({{ skill.count }})</p>
+                </VChip>
+              </VFlex>
+              </VContainer>
+              <VContainer class="p-3" :width="100">
+                <VFlex justifyContent="space-between">
+                  <VButton bgColor="slate" colorShade="300" @click="toggleShowAllSkills">Close</VButton>
+                  <VButton>Apply</VButton>
+                </VFlex>
+              </VContainer>
+            </VContainer>
+          </VContainer>
+          
+        </VContainer>
 
+        <VGap :height="20" />
+        <!-- SCHEDULE FILTER -->
+        <VContainer :style="{ 'height': '180px' }" class="block p-3 border border-teal-100 rounded-xl overflow-y-scroll">
+          <VFlex justifyContent="space-between">
+            <p class="font-semibold">Schedule</p>
+            <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm" >Selected ({{ filterSchedule.all.filter((fl) => fl.selected == true).length }})</a>
+            <!-- <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm underline" @click="toggleShowAllSkills" >See all</a> -->
+          </VFlex>
+          <VFlex :style="{ 'height' : '100px' }" class="gap-x-2 flex-wrap">
+            <VChip @click="quickSelectSchedule(schedule)" v-for="(schedule, i) in filterSchedule.all" :key="i" class="my-1" :bgColor="schedule.selected ? 'bg-teal-800 text-white' : 'bg-teal-100'" >
+              <p class="text-sm">{{schedule.schedule}} ({{ schedule.count }})</p>
+            </VChip>
+          </VFlex>
+          
+        </VContainer>
+
+        <VGap :height="20" />
+        <!-- SCHEDULE FILTER -->
+        <VContainer :style="{ 'height': '180px' }" class="block p-3 border border-teal-100 rounded-xl overflow-y-scroll">
+          <VFlex justifyContent="space-between">
+            <p class="font-semibold">Locations</p>
+            <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm">Selected ({{ filterLocations.all.filter((fl) => fl.selected == true).length }})</a>
+            <!-- <a href="javascript:void(0)" class="text-teal-800 font-bold text-sm underline" @click="toggleShowAllSkills" >See all</a> -->
+          </VFlex>
+          <VFlex :style="{ 'height' : '100px' }" class="gap-x-2 flex-wrap">
+            <VChip @click="quickSelectLocation(location)" v-for="(location, i) in filterLocations.all" :key="i" class="my-1" :bgColor="location.selected ? 'bg-teal-800 text-white' : 'bg-teal-100'" >
+              <p class="text-sm">{{location.location}} ({{ location.count }})</p>
+            </VChip>
+          </VFlex>
+          
         </VContainer>
       </VContainer>
 
@@ -15,53 +81,129 @@
       <!-- JOB SEARCHING & LISTING SECTION -->
       <VContainer :width="150" class="">
         <VContainer class="">
-          <VFlex :width="80"  class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
-            <VInput style="width:60%" placeholder="Development, Back Office, Sales" class="py-3" />
+          <VFlex :width="100"  class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
+            <input v-model="searchTitle" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
             <div class="h-[2rem] border border-slate-300">
 
             </div>
-            <VGap :width="15" />
-            <VInput style="width:40%" placeholder="Enter Location" class="py-3" />
-            <VButton paddingY="3">
+            <VButton paddingY="3" @click="filterJobs(1)" >
                 <VFlex>
                     <Icon name="material-symbols:search" class="mx-2" /> <p class="text-white">Search</p>
                 </VFlex>
             </VButton>
         </VFlex>
         </VContainer>
+
         <VGap :height="30" />
-        <VContainer class="mx-3 font-semibold">
-          <VFlex class="gap-x-2">
-            <p>70 jobs found in "developer" -</p> 
+
+        <VContainer v-if="isSearched && jobs.length > 0" class="mx-3 font-semibold">
+          <VFlex class="gap-x-2 mx-3">
+            <p> Showing ({{ jobs.length }}) jobs </p> 
             
-            <VIconText class="text-sm px-2 py-1 bg-teal-500 text-white" icon="ic:baseline-cancel" text="Clear" />
+            <!-- <VIconText v-if="isSearched" class="text-sm px-2 py-1 bg-teal-500 text-white" icon="ic:baseline-cancel" text="Clear" /> -->
+          </VFlex>
+          
+        </VContainer>
+        <VContainer v-if="!isSearched && jobs.length > 0" class="mx-3 font-semibold">
+          <VFlex class="mx-3">
+            <p> Latest Jobs for you</p> 
           </VFlex>
           
         </VContainer>
         <VGap :height="10" />
-        <VContainer class="p-2">
+        <VContainer v-if="jobs.length > 0"  class="p-2 w-100">
           <!-- JOB COMPONENT -->
           <RJobCard
             v-for="(job,i) in jobs"
             :key="i"
             :title="job.job_title"
+            :slug="job.job_slug"
             :skills="job.job_key_skills.join(' | ')"
             :timeAgo="job.job_timeago"
-            companyLogo=""
-            :companyName="job.company"
-            companyLocation="Richmond Plaza 3rd Floor , Near By Dheeraj Sons , Vesu"
-            salary="Rs. 10000 to Rs. 20000"
+            :companyLogo="job.company.company_logo"
+            :companyName="job.company.company_name"
+            :companyLocation="job.company.company_address"
+            :salary="'Rs. ' + job.job_minimum_salary + ' to Rs. ' + job.job_maximum_salary"
             :experience="job.job_ext_experience.length > 0 ? 'Experienced' : 'Fresher'"
             :schedule="job.job_schedule"
             :description="job.job_description"
+            :job="job"
             isSaved="1"
           />
+          <VGap :height="10" />
+          <VContainer :style="{ 'width' : '100%' }">
+            <VPagination  @pageChange="showJobs" :currentPage="currentPage" :totalPages="totalPages" />
+          </VContainer>
+        </VContainer>
+        <VContainer :width="100" v-else>
+          <VFlex justifyContent="center" >
+            <VContainer class="text-center">
+              <p class="text-lg font-bold">
+                No results found
+              </p>
+            </VContainer>
+          </VFlex>
         </VContainer>
       </VContainer>
 
       <!-- ADVERTISING SECTION -->
-      <VContainer :width="60" :style="{ 'height' : '800px'}" class="bg-remark-light shadow-xl">
-        Advertising
+      <VContainer :width="70" class="sticky h-screen top-0">
+        <VContainer :width="100" class=" bg-remark-light h-screen shadow-xl">
+          
+          <VImage class="w-full" link="/mobile/mobile-preview.png" />
+          <VGap :height="10" />
+          <VContainer class="text-center md:px-5 md:text-sm py-2">
+            <p class="text-lg md:text-md px-4 font-bold">Check Latest Jobs on Application</p>
+            <p class="text-slate-400 md:text-sm text-sm">Available for both Android and iOS apps</p>
+            <VGap :height="10" />
+            <VFlex justifyContent="center" class="gap-x-2 md:flex-wrap ">
+              <VButton rounded="full md:my-2">
+                <VIconText icon="ion:logo-google-playstore" text="Playstore" gap="2">
+                </VIconText>
+              </VButton>
+              <VButton rounded="full">
+                <VIconText icon="mdi:apple" text="App Store" />
+              </VButton>
+            </VFlex>
+          </VContainer>
+        </VContainer>
+      </VContainer>
+    </VFlex>
+    <VFlex v-else>
+      <VContainer v-if="showFilter"  :width="60" :style="{ 'height': '800px' }"  class="animate-pulse bg-slate-200 light rounded-lg shadow-xl sticky top-0" >
+     
+      </VContainer>
+
+
+      <!-- JOB SEARCHING & LISTING SECTION -->
+      <VContainer :width="60" class="">
+        <VContainer class="">
+          <VFlex :width="80" :height="20"  class="bg-slate-200 px-8 py-2 shadow-xl hover:shadow-none duration-200 animate-pulse" style="border-radius: 10px;">
+
+        </VFlex>
+        </VContainer>
+        <VGap :height="30" />
+        <VGap :height="10" />
+        <VContainer class="p-2">
+          <!-- JOB COMPONENT -->
+          
+          <VContainer v-for="x in 15" :key="x" :width="100" :style="{ 'height': '200px' }" class="bg-slate-100 my-3 animate-pulse" >
+
+          </VContainer>
+
+          <VContainer>
+            
+            <VPagination  @pageChange="loadMoreJobs" :currentPage="currentPage" :totalPages="countJobs" />
+          </VContainer>
+        </VContainer>
+
+      </VContainer>
+
+      <!-- ADVERTISING SECTION -->
+      <VContainer :width="60" class="sticky h-screen top-0">
+        <VContainer :width="100" class=" bg-remark-light h-screen shadow-xl">
+          Advertising
+        </VContainer>
       </VContainer>
     </VFlex>
   </VContainer>
@@ -69,54 +211,568 @@
 
 </template>
 
-<script lang="ts" setup>
-
-  var limitJobs = [
-    {
-      job_title: "BPO TeleCalling work from home ",
-      job_key_skills: ["good communication ","computer knowledge ","marketing manager "],
-      job_description: "Telecalling is a job that is done by people with excellent verbal communication and persuasion skills that address a client's needs while nudging them toward the company's offerings. Playing the role of a customer service representative, telecalling work is in demand, given that it is a vital part of many industries.",
-      job_slug: "bpo-telecalling-work-from-home",
-      job_minimum_salary: "10000",
-      job_maximum_salary: "20000",
-      job_schedule: "Full Time",
-      job_ext_experience: [{"ExperienceTitle":"marketing ","ExperienceMonth":"1","ExperienceYear":"1"}],
-      job_timeago: "2 days ago",
-      company: "Advertrone technologies Pvt Ltd ",
-      company_slug: "advertrone-technologies-pvt-ltd-3480",
-      company_address: "Advertrone Technology Pvt LtdSADHNA SADHAN , NEAR APEX HOSPITALQUARSI BYPASS ROADALIGARH - 202001",
-      company_logo: ""
-    },
-    {
-      job_title: "HR Intern",
-      job_key_skills: ["good communication ","computer knowledge ","marketing manager "],
-      job_description: "Telecalling is a job that is done by people with excellent verbal communication and persuasion skills that address a client's needs while nudging them toward the company's offerings. Playing the role of a customer service representative, telecalling work is in demand, given that it is a vital part of many industries.",
-      job_slug: "bpo-telecalling-work-from-home",
-      job_minimum_salary: "10000",
-      job_maximum_salary: "20000",
-      job_schedule: "Part Time",
-      job_ext_experience: [{"ExperienceTitle":"marketing ","ExperienceMonth":"1","ExperienceYear":"1"}],
-      job_timeago: "2 days ago",
-      company: "Advertrone technologies Pvt Ltd ",
-      company_slug: "advertrone-technologies-pvt-ltd-3480",
-      company_address: "Advertrone Technology Pvt LtdSADHNA SADHAN , NEAR APEX HOSPITALQUARSI BYPASS ROADALIGARH - 202001",
-      company_logo: ""
+<script>
+export default {
+  data() {
+    return  {
+      showFilter: false,
+      jobs: [],
+      user: {},
+      searchTitle: "",
+      oldSearchTitle: "",
+      searchLocation: "",
+      filter: {
+        skills: [],
+        schedules: [],
+        locations: []
+      },
+      filterSkills: {
+        limit: [],
+        all: [],
+      },
+      filterSchedule: {
+        all: [],
+      },
+      filterLocations: {
+        limit: [],
+        all: []
+      },
+      isSearched: false,
+      jobOffset: 0,
+      countJobs: 0,
+      totalPages: 10,
+      storage: null,
+      currentPage: 1,
+      isLoadingJobs: false,
+      seeAll: {
+        skills: false
+      }
     }
-  ];
+  },
+  methods: {
+    async init() {
 
-  const jobs = [];
+      this.user = useMyUserStore();
 
-  limitJobs.forEach((job) => {
-    job.job_key_skills.forEach((skill) => {
-      skill.trim();
-    });
+      this.storage = await localStorage;
 
-    jobs.push(job);
+      const route = useRoute();
 
-  })
+      if(route.query.j) {
+        this.searchTitle = route.query.j;
+        this.filterJobs(1);
+      }else{
 
+        if(this.storage?.hasJobs) {
+
+        
+if(this.storage.isSearched) {
+  await this.loadMoreJobs(1);
+}else{
+this.jobs = JSON.parse(this.storage?.jobs);
+this.countJobs = this.storage?.countJobs;
+}
+
+}else{
+
+await this.loadMoreJobs(1);
+
+}
+
+      }
+
+      
+    },
+    async showJobs(pageNum) {
+
+      if(this.isSearched) {
+        
+        await this.filterJobs(pageNum);
+
+      }else{
+
+        await this.loadMoreJobs(pageNum);
+
+      }
+
+    },
+    async loadMoreJobs(pageNum) {
+
+      this.currentPage = pageNum;
+
+      this.isLoadingJobs = true;
+
+      console.log('loading jobs');
+      this.jobs = [];
+      const {data ,pending, refresh} = await useFetch('/api/job/all-jobs', {
+          method: 'post',
+          body: {
+            offset: (pageNum * 10) - 10,
+            token: this.user.token
+          }
+        });
+
+        if(data.value?.status) {
+
+          
+          this.countJobs = data.value.counts;
+          this.jobOffset = data.value.jobs.length;
+          console.log(data.value); 
+          data.value?.jobs.forEach((job) => {
+            
+            job?.job_key_skills.forEach((skill) => {
+              skill.trim();
+            });
+        
+          this.jobs.push(job);
+          // this.storage.setItem('jobs', JSON.stringify(this.jobs));
+          // this.storage.setItem('hasJobs', true);
+          // this.storage.setItem('countJobs', this.countJobs);
+          this.setToStorage(this.jobs, true, this.countJobs, false);
+
+        });
+
+  
+        }
+
+        this.totalPages = Math.round(this.countJobs/15)
+
+        this.isLoadingJobs = false;
+
+      
+    },
+
+    async setToStorage(jobs, hasJobs, countJobs, isSearched, filters, filterSkills) {
+
+      // SET THE JOB DATA
+      this.storage.setItem('jobs', JSON.stringify(jobs));
+      this.storage.setItem('hasJobs', hasJobs);
+      this.storage.setItem('countJobs', countJobs);
+
+      // SET FITLER DATA
+      if(isSearched) {
+        this.storage.setItem('filter', filters);
+        this.storage.setItem('isSearched', isSearched);
+        this.storage.setItem('showFilter', this.showFilter);
+        
+      }
+
+    },
+
+    selectSkill(skill) {
+
+      if(skill == 'All') {
+        this.filterSkills.all.forEach((sk) => {
+          sk.tempSelected = false;
+          
+          if(sk.skill == 'All') {
+            sk.tempSelected = true;
+          }
+        });
+        
+        return false;
+      }
+      
+      if(skill != 'All') {
+        console.log(skill);
+        
+        this.filterSkills.all.forEach((sk) => {
+
+          if(sk.skill == 'All') {
+            sk.tempSelected = false;
+          }
+
+          if(sk.skill == skill) {
+            sk.tempSelected = !sk.tempSelected;
+          }
+        })
+
+      }
+
+    },
+
+    toggleShowAllSkills() {
+
+      this.seeAll.skills = !this.seeAll.skills;
+
+      if(!this.seeAll.skills) {
+        console.log('skills hidden');
+        this.filterSkills.all.forEach((skill) => skill.tempSelected = false);
+      }
+
+    },
+    
+    async filterJobs(pageNum) {
+
+      if(this.searchTitle == '') {
+        return false;
+      }
+
+      this.currentPage = pageNum;
+
+
+      if(this.searchTitle != this.oldSearchTitle) {
+        this.filter.skills = [];
+        this.filter.skills.push("All");
+        this.filter.schedules.push('All');
+        this.filter.locations.push('All');
+      }
+
+      this.jobs = [];
+      const user = useMyUserStore();
+      this.isLoadingJobs = true;
+      this.currentPage = pageNum;
+
+      if(this.filter?.skills?.length == 0) {
+        this.filter.skills.push('All');
+      }
+
+      if(this.filter?.schedules.length == 0) {
+        this.filter.schedules.push('All');
+      }
+
+      if(this.filter?.locations.length == 0) {
+        this.filter.locations.push('All');
+      }
+
+      this.storage.setItem('searchTitle', this.searchTitle);
+      
+      const { data, pending, error, refresh } = await useFetch('/api/job/filter-jobs', {
+          method: 'post',
+          body: {
+            title: this.searchTitle,
+            offset: (pageNum * 10) - 10,
+            token: user.token,
+            filter: JSON.stringify([this.filter])
+          }
+      });
+
+      console.log(data.value);
+
+      if(data?.value.status) {
+
+        if(data.value.jobs.length == 0) {
+          this.isSearched = false;
+          this.showFilter = false;
+        }else{
+          this.isSearched = true;
+          this.showFilter = true;
+        
+        }
+        
+ 
+        this.oldSearchTitle = this.searchTitle;
+
+        this.countJobs = data.value?.counts?.page_job_count;
+        this.totalPages = Math.ceil(this.countJobs/20);
+        console.log('totalPages',this.totalPages);
+
+       
+        data.value?.jobs.forEach((job) => {
+          
+          job.job_key_skills = JSON.parse(job.job_key_skills);
+
+        
+        job?.job_key_skills.forEach((skill) => {
+          skill.trim();
+        });
+
+
+        this.jobs.push(job);
+  
+
+        });
+
+        console.log('filter', data.value.filter);
+        this.doReadySkillFilter(data.value.skills, data.value.filter);
+        this.doReadyScheduleFilter(data.value.job_schedule, data.value.filter);
+        this.doReadyLocationFilter(data.value.locations, data.value.filter);
+        data.value.filter = JSON.parse(data.value.filter);
+
+        // this.filterLocations = data.value.locations;
+
+        // this.storage.setItem('jobs', JSON.stringify(this.jobs));
+        // this.storage.setItem('hasJobs', true);
+        // this.storage.setItem('countJobs', this.countJobs);
+        this.setToStorage(this.jobs,true,this.countJobs,true, JSON.stringify( data.value.filter))
+
+      }
+
+      this.isLoadingJobs = false;
+
+
+    },
+    setTitle(title) {
+      this.searchTitle = title.search_job_title;
+    },
+    quickSelectSkill(skill) {
+      console.log(skill);
+      this.filterSkills.all.forEach((sk, inde) => {
+
+        if(skill.skill == 'All') {
+          if(sk.skill == 'All') {
+            this.filter.skills = [];
+            sk.selected = true;
+            sk.tempSelected = true;
+            this.filter.skills.push('All');
+            this.filterJobs(1);
+          }else{
+
+           
+
+            sk.selected = false;
+            sk.tempSelected = false;
+          }
+        }else{
+
+
+
+          if(sk.skill == 'All') {
+            sk.selected = false;
+            sk.tempSelected = false;
+            this.filter.skills = this.filter.skills.filter((s) => s != 'All');
+
+          }
+          
+
+          if(skill.skill == sk.skill) {
+            var isAlreadyFiltered = 'no';
+            this.filter.skills.forEach((s, ind) => {
+              if(s == sk.skill){
+                isAlreadyFiltered = ind;
+              }
+            });
+            if(isAlreadyFiltered != 'no') {
+                console.log(isAlreadyFiltered);
+                this.filter.skills.splice(isAlreadyFiltered, 1);
+                sk.selected = false;
+                sk.tempSelected = false;
+            }else{
+              sk.selected = true;
+              sk.tempSelected = true;
+              this.filter.skills.push(sk.skill);
+            }
+            this.filterJobs(1);
+          }
+        }
+      });
+    },
+
+    quickSelectSchedule(schedule) {
+      console.log(schedule);
+      this.filterSchedule.all.forEach((sch, inde) => {
+
+        if(schedule.schedule == 'All') {
+          if(sch.schedule == 'All') {
+            this.filter.schedules = [];
+            sch.selected = true;
+            sch.tempSelected = true;
+            this.filter.schedules.push('All');
+            this.filterJobs(1);
+          }else{
+
+           
+
+            sch.selected = false;
+            sch.tempSelected = false;
+          }
+        }else{
+
+
+
+          if(sch.schedule == 'All') {
+            sch.selected = false;
+            sch.tempSelected = false;
+            this.filter.schedules = this.filter.schedules.filter((s) => s != 'All');
+
+          }
+          
+
+          if(schedule.schedule == sch.schedule) {
+            var isAlreadyFiltered = 'no';
+            this.filter.schedules.forEach((s, ind) => {
+              if(s == sch.schedule){
+                isAlreadyFiltered = ind;
+              }
+            });
+            if(isAlreadyFiltered != 'no') {
+                console.log(isAlreadyFiltered);
+                this.filter.schedules.splice(isAlreadyFiltered, 1);
+                sch.selected = false;
+                sch.tempSelected = false;
+            }else{
+              sch.selected = true;
+              sch.tempSelected = true;
+              this.filter.schedules.push(sch.schedule);
+            }
+            this.filterJobs(1);
+          }
+        }
+      });
+    },
+
+    quickSelectLocation(location) {
+      console.log(location);
+      this.filterLocations.all.forEach((loc, inde) => {
+
+        if(location.location == 'All') {
+          if(loc.location == 'All') {
+            this.filter.locations = [];
+            loc.selected = true;
+            loc.tempSelected = true;
+            this.filter.locations.push('All');
+            this.filterJobs(1);
+          }else{
+            loc.selected = false;
+            loc.tempSelected = false;
+          }
+        }else{
+
+
+
+          if(loc.location == 'All') {
+            loc.selected = false;
+            loc.tempSelected = false;
+            this.filter.locations = this.filter.locations.filter((s) => s != 'All');
+
+          }
+          
+
+          if(location.location == loc.location) {
+            var isAlreadyFiltered = 'no';
+            this.filter.locations.forEach((s, ind) => {
+              if(s == loc.location){
+                isAlreadyFiltered = ind;
+              }
+            });
+            if(isAlreadyFiltered != 'no') {
+                console.log(isAlreadyFiltered);
+                this.filter.locations.splice(isAlreadyFiltered, 1);
+                loc.selected = false;
+                loc.tempSelected = false;
+            }else{
+              loc.selected = true;
+              loc.tempSelected = true;
+              this.filter.locations.push(loc.location);
+            }
+            this.filterJobs(1);
+          }
+        }
+      });
+    },
+
+    doReadyScheduleFilter(schedules, filters) {
+      filters = JSON.parse(filters);
+
+      if(schedules.length > 0) {
+        this.filterSchedule.all = [];
+
+      // ADD SELECTED AND TEMP SELECTED 
+      schedules.forEach((schedule, i) => {
+
+        schedule.selected = false;
+        schedule.tempSelected = false;
+
+        filters[0]['schedules'].forEach((sk) => {
+          if(schedule.schedule == sk) {
+            
+            schedule.selected = true;
+            schedule.tempSelected = true;
+          }
+        })
+
+        this.filterSchedule.all.push(schedule);
+      });
+
+      this.storage.setItem('filterSchedule', JSON.stringify(this.filterSchedule));
+      }
+
+    },
+
+    doReadySkillFilter(skills, filters) {
+      filters = JSON.parse(filters);
+
+      this.filterSkills.all = [];
+
+      // ADD SELECTED AND TEMP SELECTED 
+      skills.forEach((skill, i) => {
+
+        skill.selected = false;
+        skill.tempSelected = false;
+
+        filters[0]['skills'].forEach((sk) => {
+          if(skill.skill == sk) {
+            
+        skill.selected = true;
+        skill.tempSelected = true;
+          }
+        })
+
+        this.filterSkills.all.push(skill);
+
+      });
+
+      this.storage.setItem('filterSkills', JSON.stringify(this.filterSkills));
+
+    },
+
+    doReadyLocationFilter(locations, filters) {
+      filters = JSON.parse(filters);
+
+      this.filterLocations.all = [];
+
+      // ADD SELECTED AND TEMP SELECTED 
+      locations.forEach((location, i) => {
+
+        location.selected = false;
+        location.tempSelected = false;
+
+        filters[0]['locations'].forEach((l) => {
+          if(location.location == l) {
+            
+            location.selected = true;
+            location.tempSelected = true;
+          }
+        })
+
+        this.filterLocations.all.push(location);
+
+      });
+
+      this.storage.setItem('filterLocations', JSON.stringify(this.filterLocations));
+
+    }
+
+  },
+
+  async created() {
+    this.init();
+    
+  }
+}
 </script>
 
 <style>
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #115E59;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #156862;
+}
 
 </style>

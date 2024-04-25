@@ -1,90 +1,89 @@
 
 <template>
-    
 
     <VGap :height="50" />
 
     <!-- HERO SECTION -->
-    <LazyVContainer :width="80" :style="{ 'height': '350px' }" padding="50" class="bg-teal-0">
+    <LazyVContainer  :width="80" :style="{ 'height': '350px' }" padding="50" class="bg-teal-0">
         <VFlex :justifyContent="'space-between'" >
-            <div :style="{'width': '25%'}" class="flex justify-center">
+            <div :style="{'width': '40%'}" class="flex justify-center">
                 <VContainer :width="80">
                     <p class="text-7xl font-bold tracking-wide">Find a Perfect Job</p>
                 </VContainer>
             </div>
-            <div :style="{'width': '75%'}">
+            <div :style="{'width': '60%'}">
                 <VGap :height="100" />
-                <VFlex :width="80"  class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
-                    <VInput style="width:60%" placeholder="Development, Back Office, Sales" class="py-3" />
-                    <div class="h-[2rem] border border-slate-300">
-
-                    </div>
-                    <VGap :width="15" />
-                    <VInput style="width:40%" placeholder="Enter Location" class="py-3" />
-                    <VButton paddingY="3">
-                        <VFlex>
-                            <Icon name="material-symbols:search" class="mx-2" /> <p class="text-white">Search</p>
+                <VFlex :width="80"  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300  rounded-full hover:shadow-xl hover:shadow-red-100 duration-200">
+                    
+                    <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
+                    <VButton :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
+                        <VFlex class="gap-x-2">
+                            <Icon name="material-symbols:search" /> <p class="text-white">Search</p>
                         </VFlex>
                     </VButton>
                 </VFlex>
-                <VGap :height="10" />
-                <div class="py-2 text-slate-400">
-                    Recent Searches
-                </div>
-                <VFlex class="gap-x-3">
-                    <VChip paddingX="5" paddingY="3" :isDismissible="true">
-                        <Icon class="text-sm text-teal-800" name="carbon:recently-viewed" /> <VGap width="5" /> <small>developer</small>
-                    </VChip>
-                    <VChip  paddingY="3">
-                        <Icon class="text-sm text-teal-800" name="carbon:recently-viewed" /> <VGap width="5" /> <small>telecaller</small>
-                    </VChip>
-                </VFlex>
+                <VGap :height="20" />
+                <VContainer class="text-center">
+                    <div class="font-bold text-slate-800">
+                        Remark Job & Recruiter App
+                    </div>
+                    <div class="pb-2 text-slate-400">
+                        Make your search easy
+                    </div>
+                    <VFlex class="gap-x-3" justifyContent="center">
+                        <RAppStoreButton store="playstore" />
+                        <RAppStoreButton store="appstore" />
+                    </VFlex>
+                </VContainer>
             </div>
         </VFlex>
     </LazyVContainer>
 
     <!-- CATEGORIES SECTION -->
     
-    <VContainer :width="80" :style="{'height' : '350px'}" class="">
-        <div class="p-4">
-            <p class="text-3xl font-semibold">Categories</p>
-        </div>
-        <!-- <VContainer :style="{'height' : '200px'}" class="border-x-4 px-6">
-            <VFlex class="gap-x-5" >
-                <RCategory v-for="(category, i) in categories" :key="i" :title="category.title" :icon="category.icon" :count="category.count" />
-            </VFlex>
-        </VContainer> -->
-
-        <VContainer :width="100" :style="{'height' : '200px'}" class="border-x-4 px-6">
-            <Swiper 
-            :style="{'height' : '250px'}"
-            class=" bg-white"
-            :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-            :slides-per-view="6"
-            :loop="false"
-            :effect="'cube'"
-            :creative-effect="{
-            prev: {
-                shadow: true,
-                translate: ['-20%', 0, -1],
-            },
-            next: {
-                translate: ['100%', 0, 0],
-            },
-            }"
-            >
-                <SwiperSlide class="" v-for="(category, i) in categories" :key="i">
-                    <RCategory class="" :title="category.title" :icon="category.icon" :count="category.count" />
-                </SwiperSlide>
-            </Swiper>
+        <VContainer :width="80" :style="{'height' : '350px'}" class="">
+            <div class="p-4">
+                <p class="text-3xl font-semibold">Industries</p>
+            </div>
+            <!-- <VContainer :style="{'height' : '200px'}" class="border-x-4 px-6">
+                <VFlex class="gap-x-5" >
+                    <RCategory v-for="(category, i) in categories" :key="i" :title="category.title" :icon="category.icon" :count="category.count" />
+                </VFlex>
+            </VContainer> -->
+    
+            <VContainer :width="100" :style="{'height' : '200px'}" class="border-x-4 px-6">
+                <client-only>
+                    <Swiper 
+                :style="{'height' : '250px'}"
+                class=" bg-white"
+                :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
+                :slides-per-view="6"
+                :loop="false"
+                :effect="'cube'"
+                :creative-effect="{
+                prev: {
+                    shadow: true,
+                    translate: ['-20%', 0, -1],
+                },
+                next: {
+                    translate: ['100%', 0, 0],
+                },
+                }"
+                >
+                    <SwiperSlide class="" v-for="(category, i) in db.homepage.categories" :key="i">
+                        <RCategory class="" :title="category.industry.industry_title" :icon="category.industry.industry_svg" :count="category.count" />
+                    </SwiperSlide>
+                </Swiper>
+                </client-only>
+            </VContainer>
+    
+    
         </VContainer>
+    
 
+    <!-- <VGap :height="60" /> -->
 
-    </VContainer>
-
-    <VGap :height="60" />
-
-    <VContainer :width="80" :style="{'height': '150px'}" class="bg-gray-800 rounded-xl">
+    <!-- <VContainer :width="80" :style="{'height': '150px'}" class="bg-gray-800 rounded-xl">
         <VFlex>
             <VContainer :width="80" class="text-center" style="margin:-60px">
                 <VFlex justifyContent="center">
@@ -104,9 +103,9 @@
                 </VButton>
             </VContainer>
         </VFlex>
-    </VContainer>
+    </VContainer> -->
 
-    <VGap :height="40" />
+    <VGap :height="20" />
     
 
     <!-- Banner -->
@@ -157,9 +156,9 @@
         <div class="p-4">
             <p class="text-3xl font-semibold">Top Companies</p>
         </div>
-        <VContainer :style="{'height' : '250px'}" class="border-x-4 px-6">
+        <VContainer :style="{'height' : '280px'}" class="border-x-4 px-6">
             <Swiper
-            :style="{'height' : '300px'}"
+            :style="{'height' : '320px'}"
             class=" bg-white"
             :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
             :slides-per-view="3"
@@ -175,8 +174,8 @@
             },
             }"
             >
-                <SwiperSlide v-for="(company, i) in topCompanies" :key="i">
-                <RTopCompanyCard  :name="company.name" :logo="company.logo" :jobCount="company.jobCount" />
+                <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i">
+                <RTopCompanyCard  :name="company.company_name" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
             </SwiperSlide>
             </Swiper>
             
@@ -211,8 +210,8 @@
             },
             }"
             >
-                <SwiperSlide v-for="(job, i) in recentJobs" :key="i">
-                <RQuickJobCard  :title="job.title" :company="job.company" :hiring="job.hiring" :location="job.location" />
+                <SwiperSlide v-for="(job, i) in db.homepage.recentJobs" :key="i">
+                <RQuickJobCard  :title="job.job_title" :company="job.company_name" :logo="job.company_logo" :slug="job.job_slug" :hiring="job.job_hiring_count" :location="job.company_address" />
             </SwiperSlide>
             </Swiper>
             
@@ -234,7 +233,7 @@
                         <Icon class="text-6xl text-teal-200" name="tabler:briefcase-filled" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">80,000+</p>
+                        <p class="text-3xl font-bold text-slate-400">5000+</p>
                         <p>Jobs</p>
                     </div>
                 </VFlex>
@@ -245,7 +244,7 @@
                         <Icon class="text-6xl text-teal-200" name="gridicons:multiple-users" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">50,000+</p>
+                        <p class="text-3xl font-bold text-slate-400">10000+</p>
                         <p>Employees</p>
                     </div>
                 </VFlex>
@@ -256,7 +255,7 @@
                         <Icon class="text-6xl text-teal-200" name="material-symbols:apartment-rounded" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">3,000+</p>
+                        <p class="text-3xl font-bold text-slate-400">1,000+</p>
                         <p>Companies</p>
                     </div>
                 </VFlex>
@@ -267,7 +266,7 @@
                         <Icon class="text-6xl text-teal-200" name="mdi:office-building-marker-outline" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">500+</p>
+                        <p class="text-3xl font-bold text-slate-400">200+</p>
                         <p> Consultancies</p>
                     </div>
                 </VFlex>
@@ -277,107 +276,44 @@
 
     <VGap :height="80" />
 
-
-    
-
     
 </template>
 
-<script>
+
+<script lang="js"setup>
+
+
+    const db = useMyDbStore();
+
+    console.log('homepage', db.homepage.isHomepageLoaded);
+
+    if(!db.homepage.isHomepageLoaded) {
+        await db.loadHomepage();
+    }
+
+</script>
+
+<script lang="js">
 export default {
     data() {
         return {
-            categories: [
-                {
-                    title: "Hospital",
-                    icon: "ri:hospital-fill",
-                    count: "10"
-                },
-                {
-                    title: "Accounting",
-                    icon: "streamline:money-cash-coins-stack-accounting-billing-payment-stack-cash-coins-currency-money-finance",
-                    count: "13"
-                },
-                {
-                    title: "IT",
-                    icon: "fluent:developer-board-24-regular",
-                    count: "36"
-                },
-                {
-                    title: "Sales & Marketing",
-                    icon: "nimbus:marketing",
-                    count: "25"
-                },
-                {
-                    title: "Hospital",
-                    icon: "ri:hospital-fill",
-                    count: "10"
-                },
-                {
-                    title: "Accounting",
-                    icon: "streamline:money-cash-coins-stack-accounting-billing-payment-stack-cash-coins-currency-money-finance",
-                    count: "13"
-                },
-                {
-                    title: "IT",
-                    icon: "fluent:developer-board-24-regular",
-                    count: "36"
-                },
-                {
-                    title: "Sales & Marketing",
-                    icon: "nimbus:marketing",
-                    count: "25"
-                }
-            ],
-            topCompanies: [
-                {
-                    name: "Sitent Web & Graphics Design",
-                    logo: "https://apimanager.remarkhr.com//assets/company_logo/s-logo.png",
-                    jobCount: "10"
-                },
-                {
-                    name: "Visko E-Serve Private Limited",
-                    logo: "/companies/visko-e-serve.png",
-                    jobCount: "14"
-                },
-                {
-                    name: "Visko Real Estate Private Limited",
-                    logo: "/companies/visko-real-estate.png",
-                    jobCount: "10"
-                },
-                {
-                    name: "Visko HR Private Limited",
-                    logo: "/companies/visko-real-estate.png",
-                    jobCount: "8"
-                }
-            ],
-            recentJobs: [
-            {
-                title: "Sales & Executive",
-                company: "Sitent Web & Graphics Design",
-                hiring: "5",
-                location: "Indore, Madhya Pradesh"
-            },
-            {
-                title: "Telecalling Supervisor Operator",
-                company: "Sitent Web & Graphics Design",
-                hiring: "6",
-                location: "Indore, Madhya Pradesh"
-            },
-            {
-                title: "Business Development Manager",
-                company: "Sitent Web & Graphics Design",
-                hiring: "4",
-                location: "Indore, Madhya Pradesh"
-            },
-            {
-                title: "Associate Executive",
-                company: "Sitent Web & Graphics Design",
-                hiring: "8",
-                location: "Indore, Madhya Pradesh"
-            }
-        ],
+            searchInput: ''
         }
+    },
+    methods: {
+
+        searchJob(ev) {
+            if(ev.keyCode == 13) {
+
+                if(this.searchInput != '') {
+
+                    location.href = 'jobs?j=' + this.searchInput;
+
+                }
+
+            };
+        }
+
     }
 }
 </script>

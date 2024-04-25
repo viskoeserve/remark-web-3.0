@@ -11,6 +11,11 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-swiper'
-  ]
+    'nuxt-swiper',
+    '@nuxtjs/svg-sprite',
+    'nuxt-multi-cache'
+  ],
+  piniaPersistedstate: {
+    storage: 'localStorage'
+  }
 })

@@ -28,7 +28,7 @@
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <VContainer class="w-full">
               <VFlex justifyContent="end">
-                <Icon @click="onCancelled" name="pajamas:clear" class="text-teal-800" />
+                <Icon @click="onCancelled" id="cancel-model" name="pajamas:clear" class="text-teal-800" />
               </VFlex>
             </VContainer>
             <div class="sm:flex sm:items-start">

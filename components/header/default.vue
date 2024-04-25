@@ -1,42 +1,44 @@
 <template>
     <div>
 
-        <VContainer :width="80" style="height: 80px;" :isDebug="false">
+        <VContainer :width="100" style="height: 80px;" class="fixed top-0 z-10 bg-white shadow-lg" :isDebug="false">
 
             <VFlex :justifyContent="'space-between'" class="px-5 w-full">
 
                 <div style="width:40%">
-                    <ul class="flex gap-x-5 justify-between">
+                    <ul class="flex gap-x-2 justify-evenly">
                         <li>
-                            <a href="#">
+                            <a class="text-sm font-semibold text-teal-800" href="#">
                                 Download App
                             </a>
                         </li>
                         <li>
-                            <NuxtLink to="/">How To Work</NuxtLink>
+                            <a class="text-sm font-semibold text-teal-800" href="/">How To Work</a>
                         </li>
                         <li>
-                            <NuxtLink to="/jobs">Jobs</NuxtLink>
+                            <NuxtLink class="text-sm font-semibold text-teal-800" to="/jobs">Jobs</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink to="/">Companies</NuxtLink>
+                            <a class="text-sm font-semibold text-teal-800" href="/">Companies</a>
                         </li>
                         <li>
-                            <NuxtLink to="/">About</NuxtLink>
+                            <a class="text-sm font-semibold text-teal-800" href="/">About</a>
                         </li>
                     </ul>
                 </div>
 
                 <div style="width:20%;" class="flex justify-center">
-                    <LogoDefaultLogo :width="100" />
+                    <a href="/">
+                        <LogoDefaultLogo :width="80" />
+                    </a>
                 </div>
 
                 <div style="width:40%">
-                    <ul v-if="!user.user.isLogged" class="flex justify-evenly gap-x-5 items-center" >
+                    <ul v-if="!storage.isLogged" class="flex justify-evenly gap-x-5 items-center" >
                         <li></li>
                         <li></li>
                         <li>
-                            <nuxt-link to="/">Register Yourself  {{ user.user.isLogged }} </nuxt-link>
+                            <a href="/register">Register Yourself </a>
                         </li>
                         <li>
                             <VButton paddingY="3" :onClick="toggleLogin" :isLink="false">Login</VButton>
@@ -68,18 +70,13 @@
 
         </VContainer>
 
+        <VContainer :style="{ 'height' : '90px'}" ></VContainer>
+
     </div>
     <VModal v-if="showLogin" :onCancelled="toggleLogin">
         <RLogin />
     </VModal>
 </template>
-
-
-<script setup>
-
-    const user = useMyUserStore();
-
-</script>
 
 <script>
 
@@ -87,12 +84,21 @@ export default {
     data() {
         return {
             showLogin: false,
+            storage: null,
+            user: null
         }
     },
     methods: {
+        async init() {
+            this.storage = await localStorage;
+            this.user = JSON.parse(this.storage.user);
+        },
         toggleLogin() {
             this.showLogin = !this.showLogin;
         }
+    },
+    async mounted() {
+        await this.init();
     }
 }
 </script>

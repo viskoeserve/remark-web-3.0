@@ -2,7 +2,7 @@
   <VContainer :width="100" class="bg-remark-light p-4 rounded-lg shadow-md hover:shadow-xl duration-300 mb-4">
     <VFlex justifyContent="space-between">
       <VContainer>
-        <a href="/job/hr-recruiter-intern" class="text-lg font-bold hover:underline duration-200 line-clamp-1 text-ellipse"> {{ title }} </a>
+        <a target="_blank" :href="'/jobs/job-' + slug" class="text-lg font-bold hover:underline duration-200 line-clamp-1 text-ellipse"> {{ title }} </a>
         <p class="text-sm text-slate-400 line-clamp-1"> {{ skills }} </p>
       </VContainer>
       <VContainer>  
@@ -29,15 +29,20 @@
 
     <VFlex justifyContent="space-around">
       <VContainer :width="30" class="px-3 py-1 bg-slate-200">
-        <VIconText icon="material-symbols:currency-rupee" class="text-xs text-slate-500" text="Salary Range (Monthly)" />
+        <VIconText gap="2" icon="material-symbols:currency-rupee" class="text-xs text-slate-500" text="Salary Range (Monthly)" />
+        <VGap :height="3" />
+
         <p class="text-sm font-semibold"> {{ salary }} </p>
       </VContainer>
       <VContainer :width="30" class="px-3 py-1 bg-slate-200 rounded">
-        <VIconText icon="mdi:briefcase" class="text-xs text-slate-500" text="Experience" />
+        <VIconText gap="2" icon="mdi:briefcase" class="text-xs text-slate-500" text="Experience" />
+        <VGap :height="3" />
+
         <p class="text-sm font-semibold"> {{ experience }} </p>
       </VContainer>
-      <VContainer :width="30" class="px-3 py-1 bg-slate-200 rounded">
-        <VIconText icon="material-symbols:nest-clock-farsight-analog" class="text-xs text-slate-500" text="Schedule" />
+      <VContainer  :width="30" class="px-3 py-1 bg-slate-200 rounded">
+        <VIconText gap="2" icon="material-symbols:nest-clock-farsight-analog" class="text-xs text-slate-500" text="Schedule" />
+        <VGap :height="3" />
         <p class="text-sm font-semibold"> {{ schedule }} </p>
       </VContainer>
     </VFlex>
@@ -74,6 +79,11 @@ export default {
     title: {
       required: true,
       
+      type: String,
+      default: ''
+    },
+    slug: {
+      required: true,
       type: String,
       default: ''
     },
