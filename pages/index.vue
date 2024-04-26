@@ -4,24 +4,42 @@
     <VGap :height="50" />
 
     <!-- HERO SECTION -->
-    <LazyVContainer  :width="80" :style="{ 'height': '350px' }" padding="50" class="bg-teal-0">
-        <VFlex :justifyContent="'space-between'" >
-            <div :style="{'width': '40%'}" class="flex justify-center">
-                <VContainer :width="80">
-                    <p class="text-7xl font-bold tracking-wide">Find a Perfect Job</p>
+    <div  :style="{ 'height': '350px' }" padding="50" class="bg-teal-0 w-full md:w-10/12 px-10 md:px-40 md:mx-28">
+        <VFlex :justifyContent="'space-between'" class="flex-wrap md:flex-none" >
+            <div class="flex justify-center w-full md:w-4/12 ">
+                <VContainer class="w-full md:px-10 md:py-0 md:my-0 ">
+                    <p class="text-4xl md:text-7xl font-bold tracking-wide">Find a Perfect Job</p>
                 </VContainer>
             </div>
-            <div :style="{'width': '60%'}">
-                <VGap :height="100" />
-                <VFlex :width="80"  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300  rounded-full hover:shadow-xl hover:shadow-red-100 duration-200">
-                    
+            <div class="w-full md:w-8/12">
+                <!-- <VGap :height="100" /> -->
+                <div class="h-10 md:h-40"></div>
+                <VFlex  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex">
                     <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
-                    <VButton :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
+                    <VButton class="md:hidden" :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
                         <VFlex class="gap-x-2">
                             <Icon name="material-symbols:search" /> <p class="text-white">Search</p>
                         </VFlex>
                     </VButton>
                 </VFlex>
+                <div class="block md:hidden text-center">
+                    <div>
+                        <div  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200">
+                            <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
+                            
+                        </div>
+                        <div class="h-3">
+
+                        </div>
+                        <div class="flex w-full justify-center">
+                            <a class="block md:hidden bg-red-600 py-3 w-6/12 rounded-full" :href=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput">
+                                <VFlex class="gap-x-2 text-white" justifyContent="center">
+                                    <Icon name="material-symbols:search" /> <p class="">Search</p>
+                                </VFlex>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <VGap :height="20" />
                 <VContainer class="text-center">
                     <div class="font-bold text-slate-800">
@@ -37,13 +55,29 @@
                 </VContainer>
             </div>
         </VFlex>
-    </LazyVContainer>
+    </div>
+
+    <!-- <VGap :height="100" /> -->
+    <div class="h-8 md:h-24">
+
+    </div>
+
 
     <!-- CATEGORIES SECTION -->
     
         <VContainer :width="80" :style="{'height' : '350px'}" class="">
             <div class="p-4">
-                <p class="text-3xl font-semibold">Industries</p>
+                <div class="flex justify-between">
+                    <div class="w-8/12">
+                        <p class="text-2xl md:text-3xl font-semibold">Industries</p>
+                        <p class="text-slate-400 text-sm">Slide to explore more industries</p>
+                    </div>
+                    <div class="w-4/12 text-end">
+                        <span><Icon name="memory:chevron-left" /></span>
+                        <span><Icon name="memory:chevron-right" /></span>
+
+                    </div>
+                </div>
             </div>
             <!-- <VContainer :style="{'height' : '200px'}" class="border-x-4 px-6">
                 <VFlex class="gap-x-5" >
@@ -57,7 +91,7 @@
                 :style="{'height' : '250px'}"
                 class=" bg-white"
                 :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-                :slides-per-view="6"
+                :slides-per-view="viewPort == 'mobile' ? 1 : 5"
                 :loop="false"
                 :effect="'cube'"
                 :creative-effect="{
@@ -70,7 +104,7 @@
                 },
                 }"
                 >
-                    <SwiperSlide class="" v-for="(category, i) in db.homepage.categories" :key="i">
+                    <SwiperSlide class="px-2" v-for="(category, i) in db.homepage.categories" :key="i">
                         <RCategory class="" :title="category.industry.industry_title" :icon="category.industry.industry_svg" :count="category.count" />
                     </SwiperSlide>
                 </Swiper>
@@ -115,16 +149,26 @@
     <VGap :height="50" />
 
     <!-- TOP COMPANIES -->
-    <VContainer :width="80" :style="{'height' : '300px'}" >
+    <VContainer :width="80" class="h-full" >
         <div class="p-4">
-            <p class="text-3xl font-semibold">Top Companies</p>
+            <div class="flex justify-between">
+                <div class="w-8/12">
+                    <p class="text-2xl md:text-3xl font-semibold">Top Companies</p>
+                    <p class="text-slate-400 text-sm">Slide to explore more companies</p>
+                </div>
+                <div class="w-4/12 text-end">
+                    <span><Icon name="memory:chevron-left" /></span>
+                    <span><Icon name="memory:chevron-right" /></span>
+
+                </div>
+            </div>
         </div>
-        <VContainer :style="{'height' : '280px'}" class="border-x-4 px-6">
+        <VContainer class="border-x-4 h-full px-2 md:px-6">
             <Swiper
             :style="{'height' : '320px'}"
             class=" bg-white"
             :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-            :slides-per-view="3"
+            :slides-per-view="viewPort == 'mobile' ? 1 : 3"
             :loop="false"
             :effect="'cube'"
             :creative-effect="{
@@ -137,7 +181,7 @@
             },
             }"
             >
-                <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i">
+                <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i" class="px-3">
                 <RTopCompanyCard  :name="company.company_name" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
             </SwiperSlide>
             </Swiper>
@@ -146,20 +190,29 @@
 
     </VContainer>
 
-    <VGap :height="80" />
+    <div class="h-16"></div>
 
     <!-- RECENT JOBS -->
-    <VContainer :width="80" :style="{'height' : '300px'}" class="">
+    <VContainer :width="80"  class="">
         <div class="p-4">
-            <p class="text-3xl font-semibold">Recent Jobs</p>
+            <div class="flex justify-between">
+                <div class="w-8/12">
+                    <p class="text-2xl md:text-3xl font-semibold">Recent Jobs</p>
+                    <p class="text-slate-400 text-sm">Slide to explore more jobs</p>
+                </div>
+                <div class="w-4/12 text-end">
+                    <span><Icon name="memory:chevron-left" /></span>
+                    <span><Icon name="memory:chevron-right" /></span>
+
+                </div>
+            </div>
         </div>
 
-        <VContainer :style="{'height' : '180px'}" class="border-x-4 px-6">
+        <div class="border-x-4 px-6 h-full">
             <Swiper
-            :style="{'height' : '250px'}"
             class=" bg-white"
             :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-            :slides-per-view="3"
+            :slides-per-view="viewPort == 'mobile' ? 1 : 3"
             :loop="false"
             :effect="'cube'"
             :creative-effect="{
@@ -173,24 +226,20 @@
             },
             }"
             >
-                <SwiperSlide v-for="(job, i) in db.homepage.recentJobs" :key="i">
+                <SwiperSlide v-for="(job, i) in db.homepage.recentJobs" :key="i" class="px-2 pb-0 md:pb-10">
                 <RQuickJobCard  :title="job.job_title" :company="job.company_name" :logo="job.company_logo" :slug="job.job_slug" :hiring="job.job_hiring_count" :location="job.company_address" />
             </SwiperSlide>
             </Swiper>
             
-        </VContainer>
-
-
-
-
+        </div>
     </VContainer>
 
-    <VGap :height="30" />
+    <div class="h-20"></div>
 
     <!-- BANNER 2 -->
-    <VContainer :width="80" :style="{'height': '200px'}" class="border bg-slate-900 rounded-lg">
-        <VFlex style="height:200px;width:80%" justifyContent="space-between" class="mx-auto">
-            <div class="text-white">
+    <VContainer :width="80" class="border bg-slate-900 rounded-lg h-full md:py-20">
+        <VFlex  justifyContent="space-between" class="mx-auto w-10/12 flex-wrap md:flex-none">
+            <div class="text-white mt-20 mb-10 md:my-0 flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
                     <div>
                         <Icon class="text-6xl text-teal-200" name="tabler:briefcase-filled" />
@@ -201,7 +250,7 @@
                     </div>
                 </VFlex>
             </div>
-            <div class="text-white">
+            <div class="text-white mb-20 md:my-0  flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
                     <div>
                         <Icon class="text-6xl text-teal-200" name="gridicons:multiple-users" />
@@ -212,7 +261,7 @@
                     </div>
                 </VFlex>
             </div>
-            <div class="text-white">
+            <div class="text-white mb-20 md:my-0  flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
                     <div>
                         <Icon class="text-6xl text-teal-200" name="material-symbols:apartment-rounded" />
@@ -223,7 +272,7 @@
                     </div>
                 </VFlex>
             </div>
-            <div class="text-white">
+            <div class="text-white mb-20 md:my-0  flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
                     <div>
                         <Icon class="text-6xl text-teal-200" name="mdi:office-building-marker-outline" />
@@ -260,11 +309,15 @@
 export default {
     data() {
         return {
-            searchInput: ''
+            searchInput: '',
+            viewPort: ''
         }
     },
     methods: {
-
+        init() {
+            const viewp = useViewport();
+            this.viewPort = viewp.isLessThan('tablet') ? 'mobile' : 'tablet';
+        },
         searchJob(ev) {
             if(ev.keyCode == 13) {
 
@@ -277,6 +330,9 @@ export default {
             };
         }
 
+    },
+    created() {
+        this.init();
     }
 }
 </script>

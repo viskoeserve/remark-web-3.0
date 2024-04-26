@@ -1,5 +1,5 @@
 <template>
-  <div @click="searchCategory(title)" class="shadow-lg bg-remark-light text-center hover:border-t-4 border-teal-800 duration-200 cursor-pointer" style="width:200px;height:200px;">
+  <div @click="searchCategory(title)" class="shadow-lg bg-remark-light text-center hover:border-t-4 border-teal-800 duration-200 cursor-pointer w-full h-4/5">
     <VGap :height="50" />
     <!-- <Icon class="text-5xl" :name="icon" style="color:teal" /> -->
     <VFlex justifyContent="center" class="text-teal-800">

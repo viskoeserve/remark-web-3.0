@@ -14,6 +14,9 @@ export const useMyUserStore = defineStore({
 
     setToken(token:string){
       this.token = token;
+    },
+    unsetUser() {
+      this.user = {};
     }
 
   }

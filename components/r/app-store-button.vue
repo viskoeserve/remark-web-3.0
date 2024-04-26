@@ -1,10 +1,8 @@
 <template>
-  <VButton rounded="full md:my-2">
-    <a :href=" store == 'playstore' ? 'https://play.google.com/store/apps/details?id=com.remark.viskohr' : '' " target="_blank">
+    <a class="bg-teal-800 px-5 py-2 rounded-full text-white" :href=" store == 'playstore' ? 'https://play.google.com/store/apps/details?id=com.remark.viskohr' : 'https://apps.apple.com/in/app/remark-job-recruiter-app/id6475642568' " target="_blank">
       <VIconText :icon="store == 'playstore' ?  'ion:logo-google-playstore' : 'mdi:apple' " :text="store == 'playstore' ? 'Playstore' : 'App Store'" gap="2">
       </VIconText>
     </a>
-  </VButton>
 </template>
 
 

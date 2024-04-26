@@ -23,6 +23,7 @@
     "latest": "^0.2.0",
     "nuxt-icon": "^0.6.10",
     "nuxt-svgo": "^4.0.0",
-    "nuxt-swiper": "^1.2.2"
+    "nuxt-swiper": "^1.2.2",
+    "nuxt-viewport": "^2.1.4"
   }
 }

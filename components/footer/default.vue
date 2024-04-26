@@ -1,16 +1,19 @@
 <template>
-    <VContainer :width="80" :style="{'height': '400px'}" class="bg-remark-light"   >
-        <VGap :height="50" />
-        <VFlex justifyContent="space-between">
+    <div class="bg-remark-light w-full flex justify-center h-full"   >
+        <div>
+            <VGap :height="50" />
+        <VFlex justifyContent="space-between" class="flex-wrap md:flex-none gap-x-5 px-10 md:px-0">
             <!-- LOGO & DETAILS -->
-            <VContainer :width="20"  class="">
-                <LogoDefaultLogo :width="120" />
+            <div  class="w-full md:w-2/12 text-center md:text-left">
+                <div class="justify-center flex md:justify-start">
+                    <LogoDefaultLogo :width="120" />
+                </div>
                 <p class="text-slate-500">
                     Remark is a platform that brings together Jobseekers and Employers.
                 </p>
                 <VContainer class="my-3">
                     <p>Follow Us:</p>
-                    <VFlex class="gap-x-3">
+                    <div class="flex gap-x-3 justify-center md:justify-start">
                         <div>
                             <a href="#" target="_blank" rel="noopener noreferrer">
                                 <Icon class="text-2xl text-teal-800" name="mdi:facebook" />
@@ -32,12 +35,12 @@
                                 <Icon class="text-2xl text-teal-800" name="mdi:twitter" />
                             </a>
                         </div>
-                    </VFlex>
+                    </div>
                 </VContainer>
-            </VContainer>
-            <VContainer :width="40" >
-                <VFlex alignItem="start" justifyContent="space-between" >
-                    <VContainer>
+            </div>
+            <div  class="w-full md:w-5/12">
+                <div class="flex justify-center md:justify-between items-start flex-wrap md:flex-none text-center md:text-left gap-x-5" >
+                    <div class="w-50 md:w-4/12 my-6 md:my-0">
                         <ul>
                             <li class="my-4">
                                 <p class="font-bold">Quick Menus</p>
@@ -64,8 +67,8 @@
                             </li>
 
                         </ul>
-                    </VContainer>
-                    <VContainer>
+                    </div>
+                    <div class="w-50 md:w-3/12 my-6 md:my-0">
                         <ul>
                             <li class="my-4">
                                 <p class="font-bold">Support</p>
@@ -81,8 +84,8 @@
                                 </NuxtLink>
                             </li>
                         </ul>
-                    </VContainer>
-                    <VContainer>
+                    </div>
+                    <div class="w-50 md:w-4/12 mb-6 md:my-0">
                         <ul>
                             <li class="my-4">
                                 <p class="font-bold">Privacy & Policy</p>
@@ -109,10 +112,10 @@
                             </li>
 
                         </ul>
-                    </VContainer>
-                </VFlex>
-            </VContainer>
-            <VContainer :width="20" class="text-center border border-teal-800 p-4 rounded-lg">
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-4/12 text-center border border-teal-800 p-4 rounded-lg">
                 <p class="font-bold text-2xl"> <Icon name="ph:eyes-fill" /> Looking for job?</p>
                 <VGap :height="5" />
                 <p class="text-slate-500 text-sm">Connect with the team and get the job.</p>
@@ -126,11 +129,12 @@
                 <VContainer class="text-center">
                     <VButton>Request Call</VButton>
                 </VContainer>
-            </VContainer>
+            </div>
         </VFlex>
         <VGap :height="40" />
         <VContainer class="text-center text-sm text-slate-400">
             © 2024 Remark Developed by <a href="/">Visko HR Private Limited</a>
         </VContainer>
-    </VContainer>
+        </div>
+    </div>
 </template>

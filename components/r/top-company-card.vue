@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow-xl  text-center hover:border-t-4 border-teal-800 duration-200 bg-remark-light rounded-lg" style="width:400px;height:280px;">
+  <div class="shadow-xl  text-center hover:border-t-4 border-teal-800 duration-200 bg-remark-light rounded-lg w-full h-60 md:h-72 ">
     <VFlex justifyContent="space-between" class="px-5 py-3">
         <p class="text-md my-2 font-bold text-center text-wrap text-ellipsis"> {{ name }} </p>
         <Icon name="material-symbols:chevron-right-rounded" />

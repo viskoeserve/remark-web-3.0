@@ -1,40 +1,34 @@
 <template>
-    <VContainer :width="100" class="bg-gray-900" :style="{'height': '300px'}">
-        <VFlex :style="{'height': '300px','width': '85%'}" justifyContent="space-between">
+    <VContainer :width="100" class="bg-gray-900 h-3/12 pt-5">
+        <div class="flex justify-center">
+            <VFlex class="w-10/12 flex-wrap md:flex-none" justifyContent="space-between">
 
-            <VFlex justifyContent="center">
-                <div class="px-20 text-white" style="width:75%">
-                    <div class="bg-teal-200 rounded-full" style="width:100%;height:10px">
-
+                <VFlex justifyContent="center" class="">
+                    <div class="px-0 md:px-10 text-white w-10/12">
+                        <div class="bg-teal-200 rounded-full w-full" style="height:10px">
+    
+                        </div>
+                        <VGap :height="20" />
+                        <p class="text-3xl md:text-4xl">
+                            AI Inbuilt Job Portal
+                        </p>
+                        <VGap :height="15" />
+                        <p class="text-md md:text-xl">
+                            Transforming Job Search and Hiring with Intelligent Automation and Personalized Matching
+                        </p>
+                        <VGap :height="15" />
+                        <VFlex class="gap-x-3 flex-wrap md:flex-none">
+                            <RAppStoreButton class="my-2 md:my-0" store="playstore" />
+                            <RAppStoreButton store="appstore" />
+                        </VFlex>
                     </div>
-                    <VGap :height="20" />
-                    <p class="text-4xl">
-                        AI Inbuilt Job Portal
-                    </p>
-                    <VGap :height="15" />
-                    <p class="text-xl">
-                        Transforming Job Search and Hiring with Intelligent Automation and Personalized Matching
-                    </p>
-                    <VGap :height="15" />
-                    <VFlex class="gap-x-3">
-                        <VButton :isLink="true" to="https://play.google.com/store/apps/details?id=com.remark.viskohr" paddingY="3">
-                            <VFlex class="gap-x-3">
-                                <Icon class="text-xl" name="mage:playstore" /><p>Playstore</p>
-                            </VFlex>
-                        </VButton>
-                        <VButton :isLink="true" paddingY="3">
-                            <VFlex class="gap-x-3">
-                                <Icon class="text-lg" name="simple-icons:appstore" /><p>App Store</p>
-                            </VFlex>
-                        </VButton>
-                    </VFlex>
+                </VFlex>
+                <div class="md:block">
+                    <VGap :height="50" />
+                    <img width="380" src="/mobile/mobile-preview.png" />
                 </div>
+    
             </VFlex>
-            <div>
-                <VGap :height="50" />
-                <img width="380" src="/mobile/mobile-preview.png" />
-            </div>
-
-        </VFlex>
+        </div>
     </VContainer>
 </template>

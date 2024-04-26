@@ -13,7 +13,7 @@
     <div @click="onCancelled" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
   
     <div class="fixed inset-0 z-10 w-full overflow-y-auto">
-      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
         <!--
           Modal panel, show/hide based on modal state.
   
@@ -28,7 +28,7 @@
           <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <VContainer class="w-full">
               <VFlex justifyContent="end">
-                <Icon @click="onCancelled" id="cancel-model" name="pajamas:clear" class="text-teal-800" />
+                <Icon  @click="$emit('close', 1)" id="cancel-model" name="pajamas:clear" class="text-teal-800" />
               </VFlex>
             </VContainer>
             <div class="sm:flex sm:items-start">

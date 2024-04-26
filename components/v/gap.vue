@@ -1,5 +1,5 @@
 <template>
-    <VContainer :style="{ 'height': height + 'px', 'width': width + 'px'}">
+    <VContainer :style="{ 'height': height + 'px', 'width': width + 'px'}" :class="'h-'+height" >
 
     </VContainer>
 </template>

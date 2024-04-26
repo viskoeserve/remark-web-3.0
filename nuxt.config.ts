@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
     'nuxt-swiper',
     '@nuxtjs/svg-sprite',
-    'nuxt-multi-cache'
+    'nuxt-multi-cache',
+    'nuxt-viewport'
   ],
   piniaPersistedstate: {
     storage: 'localStorage'

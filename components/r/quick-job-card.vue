@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow-xl bg-remark-light hover:border-t-4 border-teal-800 duration-200 rounded-lg" style="width:400px;height:180px;">
+  <div class="shadow-xl bg-remark-light hover:border-t-4 border-teal-800 duration-200 rounded-lg w-full">
     <VFlex justifyContent="space-between" class="px-5 pt-4">
         <a :href="'jobs/job-' + slug" target="_blank" >
         <p class="text-lg py-0 my-0 my-2 font-bold text-center text-wrap text-ellipsis"> {{ title }} </p>

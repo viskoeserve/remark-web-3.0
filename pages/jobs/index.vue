@@ -2,11 +2,16 @@
 
   
   <!-- FILTER SECTION -->
-  <VContainer :width="isSearched ? 90 : 70" class="h-screen">
-    <VFlex v-if="!isLoadingJobs" justifyContent="space-between" alignItem="start" class="gap-x-3">
-      <VContainer v-if="showFilter && jobs.length > 0" :width="60" :style="{ 'height': '800px' }"  class="bg-remark-light rounded-lg shadow-xl sticky top-0 px-3" >
+  <div :class="showFilter ? 'w-screen' : 'w-full' + isLoadingJobs ? ' pt-0' : 'pt-5' " class="h-full px-2 pt-5 md:px-10">
+    <VFlex v-if="!isLoadingJobs"  alignItem="start" justifyContent="center" class="gap-x-3 flex-wrap md:flex-none w-full">
+      <div v-if="showFilter && jobs.length > 0" :style="{ 'height': '800px' }" :class="showInMobile ? 'block' : 'hidden'"  class="bg-remark-light md:block rounded-lg shadow-xl sticky top-0 px-3 w-full md:w-3/12" >
         <VContainer :width="80" class="px-1 py-5">
-          <p class="text-lg font-bold">Filters</p>
+          <div class="flex justify-between items-center">
+            <p class="text-lg font-bold">Filters</p>
+            <div class="block md:hidden">
+              <button class="py-2 px-4 bg-red-600 text-white rounded-full" @click="showInMobile = false" >Close</button>
+            </div>
+          </div>
         </VContainer>
         <VGap :height="20" />
         
@@ -75,31 +80,27 @@
           </VFlex>
           
         </VContainer>
-      </VContainer>
-
+      </div>
 
       <!-- JOB SEARCHING & LISTING SECTION -->
-      <VContainer :width="150" class="">
+      <div class="w-full" :class="!showFilter ? 'md:w-6/12' : 'md:w-5/12' ">
         <VContainer class="">
-          <VFlex :width="100"  class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
+          <VFlex :width="100" class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
             <input v-model="searchTitle" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
-            <div class="h-[2rem] border border-slate-300">
-
-            </div>
-            <VButton paddingY="3" @click="filterJobs(1)" >
-                <VFlex>
-                    <Icon name="material-symbols:search" class="mx-2" /> <p class="text-white">Search</p>
-                </VFlex>
-            </VButton>
+            <button paddingY="3" @click="filterJobs(1)" class="bg-teal-800 p-3 rounded-full text-white" >
+                    <Icon name="material-symbols:search" class="text-2xl" />
+              </button>
         </VFlex>
         </VContainer>
 
         <VGap :height="30" />
 
-        <VContainer v-if="isSearched && jobs.length > 0" class="mx-3 font-semibold">
-          <VFlex class="gap-x-2 mx-3">
+        <VContainer v-if="isSearched && jobs.length > 0" class="mx-3 font-semibold w-full">
+          <VFlex class="gap-x-2 mx-3" justifyContent="space-between">
             <p> Showing ({{ jobs.length }}) jobs </p> 
-            
+            <div @click="showInMobile = !showInMobile" class="block md:hidden text-3xl text-teal-800">
+              <span class="text-lg">Filter</span> <icon name="material-symbols:filter-alt" />
+            </div>
             <!-- <VIconText v-if="isSearched" class="text-sm px-2 py-1 bg-teal-500 text-white" icon="ic:baseline-cancel" text="Clear" /> -->
           </VFlex>
           
@@ -122,9 +123,9 @@
             :timeAgo="job.job_timeago"
             :companyLogo="job.company.company_logo"
             :companyName="job.company.company_name"
-            :companyLocation="job.company.company_address"
+            :companyLocation="job.company.company_address"  
             :salary="'Rs. ' + job.job_minimum_salary + ' to Rs. ' + job.job_maximum_salary"
-            :experience="job.job_ext_experience.length > 0 ? 'Experienced' : 'Fresher'"
+            :experience="job.is_experienced ? 'Experienced' :'Fresher'"
             :schedule="job.job_schedule"
             :description="job.job_description"
             :job="job"
@@ -144,10 +145,10 @@
             </VContainer>
           </VFlex>
         </VContainer>
-      </VContainer>
+      </div>
 
       <!-- ADVERTISING SECTION -->
-      <VContainer :width="70" class="sticky h-screen top-0">
+      <div class="w-full md:w-3/12 sticky md:h-screen top-0">
         <VContainer :width="100" class=" bg-remark-light h-screen shadow-xl">
           
           <VImage class="w-full" link="/mobile/mobile-preview.png" />
@@ -167,46 +168,14 @@
             </VFlex>
           </VContainer>
         </VContainer>
-      </VContainer>
+      </div>
     </VFlex>
-    <VFlex v-else>
-      <VContainer v-if="showFilter"  :width="60" :style="{ 'height': '800px' }"  class="animate-pulse bg-slate-200 light rounded-lg shadow-xl sticky top-0" >
-     
-      </VContainer>
-
-
-      <!-- JOB SEARCHING & LISTING SECTION -->
-      <VContainer :width="60" class="">
-        <VContainer class="">
-          <VFlex :width="80" :height="20"  class="bg-slate-200 px-8 py-2 shadow-xl hover:shadow-none duration-200 animate-pulse" style="border-radius: 10px;">
-
-        </VFlex>
-        </VContainer>
-        <VGap :height="30" />
-        <VGap :height="10" />
-        <VContainer class="p-2">
-          <!-- JOB COMPONENT -->
-          
-          <VContainer v-for="x in 15" :key="x" :width="100" :style="{ 'height': '200px' }" class="bg-slate-100 my-3 animate-pulse" >
-
-          </VContainer>
-
-          <VContainer>
-            
-            <VPagination  @pageChange="loadMoreJobs" :currentPage="currentPage" :totalPages="countJobs" />
-          </VContainer>
-        </VContainer>
-
-      </VContainer>
-
-      <!-- ADVERTISING SECTION -->
-      <VContainer :width="60" class="sticky h-screen top-0">
-        <VContainer :width="100" class=" bg-remark-light h-screen shadow-xl">
-          Advertising
-        </VContainer>
-      </VContainer>
-    </VFlex>
-  </VContainer>
+    <div class="h-96	 flex w-screen justify-center items-center" v-else>
+      <div class="w-20 h-20">
+        <icon class="text-4xl" name="svg-spinners:eclipse" />
+      </div>
+    </div>
+  </div>
   <VGap :height="60" />
 
 </template>
@@ -237,6 +206,7 @@ export default {
         limit: [],
         all: []
       },
+      showInMobile: false,
       isSearched: false,
       jobOffset: 0,
       countJobs: 0,
@@ -322,9 +292,21 @@ await this.loadMoreJobs(1);
             
             job?.job_key_skills.forEach((skill) => {
               skill.trim();
+
+            
+            
+            if(job.job_ext_experience.length > 0) {
+              job.is_experienced = true;
+            }else{
+              job.is_experienced = false;
+            }
+
             });
         
           this.jobs.push(job);
+
+        
+
           // this.storage.setItem('jobs', JSON.stringify(this.jobs));
           // this.storage.setItem('hasJobs', true);
           // this.storage.setItem('countJobs', this.countJobs);
@@ -418,6 +400,10 @@ await this.loadMoreJobs(1);
         this.filter.locations.push('All');
       }
 
+      if(this.showInMobile) {
+        this.showInMobile = false;
+      }
+
       this.jobs = [];
       const user = useMyUserStore();
       this.isLoadingJobs = true;
@@ -471,6 +457,13 @@ await this.loadMoreJobs(1);
         data.value?.jobs.forEach((job) => {
           
           job.job_key_skills = JSON.parse(job.job_key_skills);
+
+          job.job_ext_experience = JSON.parse(job.job_ext_experience);
+            if(job.job_ext_experience.length > 0) {
+              job.is_experienced = true;
+            }else{
+              job.is_experienced = false;
+            }
 
         
         job?.job_key_skills.forEach((skill) => {
