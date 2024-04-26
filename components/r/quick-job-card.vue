@@ -18,7 +18,7 @@
             <VGap :height="5" />
             <p class="text-slate-400 text-sm"> {{ location }} </p>
         </div>
-        <div>
+        <div v-if="userStore.user.isLogged && userStore.user.user_type == '1'">
             <VButton paddingX="5" paddingY="2" > <small>Apply Now</small></VButton>
         </div>
     </VFlex>
@@ -55,6 +55,12 @@ export default {
       default: ''
     }
 
+  },
+  computed: {
+    userStore() {
+      const u = useMyUserStore();
+      return u;
+    }
   }
 }
 </script>

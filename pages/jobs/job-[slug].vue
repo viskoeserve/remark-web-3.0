@@ -89,7 +89,7 @@
 
                             </VFlex>
                         </div>
-                        <VButton>Apply Now</VButton>
+                        <VButton v-if="userStore.user.isLogged && userStore.user.user_type == '1'">Apply Now</VButton>
                     </VFlex>
                 </VContainer>
             </VContainer>
@@ -154,6 +154,12 @@ export default {
                 
             }
 
+        }
+    },
+    computed: {
+        userStore() {
+            const u = useMyUserStore();
+            return u;
         }
     },
     created() {

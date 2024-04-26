@@ -61,7 +61,7 @@
           <a href="#">
             <VIconText class="text-md text-slate-400" icon="ic:round-share" text="Share" />
           </a>
-          <a href="#">
+          <a href="#" v-if="userStore.user.isLogged && userStore.user.user_type == '1'">
             <VIconText class="text-md" :class="isSaved == '1' ? 'text-teal-800' : 'text-slate-400'" icon="ic:baseline-bookmark" text="Save" />
           </a>
           <a href="#">
@@ -134,6 +134,12 @@ export default {
       required: true,
       type: Object,
       default: {}
+    }
+  },
+  computed: {
+    userStore() {
+      const u = useMyUserStore();
+      return u;
     }
   }
 }

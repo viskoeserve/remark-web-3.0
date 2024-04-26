@@ -1,5 +1,5 @@
 <template>
-    <div :style="{ 'width': width + '%', 'height': height + '%', 'padding': padding + 'px', 'margin' : margin + 'px' }" class="mx-auto" :class="isDebug ? 'border border-red-400': ''">
+    <div :style="{ 'width': width + '%', 'display': 'block', 'height': height != 0 ? height + '%' : 'auto', 'padding': padding + 'px', 'margin' : margin + 'px' }" class="mx-auto" :class="isDebug ? 'border border-red-400': ''">
         <slot />
     </div>
 </template>

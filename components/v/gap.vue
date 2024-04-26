@@ -1,7 +1,7 @@
 <template>
-    <div :style="{ 'height': height + 'px', 'width': width + 'px'}">
+    <VContainer :style="{ 'height': height + 'px', 'width': width + 'px'}">
 
-    </div>
+    </VContainer>
 </template>
 
 <script>

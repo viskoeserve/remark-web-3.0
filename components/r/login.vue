@@ -198,6 +198,12 @@ export default {
         this.storage.setItem('isLogged', true);
         this.storage.setItem('user', JSON.stringify(data.value.user));
 
+        const u = useMyUserStore();
+        data.value.user.isLogged = true;
+        u.setUser(data.value.user);
+        u.setToken(this.loginToken);
+
+
         location.href = '';
         
 

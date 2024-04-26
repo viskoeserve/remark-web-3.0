@@ -13,17 +13,17 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-sm font-semibold text-teal-800" href="/">How To Work</a>
+                            <a class="text-sm font-semibold text-teal-800" href="/how-it-works">How To Work</a>
                         </li>
                         <li>
                             <NuxtLink class="text-sm font-semibold text-teal-800" to="/jobs">Jobs</NuxtLink>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="text-sm font-semibold text-teal-800" href="/">Companies</a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a class="text-sm font-semibold text-teal-800" href="/">About</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -34,7 +34,7 @@
                 </div>
 
                 <div style="width:40%">
-                    <ul v-if="!storage.isLogged" class="flex justify-evenly gap-x-5 items-center" >
+                    <ul v-if="!userStore.user?.isLogged" class="flex justify-evenly gap-x-5 items-center" >
                         <li></li>
                         <li></li>
                         <li>
@@ -45,17 +45,17 @@
                             <!-- <button class="py-2 px-6 bg-teal-800 text-white rounded-full">Login</button> -->
                         </li>
                     </ul>
-                    <ul v-else class="flex justify-evenly gap-x-5 items-center" >
+                    <ul v-if="userStore.user?.isLogged" class="flex justify-evenly gap-x-5 items-center" >
                         <li></li>
                         <li></li>
                         <li></li>
                         <li>
                             <VFlex class="gap-x-2">
-                                <VImage :image="user.user.user_photo" :isRounded="true" />
+                                <VImage :image="userStore.user.user_photo" :isRounded="true" />
                                 <VContainer>
-                                    <nuxt-link to="/">{{ user.user.user_name }} </nuxt-link>
-                                    <p v-if="user.user.user_type == '1'" class="text-sm"> {{ user.user.user_profile }} </p>
-                                    <p v-if="user.user.user_type == '2'" class="text-xs"> {{ user.user.user_organization }} </p>
+                                    <nuxt-link to="/">{{ userStore.user.user_name }} </nuxt-link>
+                                    <p v-if="userStore.user.user_type == '1'" class="text-sm"> {{ userStore.user.user_profile }} </p>
+                                    <p v-if="userStore.user.user_type == '2'" class="text-xs"> {{ userStore.user.user_organization }} </p>
                                     
                                 </VContainer>
                                
@@ -88,16 +88,23 @@ export default {
             user: null
         }
     },
+    computed: {
+        userStore() {
+            const u = useMyUserStore();
+            return u;
+        }
+    },
     methods: {
         async init() {
-            this.storage = await localStorage;
-            this.user = JSON.parse(this.storage.user);
+            // this.storage = useStorage();
+            // this.user = JSON.parse(this.storage.user);
+            
         },
         toggleLogin() {
             this.showLogin = !this.showLogin;
         }
     },
-    async mounted() {
+    async created() {
         await this.init();
     }
 }
