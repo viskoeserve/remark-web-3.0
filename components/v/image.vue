@@ -1,5 +1,5 @@
 <template>
-  <img :width="width" :src=" link != '' ? link : 'https://remarkhr.com/img/logo/remark-placeholder.jpg' " :class="isRounded ? 'rounded-full' : 'rounded' "  />
+  <img :width="width" :src=" link != '' ? link : 'https://visko-hr-pvt-ltd.s3.ap-south-1.amazonaws.com/remark/remark-placeholder.jpg' " :class="isRounded ? 'rounded-full' : 'rounded' "  />
 </template>
 
 <script>

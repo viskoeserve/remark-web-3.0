@@ -13,7 +13,7 @@
     </VFlex>
     <VGap :height="10" />
     <VFlex>
-      <img width="30" class="rounded-full" :src="companyLogo != '' ? companyLogo : 'https://remarkhr.com/img/logo/remark-placeholder.jpg' " />
+      <img width="30" class="rounded-full" :src="companyLogo != '' ? companyLogo : 'https://visko-hr-pvt-ltd.s3.ap-south-1.amazonaws.com/remark/remark-placeholder.jpg' " />
       <VGap :width="10" />
       <div class="w-full">
         <a href="#" target="_blank" class="text-md font-normal hover:underline line-clamp-1 text-ellipse"> {{ companyName }} </a>
