@@ -14,7 +14,7 @@
     <p class="text-slate-400 text-sm line-clamp-2 px-10">{{ description }}</p>
     <VGap :height="5" />
 
-    <VButton paddingX="5" paddingY="1" style="border-radius:25px"> <small> {{ jobCount }} Jobs Available</small></VButton>
+    <VButton :isLink="true" :to="'/companies/company-' + slug" paddingX="5" paddingY="1" style="border-radius:25px"> <small> {{ jobCount }} Jobs Available</small></VButton>
 </div>
 </template>
 
@@ -22,6 +22,10 @@
 export default {
   props: {
     name: {
+      type: String,
+      default: ''
+    },
+    slug: {
       type: String,
       default: ''
     },

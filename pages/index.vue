@@ -105,7 +105,7 @@
                 }"
                 >
                     <SwiperSlide class="px-2" v-for="(category, i) in db.homepage.categories" :key="i">
-                        <RCategory class="" :title="category.industry.industry_title" :icon="category.industry.industry_svg" :count="category.count" />
+                        <RCategory class="" :title="category.industry.industry_title" :slug="category.industry.industry_slug" :icon="category.industry.industry_svg" :count="category.count" />
                     </SwiperSlide>
                 </Swiper>
                 </client-only>
@@ -182,7 +182,7 @@
             }"
             >
                 <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i" class="px-3">
-                <RTopCompanyCard  :name="company.company_name" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
+                <RTopCompanyCard  :name="company.company_name" :slug="company.company_slug" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
             </SwiperSlide>
             </Swiper>
             
@@ -288,7 +288,7 @@
 
     <VGap :height="80" />
 
-    <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
+    <!-- <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
         <div class="w-full">
             <p class="text-3xl font-bold">Get Instant Job!</p>
             <p class="text-slate-400 text-sm">Get your dream job instantly from <span class="text-red-500">Remark Support Team</span></p>
@@ -307,7 +307,7 @@
                 <button class="bg-teal-800 px-4 py-2 text-white">Get a call</button>
             </div>
         </div>
-    </VModal>
+    </VModal> -->
     
 </template>
 

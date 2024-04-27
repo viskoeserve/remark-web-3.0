@@ -1,5 +1,5 @@
 <template>
-  <VContainer :width="100" class="bg-remark-light p-4 rounded-lg shadow-md hover:shadow-xl duration-300 mb-4">
+  <div class="bg-remark-light p-4 rounded-lg shadow-md hover:shadow-xl duration-300 mb-4 w-full" :class="additionalClass" >
     <VFlex justifyContent="space-between">
       <div class="w-full">
         <a target="_blank" :href="'/jobs/job-' + slug" class="text-lg font-bold hover:underline duration-200 line-clamp-1 text-ellipse"> {{ title }} </a>
@@ -69,12 +69,16 @@
         </VFlex>
       </VContainer>
     </VFlex>
-  </VContainer>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    additionalClass: {
+      type: String,
+      default: ''
+    },  
     title: {
       required: true,
       
