@@ -1,14 +1,15 @@
 
 export const useMyDbStore = defineStore({
   id: 'myDbStore',
-
+  persist: true,
   state: () => ({ 
       homepage: {
         isHomepageLoaded: false,
         categories: [],
         topCompanies: [],
         recentJobs: []
-      }
+      },
+      showInstantJobForm: true,
    }),
    getters: {
     isLoaded():boolean {
@@ -50,7 +51,11 @@ export const useMyDbStore = defineStore({
 
         console.log(this.homepage);
 
-      }
+      },
+
+      closeInstantJobForm() {
+        this.showInstantJobForm = false;
+      },
 
   }
 })

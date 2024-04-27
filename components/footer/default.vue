@@ -46,9 +46,9 @@
                                 <p class="font-bold">Quick Menus</p>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <NuxtLink to="/">
+                                <a href="/how-it-works">
                                     How Remark Works?
-                                </NuxtLink>
+                                </a>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
                                 <NuxtLink to="/">
@@ -61,9 +61,9 @@
                                 </NuxtLink>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <NuxtLink to="/">
-                                    Remark App
-                                </NuxtLink>
+                                <a href="https://play.google.com/store/apps/details?id=com.remark.viskohr" target="_blank">
+                                    Download Remark App
+                                </a>
                             </li>
 
                         </ul>

@@ -8,12 +8,12 @@
                 <div style="width:40%">
                     <ul class="flex gap-x-12 justify-start">
                         <li>
-                            <a class="text-sm font-semibold text-teal-800" href="#">
+                            <a class="text-sm font-semibold text-teal-800" href="https://play.google.com/store/apps/details?id=com.remark.viskohr" target="_blank">
                                 Download App
                             </a>
                         </li>
                         <li>
-                            <a class="text-sm font-semibold text-teal-800" href="/how-it-works">How To Work</a>
+                            <a class="text-sm font-semibold text-teal-800" href="/how-it-works">How it Works</a>
                         </li>
                         <li>
                             <a class="text-sm font-semibold text-teal-800" href="/jobs">Latest Jobs</a>
@@ -146,7 +146,7 @@
             
         </VContainer>
     </div>
-    <VModal v-if="showLogin" :onCancelled="toggleLogin">
+    <VModal v-if="showLogin" @close="toggleLogin" :onCancelled="toggleLogin">
         <RLogin />
     </VModal>
 </template>

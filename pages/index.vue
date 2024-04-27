@@ -43,10 +43,10 @@
                 <VGap :height="20" />
                 <VContainer class="text-center">
                     <div class="font-bold text-slate-800">
-                        Remark Job & Recruiter App
+                        Download Remark Job & Recruiter App
                     </div>
                     <div class="pb-2 text-slate-400">
-                        Make your search easy
+                        Make your mark with remark!
                     </div>
                     <VFlex class="gap-x-3" justifyContent="center">
                         <RAppStoreButton store="playstore" />
@@ -288,6 +288,26 @@
 
     <VGap :height="80" />
 
+    <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
+        <div class="w-full">
+            <p class="text-3xl font-bold">Get Instant Job!</p>
+            <p class="text-slate-400 text-sm">Get your dream job instantly from <span class="text-red-500">Remark Support Team</span></p>
+            
+            <div class="my-3">
+                <p>Name <span class="text-red-500">*</span></p>
+                <div class="my-1"></div>
+                <input class="outline-none border px-5 w-full py-2 rounded-lg" placeholder="Your Name" />
+            </div>
+            <div class="my-3">
+                <p>Mobile Number <span class="text-red-500">*</span></p>
+                <div class="my-1"></div>
+                <input class="outline-none border px-5 w-full py-2 rounded-lg" type="tel" placeholder="+91" />
+            </div>
+            <div class="my-3 text-center">
+                <button class="bg-teal-800 px-4 py-2 text-white">Get a call</button>
+            </div>
+        </div>
+    </VModal>
     
 </template>
 
@@ -301,6 +321,15 @@
 
     if(!db.homepage.isHomepageLoaded) {
         await db.loadHomepage();
+    }
+
+    if(db.showInstantJobForm) {
+        db.showInstantJobForm = false;
+
+        setTimeout(() => {
+            db.showInstantJobForm = true;
+        }, 2000);
+
     }
 
 </script>
