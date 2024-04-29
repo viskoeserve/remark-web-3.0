@@ -1,136 +1,170 @@
 <template>
-  <div>
-    <div class="">
-      <div class="max-w-screen-xl mx-auto px-4 py-8">
-        <h1 class="text-5xl font-bold mb-4 text-white border w-fit py-2 px-4 rounded-lg bg-teal-800 shadow-lg">Remark Terms & Conditions</h1>
+  <div class="p-10">
+    <section class="stunning-header bg-dark-themes pt200">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 mb-5 mb-md-5">
+            <ul class="breadcrumbs">
+              <li class="breadcrumbs-item">
+                <a href="/"
+                  >Home<i class="puzzle-icon fal fa-angle-double-right"></i
+                ></a>
+              </li>
+              <li class="breadcrumbs-item active">
+                <span>Privacy Policy</span>
+              </li>
+            </ul>
 
-        <p class="mb-12 ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eveniet dolores laudantium voluptatum
-          voluptate, recusandae saepe laborum odio nobis? Adipisci ut obcaecati perferendis natus illum officiis, sed
-          ullam veniam sint!
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800 text-teal-800">Add Any New Title</h2>
-
-        <p class="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni provident excepturi 
-        </p>
-
-        <ul class="list-disc list-inside mb-12">
-          <li>Your name and contact information</li>
-          <li>Demographic information</li>
-          <li>Other information relevant to customer surveys and/or offers</li>
+            <h1 class="page-title text-white">Mobile Privacy Policy</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="col-lg-12 mt-5">
+      <div class="container">
+        <div>
+          <p>
+            This privacy policy governs your use of the software application
+            <b>Remark</b> (Application) for mobile devices &
+            <b>Remark HR</b> (Website) that was created by Sitent Web & Graphics
+            Design and it’s owned by <b>Visko E-Serve Pvt Ltd</b>. The
+            Application is a Job Portal Where Employee can search for job and
+            can apply & Employers can search for candidates and can hire them.
+          </p>
+          <p>
+            <b
+              >What information does the Application obtain and how is it
+              used?</b
+            >
+            <br />
+            User Provided Information The Application obtains the information
+            you provide when you download and register the Application.
+            Registration with us is optional. However, please keep in mind that
+            you may not be able to use some of the features offered by the
+            Application unless you register with us.
+          </p>
+          <p>
+            When you register with us and use the Application, you generally
+            provide (a) your
+            <b
+              >Name, Email Address, Mobile Number, Photo and other registration
+              information</b
+            >; (b) Information you enter into your our system when using the
+            Application, such as <b>contact information or CV</b>.
+          </p>
+          <p>
+            We may also use the information you provided us to contact your from
+            time to time to provide you with important information, required
+            notices and marketing promotions.
+          </p>
+          <p>
+            <b>Automatically Collected Information</b><br />
+            In addition, the Application may collect certain information
+            automatically, including, but not limited to, the type of mobile
+            device you use, your mobile devices unique device ID, the IP address
+            of your mobile device, your mobile operating system, the type of
+            mobile Internet browsers you use, and information about the way you
+            use the Application.
+          </p>
+          <br />
+          <h3>Permissions & It’s Uses</h3>
+          <p>
+            <b> INTERNET PERMISSION </b>
+            <br />
+            This application needs internet & has a large collections of data,
+            we use your internet to fetch the data from our database to show the
+            best results to you.
+          </p>
+          <p>
+            <b>MEDIA & STORAGE PERMISSION</b><br />
+            As we mentioned that this is a job portal application, every
+            employee’s has their own CV, and this application can let you upload
+            your CV (Resume) in this application, we also give the Download the
+            CV of employee option to the Employer, so that at the time of
+            offline interview they already have the employee CV. This Download
+            CV will save in the Phone Storage/Download folder in Mobile of
+            Employer. We will not take permission if the user is not register as
+            employee or employer in application.
+          </p>
+          <p>
+            <b>CAMERA & MICROPHONE PERMISSION </b> <br />
+            HR has online interview for Employee & Employer via Audio & Video
+            Calling. Employee has options to choose whether they have
+            comfortable in Audio or Video Interview. So for this concept we have
+            to take Camera & Microphone permission of both Employee & Employer.
+            We will not take permission if the user is not register as employee
+            or employer in application.
+          </p>
+          <p>
+            <b
+              >Does the Application collect precise real time location
+              information of the device?</b
+            ><br />
+            No, This Application does not collect precise information about the
+            location of your mobile devices.
+          </p>
+          <p>
+              <b>Do third parties see and/or have access to information obtained                                                                                                                                                              by the Application?</b><br />
+Only aggregated, anonymized data is periodically transmitted to external service                                                                                                                                                             s to help us improve the Application and our service. We will share your informa                                                                                                                                                             tion with third parties only in the ways that are described in this privacy stat                                                                                                                                                             ement. <br />
+<br>
+We may disclose User provided and Automatically Collected Information:
+        <ul>
+            <li>
+                As required by law, such as to comply with a subpoena, or simila                                                                                                                                                             r legal process;
+            </li>
+            <li>
+                When we believe in good faith that disclosure is necessary to pr                                                                                                                                                             otect our rights, protect your safety or the safety of others, investigate fraud                                                                                                                                                             , or respond to a government request;
+            </li>
+            <li>
+                With our trusted services providers who work on our behalf, do n                                                                                                                                                             ot have an independent use of the information we disclose to them, and have agre                                                                                                                                                             ed to adhere to the rules set forth in this privacy statement.
+            </li>
+            <li>
+                If <b>Remark</b> is involved in a merger, acquisition, or sale o                                                                                                                                                             f all or a portion of its assets, you will be notified via email and/or a promin                                                                                                                                                             ent notice on our Web site of any change in ownership or uses of this informatio                                                                                                                                                             n, as well as any choices you may have regarding this information.
+            </li>
         </ul>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">How We Use the Information</h2>
-
-        <p class="mb-4">
-          We require this information to understand your needs and provide you with a better service, and in
-          particular
-          for
-          the following reasons: Reamark
+          </p>
+          <p><b>
+              What are my opt-out rights?
+          </b><br />
+You can stop all collection of information by the Application easily by uninstal                                                                                                                                                             ling the Application.
+You may use the standard uninstall processes as may be available as part of your                                                                                                                                                              mobile device or via the mobile application marketplace or network. You can als                                                                                                                                                             o request to opt-out via email, at support@remarkhr.com</p>
+        <p>
+             <b>Data Retention Policy, Managing Your Information</b><br />
+We will retain User provided data for as long as you use the Application and for                                                                                                                                                              a reasonable time thereafter. We will retain Automatically Collected informatio                                                                                                                                                             n for up to 30 days and thereafter may store it in aggregate. If you’d like us t                                                                                                                                                             o delete User Provided Data that you have provided via the Application, please c                                                                                                                                                             ontact us at support@remarkhr.com and we will respond in a reasonable time. Plea                                                                                                                                                             se note that some or all of the User Provided Data may be required in order for                                                                                                                                                              the Application to function properly.
         </p>
+        <p>
+            <b>Children</b><br />
+We do not use the Application to knowingly solicit data from or market to childr                                                                                                                                                             en under the age of 18. If a parent or guardian becomes aware that his or her ch                                                                                                                                                             ild has provided us with information without their consent, he or she should con                                                                                                                                                             tact us at support@remarkhr.com. We will delete such information from our files                                                                                                                                                              within a reasonable time
 
-        <ul class="list-disc list-inside mb-12">
-          <li>Internal record keeping</li>
-          <li>Improving our products and services</li>
-          <li>Sending promotional emails about new products, special offers, or other information which we think you
-            may
-            find
-            interesting</li>
-          <li>From time to time, we may also use your information to contact you for market research purposes. We may
-            contact
-            you by email, phone, or mail. We may use the information to customize the website according to your
-            interests.</li>
-        </ul>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Security</h2>
-
-        <p class="mb-12">
-          We are committed to ensuring that your information is secure. In order to prevent unauthorized access or
-          disclosure,
-          we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the
-          information we collect online.
         </p>
+        <p>
+            <b>
+                Security</b><br />
+We are concerned about safeguarding the confidentiality of your information. We                                                                                                                                                              provide physical, electronic, and procedural safeguards to protect information w                                                                                                                                                             e process and maintain. For example, we limit access to this information to auth                                                                                                                                                             orized employees and contractors who need to know that information in order to o                                                                                                                                                             perate, develop or improve our Application. Please be aware that, although we en                                                                                                                                                             deavour provide reasonable security for information we process and maintain, no                                                                                                                                                              security system can prevent all potential security breaches.
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Cookies</h2>
-
-        <p class="mb-12">
-          A cookie is a small file that asks permission to be placed on your computer's hard drive. Once you agree,
-          the
-          file
-          is added, and the cookie helps analyze web traffic or lets you know when you visit a particular site.
-          Cookies
-          allow
-          web applications to respond to you as an individual. The web application can tailor its operations to your
-          needs,
-          likes, and dislikes by gathering and remembering information about your preferences.
         </p>
+        <p>
+            <b>Changes </b><br />
+This Privacy Policy may be updated from time to time for any reason. We will not                                                                                                                                                             ify you of any changes to our Privacy Policy by posting the new Privacy Policy o                                                                                                                                                             n Remark Application and Remark HR Website. You are advised to consult this Priv                                                                                                                                                             acy Policy regularly for any changes, as continued use is deemed approval of all                                                                                                                                                              changes.
 
-        <p class="mb-12">
-          Overall, cookies help us provide you with a better website by enabling us to monitor which pages you find
-          useful
-          and which you do not. A cookie in no way gives us access to your computer or any information about you,
-          other
-          than
-          the data you choose to share with us.
         </p>
+        <p>
+            <b>Your Consent</b><br />
+By using the Application, you are consenting to our processing of your informati                                                                                                                                                             on as set forth in this Privacy Policy now and as amended by us. "Processing,” m                                                                                                                                                             eans using cookies on a computer/hand held device or using or touching informati                                                                                                                                                             on in any way, including, but not limited to, collecting, storing, deleting, usi                                                                                                                                                             ng, combining and disclosing information, all of which activities will take plac                                                                                                                                                             e in the Remark Application. If you reside outside the Visko E-Serve PVT LTD you                                                                                                                                                             r information will be transferred, processed and stored there under privacy stan                                                                                                                                                             dards.
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Links to Other Websites</h2>
-
-        <p class="mb-12">
-          Our website may contain links to other websites of interest. However, once you have used these links to
-          leave
-          our
-          site, you should note that we do not have any control over that other website. Therefore, we cannot be
-          responsible
-          for the protection and privacy of any information which you provide whilst visiting such sites and such
-          sites
-          are
-          not governed by this privacy statement. You should exercise caution and look at the privacy statement
-          applicable
-          to
-          the website in question.
         </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Controlling Your Personal Information</h2>
-
-        <p class="mb-4">
-          You may choose to restrict the collection or use of your personal information in the following ways:
+        <p>
+            <b>Contact us</b><br />
+If you have any questions regarding privacy while using the Application, or have                                                                                                                                                              questions about our practices, please contact us via email at support@remarkhr.                                                                                                                                                             com
         </p>
-
-        <ul class="list-disc list-inside mb-4">
-          <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
-            may
-            change your mind at any time by writing to or emailing us at [email protected]</li>
-          <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
-            permission
-            or are required by law to do so. We may use your personal information to send you promotional
-            information
-            about
-            third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
-          <li>You may request details of personal information which we hold about you. If you would like a copy of the
-            information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
-            [email protected]</li>
-          <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
-            email
-            us as soon as possible at the above address. We will promptly correct any information found to be
-            incorrect.
-          </li>
-        </ul>
-
-        <p class="mb-4">
-          This privacy policy is subject to change without notice.
-        </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-
+<script>
+export default {
+  name: "privacyPolicy",
+};
 </script>
-
-<style>
-
-</style>

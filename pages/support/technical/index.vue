@@ -7,13 +7,13 @@
           <h2 class=" mb-4 font-bold  text-gray-900  text-3xl sm:text-5xl">
             Remark Technical Support
           </h2>
-          <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 ">Lorem ipsum dolor sit amet consectetur adipisicing
+          <!-- <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 ">Lorem ipsum dolor sit amet consectetur adipisicing
             elit. Sed provident beatae est architecto
-          </p>
+          </p> -->
         </div>
       </div>
       <!-- Technical TECHNICAL SUPPORT CARDS SECTION -->
-      <div class="grid gap-14 md:grid-cols-3 md:gap-5">
+      <!-- <div class="grid gap-14 md:grid-cols-3 md:gap-5">
         <div class="rounded-xl border border-red-500 p-6 text-center shadow-xl">
           <div
             class="mx-auto flex h-16 w-16 -translate-y-12 transform items-center justify-center rounded-full bg-teal-800 shadow-lg shadow-teal-500/40">
@@ -38,7 +38,7 @@
           <p class="px-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iure inventore amet
           </p>
         </div>
-      </div>
+      </div> -->
       <!-- Technical TECHNICAL SUPPORT CARDS SECTION -->
       <div class="font-[sans-serif] max-w-screen-xl mx-auto">
         <div class="bg-white shadow-xl my-6 p-8 rounded">

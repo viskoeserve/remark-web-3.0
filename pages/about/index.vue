@@ -1,134 +1,261 @@
 <template>
-  <div>
-    <div class="">
-      <div class="max-w-screen-xl mx-auto px-4 py-8">
-        <h1 class="text-5xl font-bold mb-4 text-white border w-fit py-2 px-4 rounded-lg bg-teal-800 shadow-lg">Remark About Us</h1>
+  <div class="px-10 bg-slate-800 py-10 text-center">
+      <section class="stunning-header bg-dark-themes pt200">
+          <div class="w-full">
+              <div class="row text-center">
+                  <div class="w-full">
+                      <div class="text-center" style="color">
+                          <div class="pt-3 px-5">
+                              <p class="text-5xl font-bold" style="color: #00E5B0;">ABOUT US</p>
+                              <br />
+                              <p
+                                  style="color: white; text-align: left; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                  Recently incorporated in the year 2022, VISKO HR Private Limited is a dynamic and
+                                  innovative job recruitment company dedicated to connecting top-tier talent with leading
+                                  organizations across various industries. With a focus on excellence, integrity, and
+                                  personalized service, we strive to be a trusted partner for both employers and
+                                  job-seekers. Our mission is to empower businesses with exceptional human capital while
+                                  providing individuals with rewarding career opportunities. We are committed to fostering
+                                  long-term relationships based on trust, transparency, and mutual success. To achieve our
+                                  mission, we have created a unique AI-based job portal named, REMARK, which connects
+                                  employers and employees with the help of AI.</p>
+                          </div>
+                          <!-- PROBLEMS THAT AIM TO SOLVE -->
+                          <div class="pt-3 px-5">
+                              <h3 style="color: #00E5B0;">PROBLEMS THAT AIM TO SOLVE</h3>
+                              <p
+                              style="color: white; text-align: left; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                  Unemployment can be seen as one of the severe socio-economic problems that are being
+                                  faced by both developing and the developed countries. For example, in India, the rate of
+                                  unemployment has been increasing rapidly since the 2000s. Today, billions of people are
+                                  interacting over the internet in several different ways and is exponentially easier to
+                                  operate. Overtime the problem in helping people get jobs or helping corporates find
+                                  people has changed from ‘simply finding the people’ to ‘locating the right people’. This
+                                  demand has risen due to the sheer explosion of the number of people and job
+                                  opportunities floating on the Internet. This has led to job portals slowly losing their
+                                  relevance in the traditional sense. However, following are some of the problems
+                                  associated with current digital recruitment portals:</p>
+                              <ul style="text-align: left;">
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
+                                      1. Rise in Technical Issues: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">During online interviews on
+                                          the free video platforms
+                                          like Skype or Zoom video calls, it is possible to encounter technical faults. It
+                                          can
+                                          be quite embarrassing for a recruiter to be suddenly switched out of a
+                                          conversation
+                                          or call due to an electrical outage, while having an unstable internet
+                                          connection
+                                          can be awkward. This also means if the company isn’t good at technology, they
+                                          might
+                                          encounter such glitches more often;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      2. Lack of AI integrated features: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Artificial
+                                          Intelligence (AI) can significantly
+                                          enhance various aspects of the job recruitment process, streamlining workflows,
+                                          improving efficiency, and enhancing the overall experience for both recruiters
+                                          and
+                                          candidates. However, none of the existing job portals incorporate AI features
+                                          for
+                                          job recruitment;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      3. Lack of useful information: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Job portals pretty much
+                                          work by using resume
+                                          information to match people. Unfortunately, information available through job
+                                          portals is not enough to do an intelligent match. Recruiters see very similar
+                                          resumes of hundreds of applicants making it impossible to figure out which
+                                          candidate
+                                          seems to be relevant or better for the job at hand;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
+                                      4. Fraudulent applications: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Some applications might be
+                                          fake to get information about
+                                          the company or hiring officer (a common espionage tactic). Simultaneously,
+                                          spammers
+                                          might use the information posted online to promote a service or product;</span>
+                                  </li>
+                                  <br />
 
-        <p class="mb-12 ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eveniet dolores laudantium voluptatum
-          voluptate, recusandae saepe laborum odio nobis? Adipisci ut obcaecati perferendis natus illum officiis, sed
-          ullam veniam sint!
-        </p>
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      5. Lack of data-driven recruitment process: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Data analysis
+                                          helps in making the online
+                                          recruitment process more effective and efficient. Hiring analytics can help your
+                                          company achieve its desired business results;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;" >
+                                      6. Biased recruitment process: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">A stereotypical
+                                          recruitment process that does not
+                                          promote diversity or enhance inclusion makes the hiring monotonous and
+                                          subjective.
+                                          Most companies fail to commit objective hiring due to unconscious bias,
+                                          resulting in
+                                          the loss of great candidates. An unprejudiced recruitment process ensures
+                                          diversity
+                                          in the workforce and also helps in creating a strong brand.</span>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- PROBLEMS THAT AIM TO SOLVE END-->
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800 text-teal-800">Add Any New Title</h2>
 
-        <p class="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni provident excepturi 
-        </p>
+                          <!-- OUR SOLUTIONS TO THE ABOVE-MENTIONED PROBLEMS START-->
+                          <div class="pt-3 px-5">
+                              <h3 style="color: #00E5B0;">OUR SOLUTIONS TO THE ABOVE-MENTIONED PROBLEMS</h3>
+                              <p
+                              style="color: white; text-align: left; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                  At VISKO HR Private Limited, we have created an AI-based job portal, aimed to
+                                  revolutionize the digital recruitment process. We understand the challenges of both the
+                                  employers and the employees, which is we created REMARK, our AI-based job recruitment
+                                  portal designed for both employers and the employees. It helps to alleviate the
+                                  above-mentioned problems in the following manner:</p>
+                              <ul style="text-align: left;">
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      1. Automated Resume Screening: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Our software can quickly
+                                          screen resumes for keywords and criteria, saving recruiter’s time and resources
+                                          by identifying the most qualified candidates;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      2. Automated Sourcing: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">With the help of our software’s AI
+                                          tools, employers can actively search and source potential candidates from
+                                          various online platforms, social media, and professional networks. This helps
+                                          recruiters discover passive candidates who may not be actively applying for jobs
+                                          but possess the right skills.</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      3. Audio and Video Interview schedulation through application:<span
+                                      style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;"> Through our mobile applications, employers and employees
+                                          can both schedule personal interviews at their convenience. Our technical team
+                                          has built up a robust software with extremely less chances of encountering
+                                          technical faults, when compared to free video platforms;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      4. Interview preparation for candidates: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">With the help of
+                                          our AI-based software, candidates can interact with a bot which will help them
+                                          with answering of interview related questions. This bot is created in a similar
+                                          manner as to that of an interviewer, which helps the candidate to prepare for
+                                          the interview before-hand;</span>
+                                  </li>
+                                  <br />
 
-        <ul class="list-disc list-inside mb-12">
-          <li>Your name and contact information</li>
-          <li>Demographic information</li>
-          <li>Other information relevant to customer surveys and/or offers</li>
-        </ul>
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      5. Internship procurement: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">We believe that digital
+                                          recruitment must just not be limited to jobs and that AI-integrated features can
+                                          also benefits trainees and young candidates to look up for suitable jobs and
+                                          prepare for interviews likewise;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      6. AI confidence calculation: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Being one of its kind, our
+                                          AI-based software will analyze facial expressions, tone of voice, and other
+                                          non-verbal cues to provide insights into a candidate's soft skills and cultural
+                                          fit. This can complement traditional interview methods and help identify the
+                                          best candidates;</span>
+                                  </li>
+                                  <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      7. AI generated job and bio description: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Candidates often
+                                          struggle writing a complete bio for themselves to be put up on a job portal. In
+                                          the same manner, recruiters struggle to put up complete information about the
+                                          job posting and their expectations. With the help of our software, employers and
+                                          employees can have a customized bio written;</span>
+                                  </li> <br />
+                                  <li style="color: #00E5B0; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                      8. Questionnaire upload: <span style="color: #C0C8D3; font-size: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;">With the help of our
+                                          application, employers can also upload specific questionnaires to be answered by
+                                          the candidates. This helps the employers in selecting skill-based candidates for
+                                          the interview rounds.</span>
+                                  </li>
+                              </ul>
+                          </div>
+                          <!-- OUR SOLUTIONS TO THE ABOVE-MENTIONED PROBLEMS END-->
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">How We Use the Information</h2>
+                          <!-- HOW DO WE LOOK AT THE FUTURE START-->
+                          <div class="pt-3 px-5">
+                              <h3 style="color: #00E5B0;">HOW DO WE LOOK AT THE FUTURE?</h3>
+                              <p
+                              style="color: white; text-align: left; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                  We aim to become India’s first AI-based job portal with features like automated resume
+                                  screening, automated sourcing of information, audio and video interview schedulation on
+                                  the application itself. Our mobile application also helps candidates in interview
+                                  preparation and internship procurement. In future, we are looking to launch training and
+                                  certification programs, where candidates would be trained for interview preparation for
+                                  various types of job postings. We are also planning to incorporate more AI-integrated
+                                  features such as predictive analysis tool (where AI can be used to predict the success
+                                  of candidates in specific roles by analyzing historical data and identifying patterns
+                                  related to job performance, which would help employers make more informed decisions),
+                                  automated skill assessment tools (where our platform would be adept at assessing and
+                                  verifying candidates' skills through automated testing and simulations). We are also
+                                  strengthening our blockchain technology which would be integrated into our portal to
+                                  securely verify and validate candidates' educational and professional credentials. This
+                                  could reduce the risk of fraudulent information in resumes and enhance the overall
+                                  credibility of the hiring process.</p>
 
-        <p class="mb-4">
-          We require this information to understand your needs and provide you with a better service, and in
-          particular
-          for
-          the following reasons: Reamark
-        </p>
+                          </div>
+                          <!-- HOW DO WE LOOK AT THE FUTURE END-->
+                          <div class="pt-3 px-5">
+                              <h3 style="color: #00E5B0;">OUR LONG-TERMS GOALS IN TERMS OF EMPLOYMENT</h3>
+                              <p
+                              style="color: white; text-align: left; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                                  The main motive at VISKO HR Private Limited is to generate employment opportunities and
+                                  help candidates and employers in the recruitment process. Being an innovative
+                                  recruitment company, we have a technical team of experts working round the corner to
+                                  ensure minimum technical faults and inconvenience to the users. In future, we are
+                                  planning to hire local talent from nearby cities, especially female candidates to
+                                  generate employment. We would also rely network of freelancers, contractors, and
+                                  consultants to support our operations. This can create opportunities for people with
+                                  specialized skills and experience to find work on a flexible basis.</p>
 
-        <ul class="list-disc list-inside mb-12">
-          <li>Internal record keeping</li>
-          <li>Improving our products and services</li>
-          <li>Sending promotional emails about new products, special offers, or other information which we think you
-            may
-            find
-            interesting</li>
-          <li>From time to time, we may also use your information to contact you for market research purposes. We may
-            contact
-            you by email, phone, or mail. We may use the information to customize the website according to your
-            interests.</li>
-        </ul>
+                          </div>
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Security</h2>
 
-        <p class="mb-12">
-          We are committed to ensuring that your information is secure. In order to prevent unauthorized access or
-          disclosure,
-          we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the
-          information we collect online.
-        </p>
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Cookies</h2>
 
-        <p class="mb-12">
-          A cookie is a small file that asks permission to be placed on your computer's hard drive. Once you agree,
-          the
-          file
-          is added, and the cookie helps analyze web traffic or lets you know when you visit a particular site.
-          Cookies
-          allow
-          web applications to respond to you as an individual. The web application can tailor its operations to your
-          needs,
-          likes, and dislikes by gathering and remembering information about your preferences.
-        </p>
 
-        <p class="mb-12">
-          Overall, cookies help us provide you with a better website by enabling us to monitor which pages you find
-          useful
-          and which you do not. A cookie in no way gives us access to your computer or any information about you,
-          other
-          than
-          the data you choose to share with us.
-        </p>
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Links to Other Websites</h2>
+                      </div>
+                  </div>
 
-        <p class="mb-12">
-          Our website may contain links to other websites of interest. However, once you have used these links to
-          leave
-          our
-          site, you should note that we do not have any control over that other website. Therefore, we cannot be
-          responsible
-          for the protection and privacy of any information which you provide whilst visiting such sites and such
-          sites
-          are
-          not governed by this privacy statement. You should exercise caution and look at the privacy statement
-          applicable
-          to
-          the website in question.
-        </p>
 
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Controlling Your Personal Information</h2>
+                  <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt100">
+          <header
+            class="crumina-module crumina-heading heading--h2 heading--with-decoration heading--inline text-white mb-5"
+          >
+            <h2 class="heading-title">
+              We connect employers with professionals
+            </h2>
+            <div class="heading-text">
+              Learn how to make your Job profile more attractive to
+              recruiters. Read these tips and tricks on ways to improve your
+              profile on Remarkhr.com
+            </div>
+          </header>
+        </div> -->
 
-        <p class="mb-4">
-          You may choose to restrict the collection or use of your personal information in the following ways:
-        </p>
-
-        <ul class="list-disc list-inside mb-4">
-          <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
-            may
-            change your mind at any time by writing to or emailing us at [email protected]</li>
-          <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
-            permission
-            or are required by law to do so. We may use your personal information to send you promotional
-            information
-            about
-            third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
-          <li>You may request details of personal information which we hold about you. If you would like a copy of the
-            information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
-            [email protected]</li>
-          <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
-            email
-            us as soon as possible at the above address. We will promptly correct any information found to be
-            incorrect.
-          </li>
-        </ul>
-
-        <p class="mb-4">
-          This privacy policy is subject to change without notice.
-        </p>
+                  <!-- <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 m-auto">
+          <div class="crumina-module crumina-our-video">
+            <div class="video-thumb">
+              <img src="img/svg/02_how_it_works.svg" alt="video" />
+              <a href="#" class="video-control js-popup-iframe">
+                <svg class="puzzle-icon" width="28" height="40">
+                  <path
+                    fill-rule="evenodd"
+                    d="M27.61 19.214L1.416.16A.874.874 0 0 0 .483.101.963.963 0 0 0 0 .944V39.05c0 .352.186.677.483.843a.87.87 0 0 0 .933-.06L27.61 20.782a.968.968 0 0 0 .39-.784.965.965 0 0 0-.39-.784z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div> -->
+          </div>
       </div>
-    </div>
-  </div>
+  </section>
+</div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
-<style></style>

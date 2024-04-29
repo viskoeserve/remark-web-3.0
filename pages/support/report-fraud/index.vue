@@ -1,136 +1,72 @@
 <template>
-  <div>
-    <div class="">
-      <div class="max-w-screen-xl mx-auto px-4 py-8">
-        <h1 class="text-5xl font-bold mb-4 text-white border w-fit py-2 px-4 rounded-lg bg-teal-800 shadow-lg">Remark Report Fraud</h1>
 
-        <p class="mb-12 ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eveniet dolores laudantium voluptatum
-          voluptate, recusandae saepe laborum odio nobis? Adipisci ut obcaecati perferendis natus illum officiis, sed
-          ullam veniam sint!
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800 text-teal-800">Add Any New Title</h2>
-
-        <p class="mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni provident excepturi 
-        </p>
-
-        <ul class="list-disc list-inside mb-12">
-          <li>Your name and contact information</li>
-          <li>Demographic information</li>
-          <li>Other information relevant to customer surveys and/or offers</li>
-        </ul>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">How We Use the Information</h2>
-
-        <p class="mb-4">
-          We require this information to understand your needs and provide you with a better service, and in
-          particular
-          for
-          the following reasons: Reamark
-        </p>
-
-        <ul class="list-disc list-inside mb-12">
-          <li>Internal record keeping</li>
-          <li>Improving our products and services</li>
-          <li>Sending promotional emails about new products, special offers, or other information which we think you
-            may
-            find
-            interesting</li>
-          <li>From time to time, we may also use your information to contact you for market research purposes. We may
-            contact
-            you by email, phone, or mail. We may use the information to customize the website according to your
-            interests.</li>
-        </ul>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Security</h2>
-
-        <p class="mb-12">
-          We are committed to ensuring that your information is secure. In order to prevent unauthorized access or
-          disclosure,
-          we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the
-          information we collect online.
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Cookies</h2>
-
-        <p class="mb-12">
-          A cookie is a small file that asks permission to be placed on your computer's hard drive. Once you agree,
-          the
-          file
-          is added, and the cookie helps analyze web traffic or lets you know when you visit a particular site.
-          Cookies
-          allow
-          web applications to respond to you as an individual. The web application can tailor its operations to your
-          needs,
-          likes, and dislikes by gathering and remembering information about your preferences.
-        </p>
-
-        <p class="mb-12">
-          Overall, cookies help us provide you with a better website by enabling us to monitor which pages you find
-          useful
-          and which you do not. A cookie in no way gives us access to your computer or any information about you,
-          other
-          than
-          the data you choose to share with us.
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Links to Other Websites</h2>
-
-        <p class="mb-12">
-          Our website may contain links to other websites of interest. However, once you have used these links to
-          leave
-          our
-          site, you should note that we do not have any control over that other website. Therefore, we cannot be
-          responsible
-          for the protection and privacy of any information which you provide whilst visiting such sites and such
-          sites
-          are
-          not governed by this privacy statement. You should exercise caution and look at the privacy statement
-          applicable
-          to
-          the website in question.
-        </p>
-
-        <h2 class="text-2xl font-bold mb-4 text-teal-800">Controlling Your Personal Information</h2>
-
-        <p class="mb-4">
-          You may choose to restrict the collection or use of your personal information in the following ways:
-        </p>
-
-        <ul class="list-disc list-inside mb-4">
-          <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
-            may
-            change your mind at any time by writing to or emailing us at [email protected]</li>
-          <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
-            permission
-            or are required by law to do so. We may use your personal information to send you promotional
-            information
-            about
-            third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
-          <li>You may request details of personal information which we hold about you. If you would like a copy of the
-            information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
-            [email protected]</li>
-          <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
-            email
-            us as soon as possible at the above address. We will promptly correct any information found to be
-            incorrect.
-          </li>
-        </ul>
-
-        <p class="mb-4">
-          This privacy policy is subject to change without notice.
-        </p>
+  <section class="" id="">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div class="mb-4">
+        <div class="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
+          <h2 class=" mb-4 font-bold  text-gray-900  text-3xl sm:text-5xl">
+            Report a fraud
+          </h2>
+          <!-- <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 ">Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Sed provident beatae est architecto
+          </p> -->
+        </div>
       </div>
+      <!-- Technical TECHNICAL SUPPORT CARDS SECTION -->
+      <!-- <div class="grid gap-14 md:grid-cols-3 md:gap-5">
+        <div class="rounded-xl border border-red-500 p-6 text-center shadow-xl">
+          <div
+            class="mx-auto flex h-16 w-16 -translate-y-12 transform items-center justify-center rounded-full bg-teal-800 shadow-lg shadow-teal-500/40">
+          </div>
+          <h1 class="text-darken mb-3 text-xl font-medium lg:px-14">Card 1</h1>
+          <p class="px-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iure inventore amet
+          </p>
+        </div>
+        <div data-aos-delay="150" class="rounded-xl border border-red-500 p-6 text-center shadow-xl">
+          <div
+            class="mx-auto flex h-16 w-16 -translate-y-12 transform items-center justify-center rounded-full bg-teal-800 shadow-lg shadow-teal-500/40">
+          </div>
+          <h1 class="text-darken mb-3 text-xl font-medium lg:px-14 ">Card 2</h1>
+          <p class="px-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iure inventore amet
+          </p>
+        </div>
+        <div data-aos-delay="300" class="rounded-xl border border-red-500 p-6 text-center shadow-xl">
+          <div
+            class="mx-auto flex h-16 w-16 -translate-y-12 transform items-center justify-center rounded-full bg-teal-800 shadow-lg shadow-teal-500/40">
+          </div>
+          <h1 class="text-darken mb-3 text-xl font-medium lg:px-14">Card 3</h1>
+          <p class="px-4 text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iure inventore amet
+          </p>
+        </div>
+      </div> -->
+      <!-- Technical TECHNICAL SUPPORT CARDS SECTION -->
+      <div class="font-[sans-serif] max-w-screen-xl mx-auto">
+        <div class="bg-white shadow-xl my-6 p-8 rounded">
+          <form class="max-w-xl mx-auto">
+            <div class="space-y-4">
+              <input type='text' placeholder='Name'
+                class="w-full border-2 border-slate-200 rounded py-3 px-4 text-sm focus:outline-teal-600" />
+              <input type='email' placeholder='Phone No.'
+                class="w-full border-2 border-slate-200 rounded py-3 px-4 text-sm focus:outline-teal-600" />
+              <textarea placeholder='Message' rows="6"
+                class="w-full border-2 border-slate-200 rounded px-4 text-sm pt-3 focus:outline-teal-600"></textarea>
+              <button type='button'
+                class="text-white w-full bg-teal-800 hover:bg-blue-700 font-semibold rounded text-sm px-6 py-3">
+
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>
 
 </script>
 
-<style>
-
-</style>
+<style></style>
