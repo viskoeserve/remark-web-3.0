@@ -6,11 +6,13 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "nuxt preview --port 3001",
     "postinstall": "nuxt prepare",
+    "show": "cross-env PORT=3001 node .output/server/index.mjs ",
     "deploy": "pm2 start .output/server/index.mjs"
   },
   "dependencies": {
+    "mitt": "^3.0.1",
     "nuxt": "^3.11.2",
     "nuxt-multi-cache": "^3.1.1",
     "vue": "^3.4.21",

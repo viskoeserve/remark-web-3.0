@@ -9,7 +9,8 @@ export const useMyDbStore = defineStore({
         topCompanies: [],
         recentJobs: []
       },
-      showInstantJobForm: true,
+      showInstantJobForm: false,
+      isShowForm: true,
    }),
    getters: {
     isLoaded():boolean {
@@ -32,8 +33,6 @@ export const useMyDbStore = defineStore({
 
         var date = Date.now();
 
-        console.log(date);
-        console.log(data);
 
         if(data?.value?.status) {
 
@@ -49,12 +48,17 @@ export const useMyDbStore = defineStore({
         }
         }
 
-        console.log(this.homepage);
 
+      },
+
+      startInstantJobForm() {
+        this.showInstantJobForm = true;
+        // this.isShowForm = false;
       },
 
       closeInstantJobForm() {
         this.showInstantJobForm = false;
+        this.isShowForm = false;
       },
 
   }

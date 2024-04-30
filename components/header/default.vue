@@ -77,24 +77,26 @@
 
     </div>
     <div class="block md:hidden">
-        <VContainer class="w-full px-5 py-3">
+        <VContainer class="w-full bg-remark-light shadow-md px-5 py-0">
             <VFlex justifyContent="space-between">
                 <a class="cursor-pointer" href="/">
                     <LogoDefaultLogo />
                 </a>
-                <div>
-                    <a v-if="!userStore.user.isLogged" href="javascript:void(0)" class="px-8 py-3 bg-teal-800 text-white rounded-full" @click="toggleLogin">
-                        Login
-                    </a>
-                    <div v-else class="text-center">
-                        <p>{{ userStore.user.user_name }}</p>
-                        <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '1'"> {{ userStore.user.user_profile }} </p>
-                        <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '2'"> {{ userStore.user.user_organization }} </p>
+                <div class="flex items-center gap-x-3">
+                    <div>
+                        <a v-if="!userStore.user.isLogged" href="javascript:void(0)" class="px-5 py-2 bg-teal-800 text-white text-sm rounded-full" @click="toggleLogin">
+                            Login
+                        </a>
+                        <div v-else class="text-center">
+                            <p>{{ userStore.user.user_name }}</p>
+                            <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '1'"> {{ userStore.user.user_profile }} </p>
+                            <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '2'"> {{ userStore.user.user_organization }} </p>
+                        </div>
                     </div>
-                </div>
-                <div class="relative">
-                    <div class="p-1 cursor-pointer" @click="toggleMobileMenu" >
-                        <icon name="material-symbols:menu-rounded" class="text-3xl" />
+                    <div class="relative">
+                        <div class="p-1 cursor-pointer" @click="toggleMobileMenu" >
+                            <icon name="material-symbols:menu-rounded" class="text-3xl" />
+                        </div>
                     </div>
                 </div>
                 <!-- HIDDEN MENUS -->
@@ -146,7 +148,7 @@
             
         </VContainer>
     </div>
-    <VModal v-if="showLogin" @close="toggleLogin" :onCancelled="toggleLogin">
+    <VModal v-if="showLogin || toShowLogin" @close="toggleLogin" :onCancelled="toggleLogin">
         <RLogin />
     </VModal>
 </template>
@@ -154,6 +156,12 @@
 <script>
 
 export default {
+    props: {
+        toShowLogin: {
+            type: Boolean,
+            default: false,
+        }
+    },
     data() {
         return {
             showLogin: false,
@@ -172,6 +180,11 @@ export default {
         async init() {
             // this.storage = useStorage();
             // this.user = JSON.parse(this.storage.user);
+            const { $event } = useNuxtApp();
+
+            this.$listen('close', () => {
+                this.toggleLogin();
+            })
             
         },
         toggleMobileMenu() {

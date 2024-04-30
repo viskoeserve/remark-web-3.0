@@ -49,6 +49,11 @@ export default {
       type: Function,
       default: () => console.log('modal cancelled')
     }
+  },
+  methods: {
+
+    
+
   }
 }
 </script>

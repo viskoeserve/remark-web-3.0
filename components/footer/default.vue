@@ -5,9 +5,9 @@
         <VFlex justifyContent="space-between" class="flex-wrap md:flex-none gap-x-5 px-10 md:px-0">
             <!-- LOGO & DETAILS -->
             <div  class="w-full md:w-2/12 text-center md:text-left">
-                <div class="justify-center flex md:justify-start">
-                    <LogoDefaultLogo :width="120" />
-                </div>
+                <a href="/" class="justify-center flex md:justify-start">
+                    <LogoDefaultLogo :width="100" />
+                </a>
                 <p class="text-slate-500">
                     Remark is a platform that brings together Jobseekers and Employers.
                 </p>
@@ -15,24 +15,24 @@
                     <p>Follow Us:</p>
                     <div class="flex gap-x-3 justify-center md:justify-start">
                         <div>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
-                                <Icon class="text-2xl text-teal-800" name="mdi:facebook" />
+                            <a href="https://facebook.com/remarkhr" target="_blank" rel="noopener noreferrer">
+                                <Icon class="text-2xl text-blue-600" name="mdi:facebook" />
                             </a>
                         </div>
                         <div>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
-                                <Icon class="text-2xl text-teal-800" name="mdi:instagram" />
+                            <a href="https://instagram.com/remarkhr" target="_blank" rel="noopener noreferrer">
+                                <Icon class="text-2xl text-pink-800" name="mdi:instagram" />
                             </a>
                             
                         </div>
                         <div>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
-                                <Icon class="text-2xl text-teal-800" name="mdi:linkedin" />
+                            <a href="https://in.linkedin.com/company/remarkhr" target="_blank" rel="noopener noreferrer">
+                                <Icon class="text-2xl text-blue-900" name="mdi:linkedin" />
                             </a>
                         </div>
                         <div>
-                            <a href="#" target="_blank" rel="noopener noreferrer">
-                                <Icon class="text-2xl text-teal-800" name="mdi:twitter" />
+                            <a href="https://twitter.com/remarkhr" target="_blank" rel="noopener noreferrer">
+                                <Icon class="text-2xl text-blue-500" name="mdi:twitter" />
                             </a>
                         </div>
                     </div>
@@ -74,14 +74,14 @@
                                 <p class="font-bold">Support</p>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <NuxtLink to="/support/technical">
+                                <a href="/support/technical">
                                     Technical Support
-                                </NuxtLink>
+                                </a>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <NuxtLink to="/support/report-fraud">
+                                <a href="/support/report-fraud">
                                     Report Fraud
-                                </NuxtLink>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -122,13 +122,19 @@
                 <VGap :height="5" />
                 <p class="text-slate-500 text-sm font-bold">Enter your mobile number</p>
                 <VGap :height="5" />
-                <VContainer :width="95" class="border">
-                    <VInput type="text" class=" py-2"  max="10" placeholder="+91" />
+                <VContainer :width="95" class="">
+                    <input v-model="instantForm.mobileNumber.value" type="text" class="border px-5 py-2 outline-none bg-remark-light"  max="10" placeholder="Enter Your Mobile Number" />
                 </VContainer>
                 <VGap :height="10" />
                 <VContainer class="text-center">
-                    <VButton>Request Call</VButton>
+                    <button v-if="!instantForm.isAdding" class="bg-teal-800 px-5 py-2 text-white rounded" @click="submitRequestForm" >Request Call</button>
+                    <icon v-else name="svg-spinners:ring-resize" />
+
                 </VContainer>
+                <VGap :height="10" />
+                <div class="text-center">
+                    <p class="text-teal-800 font-semibold text-sm">{{ instantForm.isSubmittedForm }}</p>
+                </div>
             </div>
         </VFlex>
         <VGap :height="40" />
@@ -138,3 +144,60 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            instantForm: {
+                name: {
+                    value: "",
+                    isError: false,
+                    errorMessage:""
+                },
+                mobileNumber: {
+                    value: "",
+                    isError: false,
+                    errorMessage: ""
+                },
+                isAdding: false,
+                isSubmittedForm: ''
+            }
+        }
+    },
+    methods: {
+
+        async submitRequestForm() {
+            this.instantForm.isAdding = true;
+
+            if(this.instantForm.mobileNumber.value.length != 10) {
+
+                this.instantForm.mobileNumber.isError = true;
+                this.instantForm.mobileNumber.errorMessage = "Please enter a valid mobile number";
+                this.instantForm.isAdding = false;
+                return false;
+
+            }
+
+            const { data, pending, error, refresh } = await useFetch('/api/job/instant-job',{
+                method: 'post',
+                body: {
+                    name: '',
+                    number: this.instantForm.mobileNumber.value
+                } 
+            });
+
+            if(data.value.status) {
+
+                this.instantForm.mobileNumber.value = '';
+                this.instantForm.isSubmittedForm = 'Thank you, Remark team will contact you soon'
+                
+            }
+
+            this.instantForm.isAdding = false;
+
+        }
+
+    }
+}
+</script>

@@ -12,13 +12,18 @@
       <p class="font-semibold">Enter Mobile Number</p>
     <VGap :height="5" />
     <VInput v-model="phoneNumber" @inputChanged="getInput" :model="model.phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="+91" class="border w-full px-2 py-2 rounded-lg" />
-    <small v-if="errorMessage == ''" class="text-slate-400">Enter your 10 digit mobile number without +91</small>
-    <small v-if="errorMessage != ''" class="text-red-400"> {{ errorMessage }} </small>
+    <small v-if="errorMessage == ''  && !isOTPSent" class="text-slate-400">Enter your 10 digit mobile number without +91</small>
+    <small v-if="errorMessage != ''  && !isOTPSent" class="text-red-400"> {{ errorMessage }} </small>
     <VGap :height="20" />
     <VContainer class="text-center">
-      <VButton v-if="!isOTPSent" :onClick="sendOTP" :isDisabled="!isValidPhoneNumber">
-        Send OTP
-      </VButton>
+      <div v-if="!isLoggingIn">
+        <VButton v-if="!isOTPSent" :onClick="sendOTP" :isDisabled="!isValidPhoneNumber">
+          Send OTP
+        </VButton>
+      </div>
+      <div v-else v-show="!isOTPSent">
+        <icon  name="svg-spinners:ring-resize" />
+      </div>
     </VContainer>
     
     </VContainer>
@@ -39,9 +44,11 @@
     <small v-if="errorMessage != ''" class="text-red-400"> {{ errorMessage }} </small>
     <VGap :height="20" />
     <VContainer class="text-center">
-      <VButton :onClick="submitOtp" :isDisabled="!isValidOTP">
+      <VButton v-if="!isLoggingIn" :onClick="submitOtp" :isDisabled="!isValidOTP">
         Submit OTP
       </VButton>
+      <icon v-else name="svg-spinners:ring-resize" />
+
     </VContainer>
     </VContainer>
 
@@ -65,10 +72,15 @@ export default {
         phone: 'phone',
         otp: 'otp'
       },
+      isLoggingIn: false,
       phoneNumber: "",
       otp: "",
       isValidPhoneNumber: false,
       errorMessage: "",
+      otpValid: {
+        isInvalid: false,
+
+      },
       isOTPSent: false,
       isValidOTP: false,
       timer: 0,
@@ -124,6 +136,7 @@ export default {
     async sendOTP() {
 
       // LOGIN
+      this.isLoggingIn = true;
       
       this.loginToken = "";
 
@@ -158,6 +171,8 @@ export default {
       }
       }
 
+      this.isLoggingIn = false;
+
     },
     
 
@@ -175,6 +190,8 @@ export default {
     },
 
     async submitOtp() {
+
+      this.isLoggingIn = true;
 
       var formData = new FormData();
 
@@ -207,7 +224,11 @@ export default {
         location.href = '';
         
 
+      }else{
+        this.errorMessage = "Please provide a valid otp sent on you mobile number";
+        this.isLoggingIn = false;
       }
+
 
     }
   },

@@ -48,27 +48,25 @@
     <VGap :height="15" />
     <p class="px-4 line-clamp-1  text-ellipses overflow-hidden">{{ description }}</p>
     <hr class="my-3" />
-    <VFlex justifyContent="space-between">
-      
-      <VContainer class="text-right">
-        <!-- <VButton>
-          Apply
-        </VButton> -->
-      </VContainer>
-      <VContainer class="px-3 text-right">
-        <VFlex class="gap-x-5" justifyContent="end">
+    <VContainer class="px-3">
+      <VFlex class="gap-x-5" justifyContent="space-between">
+        <div class="w-full flex gap-x-3">
           <a href="#">
-            <VIconText class="text-md text-slate-400" icon="ic:round-share" text="Share" />
+            <VIconText gap="2" class="text-md text-slate-400" icon="ic:round-share" text="Share" />
           </a>
           <a href="#" v-if="userStore.user.isLogged && userStore.user.user_type == '1'">
-            <VIconText class="text-md" :class="isSaved == '1' ? 'text-teal-800' : 'text-slate-400'" icon="ic:baseline-bookmark" text="Save" />
+            <VIconText gap="2" class="text-md" :class="isSaved == '1' ? 'text-teal-800' : 'text-slate-400'" icon="ic:baseline-bookmark" text="Save" />
           </a>
           <a href="#">
-            <VIconText class="text-md text-slate-400" icon="material-symbols:report-outline" text="Report" />
+            <VIconText gap="2" class="text-md text-slate-400" icon="material-symbols:report-outline" text="Report" />
           </a>
-        </VFlex>
-      </VContainer>
-    </VFlex>
+        </div>
+        <div>
+          <button class="px-6 py-2 bg-teal-800 rounded-full text-white" v-if="this.userStore.user.user_type != '2' || !this.userStore.user.isLogged " @click="applyForJob" > Apply</button>
+        </div>
+      </VFlex>
+    </VContainer>
+    
   </div>
 </template>
 
@@ -144,7 +142,27 @@ export default {
       const u = useMyUserStore();
       return u;
     }
-  }
+  },
+  methods: {
+    async applyForJob() {
+
+      const { $event } = useNuxtApp();
+
+      console.log(this.userStore.user.isLogged);
+
+      if(this.userStore.user.isLogged) {
+
+        if(this.userStore.user.user_type == '1') {
+
+        }
+        
+      }else{
+        $event('close');
+      }
+
+    }
+  },
+  
 }
 </script>
 

@@ -7,13 +7,16 @@
     <div  :style="{ 'height': '350px' }" padding="50" class="bg-teal-0 w-full md:w-10/12 px-10 md:px-40 md:mx-28">
         <VFlex :justifyContent="'space-between'" class="flex-wrap md:flex-none" >
             <div class="flex justify-center w-full md:w-4/12 ">
-                <VContainer class="w-full md:px-10 md:py-0 md:my-0 ">
-                    <p class="text-4xl md:text-7xl font-bold tracking-wide">Find a Perfect Job</p>
+                <VContainer class="w-full text-center md:text-left md:px-10 md:py-0 md:my-0 ">
+                    <p class="text-3xl md:text-7xl font-bold tracking-wide">Find a Perfect Job</p>
                 </VContainer>
             </div>
             <div class="w-full md:w-8/12">
                 <!-- <VGap :height="100" /> -->
-                <div class="h-10 md:h-40"></div>
+                <div class="h-10 md:h-48"></div>
+                <div class="w-full flex justify-center">
+                    <!-- <img class="w-4/12 md:w-3/12" src="/img/svg/remark-ai.png" /> -->
+                </div>
                 <VFlex  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex">
                     <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
                     <VButton class="md:hidden" :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
@@ -58,7 +61,7 @@
     </div>
 
     <!-- <VGap :height="100" /> -->
-    <div class="h-8 md:h-24">
+    <div class="h-10 md:h-24">
 
     </div>
 
@@ -288,7 +291,7 @@
 
     <VGap :height="80" />
 
-    <!-- <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
+    <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
         <div class="w-full">
             <p class="text-3xl font-bold">Get Instant Job!</p>
             <p class="text-slate-400 text-sm">Get your dream job instantly from <span class="text-red-500">Remark Support Team</span></p>
@@ -296,18 +299,22 @@
             <div class="my-3">
                 <p>Name <span class="text-red-500">*</span></p>
                 <div class="my-1"></div>
-                <input class="outline-none border px-5 w-full py-2 rounded-lg" placeholder="Your Name" />
+                <input v-model="instantJobForm.name.value" class="outline-none border px-5 w-full py-2 rounded-lg" placeholder="Your Name" />
+                <small class="text-sm text-red-500" v-if="instantJobForm.name.isError"> {{ instantJobForm.name.errorMessage }} </small>
             </div>
             <div class="my-3">
                 <p>Mobile Number <span class="text-red-500">*</span></p>
                 <div class="my-1"></div>
-                <input class="outline-none border px-5 w-full py-2 rounded-lg" type="tel" placeholder="+91" />
+                <input v-model="instantJobForm.mobileNumber.value" class="outline-none border px-5 w-full py-2 rounded-lg" type="tel" placeholder="+91" />
+                <small class="text-sm text-red-500" v-if="instantJobForm.mobileNumber.isError"> {{ instantJobForm.mobileNumber.errorMessage }} </small>
+
             </div>
             <div class="my-3 text-center">
-                <button class="bg-teal-800 px-4 py-2 text-white">Get a call</button>
+                <button v-if="!instantJobForm.isAdding" class="bg-teal-800 px-4 py-2 text-white" @click="submitInstantJobForm">Get a call</button>
+                <icon v-else name="svg-spinners:ring-resize" />
             </div>
         </div>
-    </VModal> -->
+    </VModal>
     
 </template>
 
@@ -323,14 +330,7 @@
         await db.loadHomepage();
     }
 
-    if(db.showInstantJobForm) {
-        db.showInstantJobForm = false;
-
-        setTimeout(() => {
-            db.showInstantJobForm = true;
-        }, 2000);
-
-    }
+    
 
 </script>
 
@@ -339,13 +339,37 @@ export default {
     data() {
         return {
             searchInput: '',
-            viewPort: ''
+            viewPort: '',
+            instantJobForm: {
+                isAdding: false,
+                name: {
+                    value: '',
+                    isError: false,
+                    errorMessage: ''
+                },
+                mobileNumber: {
+                    value: '',
+                    isError: false,
+                    errorMessage: ''
+                }
+            }
         }
     },
     methods: {
         init() {
+
             const viewp = useViewport();
             this.viewPort = viewp.isLessThan('tablet') ? 'mobile' : 'tablet';
+
+            if(this.homeDb.isShowForm) {
+                
+                this.homeDb.startInstantJobForm();
+                                
+            }else{
+                this.homeDb.closeInstantJobForm();
+
+            }
+
         },
         searchJob(ev) {
             if(ev.keyCode == 13) {
@@ -357,10 +381,72 @@ export default {
                 }
 
             };
+        },
+        async submitInstantJobForm() {
+
+            this.instantJobForm.isAdding = true;
+
+            this.resetInstantJobForm();
+            console.log('name:' , this.instantJobForm.name.value);
+            console.log('mobile:', this.instantJobForm.mobileNumber.value);
+
+            if(this.instantJobForm.name.value.length == 0) {
+                this.instantJobForm.name.isError = true;
+                this.instantJobForm.name.errorMessage = 'Name is required';
+            this.instantJobForm.isAdding = false;
+
+
+                return false;
+            } 
+
+            if(this.instantJobForm.mobileNumber.value.length != 10) {
+                this.instantJobForm.mobileNumber.isError = true;
+                this.instantJobForm.mobileNumber.errorMessage = 'Please enter a valid mobile number';
+            this.instantJobForm.isAdding = false;
+
+
+                return false;
+            }
+
+            const { data, pending, error, refresh } = await useFetch('/api/job/instant-job',{
+                method: 'post',
+                body: {
+                    name: this.instantJobForm.name.value,
+                    number: this.instantJobForm.mobileNumber.value
+                }
+            });
+
+            if(data.value.status) {
+                console.log(data.value.message);
+                this.instantJobForm.name.value = "";
+                this.instantJobForm.mobileNumber.value = "";
+
+            }
+
+            this.instantJobForm.isAdding = false;
+
+            this.homeDb.closeInstantJobForm();
+
+        },
+
+        resetInstantJobForm() {
+
+            this.instantJobForm.name.errorMessage = '';
+            this.instantJobForm.name.isError = false;
+
+            this.instantJobForm.mobileNumber.errorMessage = '';
+            this.instantJobForm.mobileNumber.isError = false;
+
         }
 
     },
-    created() {
+    computed: {
+        homeDb() {
+            const db = useMyDbStore();
+            return db;
+        }
+    },
+    mounted() {
         this.init();
     }
 }
