@@ -18,7 +18,8 @@ export default defineEventHandler(async (event) => {
       "key" : "Remark",
       "l_name" : body.name,
       "l_contact" : body.number,
-      "l_source": "website",
+      "l_description": body.description,
+      "l_source": body.source,
       "l_assigned_by": "sapna_maru",
       "l_category": "newuser"
     }

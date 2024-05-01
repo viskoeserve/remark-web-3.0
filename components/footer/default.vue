@@ -26,12 +26,12 @@
                             
                         </div>
                         <div>
-                            <a href="https://in.linkedin.com/company/remarkhr" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/company/remark-official" target="_blank" rel="noopener noreferrer">
                                 <Icon class="text-2xl text-blue-900" name="mdi:linkedin" />
                             </a>
                         </div>
                         <div>
-                            <a href="https://twitter.com/remarkhr" target="_blank" rel="noopener noreferrer">
+                            <a href="https://twitter.com/Remark_official" target="_blank" rel="noopener noreferrer">
                                 <Icon class="text-2xl text-blue-500" name="mdi:twitter" />
                             </a>
                         </div>

@@ -54,7 +54,7 @@
           <a href="#">
             <VIconText gap="2" class="text-md text-slate-400" icon="ic:round-share" text="Share" />
           </a>
-          <a href="#" v-if="userStore.user.isLogged && userStore.user.user_type == '1'">
+          <a href="#" v-if="userStore?.user?.isLogged && userStore?.user?.user_type == '1'">
             <VIconText gap="2" class="text-md" :class="isSaved == '1' ? 'text-teal-800' : 'text-slate-400'" icon="ic:baseline-bookmark" text="Save" />
           </a>
           <a href="#">
@@ -62,7 +62,7 @@
           </a>
         </div>
         <div>
-          <button class="px-6 py-2 bg-teal-800 rounded-full text-white" v-if="this.userStore.user.user_type != '2' || !this.userStore.user.isLogged " @click="applyForJob" > Apply</button>
+          <button class="px-6 py-2 bg-teal-800 rounded-full text-white" v-if="userStore.user.user_type != '2' || !userStore.user.isLogged " @click="applyForJob" > Apply</button>
         </div>
       </VFlex>
     </VContainer>

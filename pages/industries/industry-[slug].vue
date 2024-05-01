@@ -41,7 +41,7 @@
                     :skills="JSON.parse(job.job_key_skills).join(', ')"
                     :companyLogo="job.company.company_logo"
                     :companyName="job.company.company_name"
-                    :companyLocation="job.company.company_location"
+                    :companyLocation="job.company.company_address"
                     :salary="'Rs. '+ job.job_minimum_salary + ' - Rs. ' + job.job_maximum_salary "
                     :experience="JSON.parse(job.job_ext_experience).length > 0 ? 'Experience' : 'Fresher'"
                     :schedule="job.job_schedule"

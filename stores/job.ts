@@ -12,10 +12,6 @@ export const useMyJobStore = defineStore({
     async fetchJobs() {
 
 
-
-
-      
-
     }
 
   }

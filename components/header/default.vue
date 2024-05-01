@@ -48,8 +48,8 @@
                         <li></li>
                         <li>
                             <div>
-                                <div class="flex">
-                                    <VFlex class="gap-x-2">
+                                <div class="flex gap-x-10 items-center">
+                                    <VFlex class="gap-x-2 items-center">
                                         <VImage :image="userStore.user.user_photo" :isRounded="true" />
                                         <VContainer>
                                             <nuxt-link to="/">{{ userStore.user.user_name }} </nuxt-link>
@@ -59,8 +59,11 @@
                                         </VContainer>
                                        
                                     </VFlex>
-                                    <div>
-                                        <button @click="doLogout" class="px-8 py-3 rounded-full text-red-600 underline" >Logout</button>
+                                    <div class="block text-left">
+                                        <div>
+                                            <a href="/profile" class="px-6 py-2 bg-teal-800 text-sm text-white py-0 my-0 font-semibold">Go to profile</a>
+                                        </div>
+                                        <!-- <a href="javascript:void(0)" @click="doLogout" class="rounded-full py-0 my-0 text-red-600 underline text-xs" >Logout</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -91,6 +94,7 @@
                             <p>{{ userStore.user.user_name }}</p>
                             <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '1'"> {{ userStore.user.user_profile }} </p>
                             <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '2'"> {{ userStore.user.user_organization }} </p>
+                           
                         </div>
                     </div>
                     <div class="relative">
