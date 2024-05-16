@@ -61,9 +61,10 @@
             <VIconText gap="2" class="text-md text-slate-400" icon="material-symbols:report-outline" text="Report" />
           </a>
         </div>
-        <div>
-          <button class="px-6 py-2 bg-teal-800 rounded-full text-white" v-if="userStore.user.user_type != '2' || !userStore.user.isLogged " @click="applyForJob" > Apply</button>
-        </div>
+
+         <RApplyButton :job="job" class="w-full" />
+          <!-- <button class="px-6 py-2 bg-teal-800 rounded-full text-white" v-if="userStore.user.user_type != '2' || !userStore.user.isLogged" @click="applyForJob" > Apply</button> -->
+
       </VFlex>
     </VContainer>
     

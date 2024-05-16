@@ -18,7 +18,7 @@ export const useMyUserStore = defineStore({
 
         
         
-        user_exp = JSON.parse(user_exp);
+        user_exp = user_exp != '' ? JSON.parse(user_exp) : [];
 
         var experience = [];
 

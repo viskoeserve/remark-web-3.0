@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
 
   
   // return response;
+  console.log('token', body);
   
 
   response = await $fetch("https://testapi.remarkhr.com/website/job/single-job", {

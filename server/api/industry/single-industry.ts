@@ -19,6 +19,9 @@ export default defineEventHandler(async (event) => {
     query: {
       "industry_slug": body.slug
     },
+    headers: {
+      "Authorization": body.token
+    }
   });
 
 

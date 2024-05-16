@@ -47,6 +47,7 @@
                     :schedule="job.job_schedule"
                     :description="job.job_description"
                     :timeAgo="job.job_timeago"
+                    :job="job"
                   />
                 </div>
               </div>
@@ -56,7 +57,9 @@
           </div>
 
         </div>
-
+        <div v-else class="text-center">
+          <VLoading />
+        </div>
       </div>
   </div>
 </template>
@@ -70,6 +73,12 @@ export default {
       jobs: []
     }
   },
+  computed: {
+    userStore() {
+      const user = useMyUserStore();
+      return user;
+    }
+  },
   methods: {
     async init() {
       const router = useRoute();
@@ -77,10 +86,15 @@ export default {
 
       this.slug = router.params.slug;
 
-      const { data, pending, error, refresh } = await useFetch('/api/industry/single-industry',{
+      const token = this.userStore.token;
+
+      setTimeout(async () => {
+
+        const { data, pending, error, refresh } = await useFetch('/api/industry/single-industry',{
           method: 'post',
           body: {
-            slug: this.slug
+            slug: this.slug,
+            token: token
           }
       });
 
@@ -96,6 +110,10 @@ export default {
           this.jobs = data.value.jobs;
 
       }
+        
+      }, 2000);
+
+      
 
     }
   },
