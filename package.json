@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "remark-job-and-recruitment",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,6 +12,7 @@
     "deploy": "pm2 start .output/server/index.mjs"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^5.2.1",
     "mitt": "^3.0.1",
     "nuxt": "^3.11.2",
     "nuxt-multi-cache": "^3.1.1",

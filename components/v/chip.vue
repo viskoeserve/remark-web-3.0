@@ -3,7 +3,7 @@
         <VFlex>
             <slot />
             <VGap :width="10" />
-            <Icon v-if="isDismissible" class="text-teal-800" name="material-symbols-light:cancel" />
+            <Icon v-if="isDismissible" @click="onDismiss" class="text-teal-800" name="material-symbols-light:cancel" />
         </VFlex>
     </div>
 </template>
@@ -26,6 +26,10 @@ export default {
         bgColor: {
             type: String,
             default: 'bg-teal-100'
+        },
+        onDismiss: {
+            type: Function,
+            default: () => console.log('dismiss')
         }
     }
 }

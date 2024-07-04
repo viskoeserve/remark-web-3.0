@@ -149,6 +149,7 @@ var slug = '';
 const jobStore = useMyJobStore();
 
 
+
 // get router
 const route = useRoute();
 
@@ -174,6 +175,9 @@ console.log(data.value);
 if(data.value?.status) {
     console.log('got data');
     jobStore.setJob(data.value.job);
+    useSeoMeta({
+     title: jobStore.job.job_title + ' - ' + jobStore.job?.company?.company_address + ' - Remark Job & Recruiter App'
+    })
 }
     
 console.log(jobStore.job);

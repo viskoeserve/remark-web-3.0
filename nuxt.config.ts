@@ -41,9 +41,14 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@nuxtjs/svg-sprite',
     'nuxt-multi-cache',
-    'nuxt-viewport'
+    'nuxt-viewport',
   ],
   piniaPersistedstate: {
     storage: 'localStorage'
+  },
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
   }
 })

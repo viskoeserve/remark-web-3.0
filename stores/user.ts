@@ -39,7 +39,34 @@ export const useMyUserStore = defineStore({
 
     },
 
-    
+    getQualification() {
+
+      if(this.user.isLogged) {
+
+        var user_qualifications = this.user?.user_qualification_ext;
+
+        
+        
+        user_qualifications = user_qualifications != '' ? JSON.parse(user_qualifications) : [];
+
+        var qualification = [];
+
+        user_qualifications.forEach( (exp:any) => {
+          
+          qualification.push({
+            "QualificationTitle": exp.QualificationTitle,
+            "QualificationUniv": exp.QualificationUniv,
+            "QualificationYear": exp.QualificationYear,
+            "QualificationStatus": exp.QualificationStatus
+          })
+
+        });
+
+        return qualification;
+
+      }
+
+    }
 
   },
   actions: {

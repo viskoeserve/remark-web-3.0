@@ -56,13 +56,13 @@
                                 </NuxtLink>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <NuxtLink to="/career-in-remark">
-                                    Career in Remark
-                                </NuxtLink>
-                            </li>
-                            <li class="my-2 font-semibold text-teal-900">
                                 <a href="https://play.google.com/store/apps/details?id=com.remark.viskohr" target="_blank">
                                     Download Remark App
+                                </a>
+                            </li>
+                            <li class="my-2 font-semibold text-teal-900">
+                                <a href="/sitemap.xml" target="_blank">
+                                    Sitemap XML
                                 </a>
                             </li>
 

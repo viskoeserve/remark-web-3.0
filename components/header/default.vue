@@ -34,11 +34,16 @@
                 </div>
 
                 <div style="width:40%">
-                    <ul v-if="!userStore.user?.isLogged" class="flex justify-evenly gap-x-5 items-center" >
+                    <ul v-if="!userStore.user?.isLogged" class="flex justify-end gap-x-2 items-center" >
                         <li></li>
                         <li></li>
                         <li>
                             <VButton paddingY="3" :onClick="toggleLogin" :isLink="false">Login</VButton>
+                            <!-- <button class="py-2 px-6 bg-teal-800 text-white rounded-full">Login</button> -->
+                        </li>
+                        <li>
+                            <VButton paddingY="3" to="/register/register" :isLink="true">Register</VButton>
+                            
                             <!-- <button class="py-2 px-6 bg-teal-800 text-white rounded-full">Login</button> -->
                         </li>
                     </ul>
@@ -96,6 +101,11 @@
                             <p class="text-sm text-slate-500" v-if="userStore.user.user_type == '2'"> {{ userStore.user.user_organization }} </p>
                            
                         </div>
+                    </div>
+                    <div>
+                        <a v-if="!userStore.user.isLogged" href="/register/register" class="px-5 py-2 bg-teal-800 text-white text-sm rounded-full">
+                            Register
+                        </a>
                     </div>
                     <div class="relative">
                         <div class="p-1 cursor-pointer" @click="toggleMobileMenu" >
