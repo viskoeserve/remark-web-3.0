@@ -1,7 +1,7 @@
 <template>
 
-  <div class="w-full md:w-4/12  text-right mt-4 md:mt-0">
-      <div v-if="job.applied_status == null">
+  <div class="w-full md:w-5/12  text-right mt-4 md:mt-0">
+      <div v-if="job.applied_status == null || job.applied_status == '4'">
           <button @click="doAskForApply()" class="px-5 py-2 bg-teal-800 text-white rounded-full" v-if="userStore.user?.isLogged && userStore.user?.user_type == '1'">Apply Now</button>
       </div>
       <div v-if="job.applied_status == '0'">

@@ -1608,6 +1608,74 @@
           </div>
         </div>
       </div>
+      <div
+        v-if="activeMenu == 'search-candidates'"
+        class="search-candidates"
+        style="height: 38rem; overflow-y: scroll"
+      >
+        <div class="w-full rounded-lg">
+          <div class="px-3 py-3">
+            <div>
+              <p class="text-xl font-bold">Search Candidates</p>
+            </div>
+            <div class="h-5"></div>
+            <div>
+              <div class="w-full">
+                <div class="search-bar">
+                  <div>
+                    <p class="font-semibold mb-1">Keyword</p>
+                    <div class="bg-remark-light border border-teal-100 rounded w-1/2">
+                      <div class="flex justify-between">
+                        
+                        <input type="text" class="bg-transparent focus:outline-none  py-2 px-3 w-full" placeholder="Keyword like skills, positions">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-10"></div>
+                  <div class="flex gap-x-5 items-center w-1/2">
+                    <div>
+                      <p class="font-semibold mb-1">Min experience <small class="text-slate-400 ">(Years)</small></p>
+                      <div class="bg-remark-light border border-teal-100 rounded w-full">
+                        <div class="flex justify-between">
+                          
+                          <input type="number" min="0" class="bg-transparent focus:outline-none  py-2 px-3 w-full" placeholder="Min experience">
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-5">to</p>
+                    <div>
+                      <p class="font-semibold mb-1">Max experience <small class="text-slate-400 ">(Years)</small></p>
+                      <div class="bg-remark-light border border-teal-100 rounded w-full">
+                        <div class="flex justify-between">
+                          
+                          <input type="number" min="0" class="bg-transparent focus:outline-none  py-2 px-3 w-full" placeholder="Max experience">
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="my-10"></div>
+                  <div class="w-1/2">
+                    <div>
+                      <p class="font-semibold mb-1">Location</p>
+                      <div class="bg-remark-light border border-teal-100 rounded w-full">
+                        <div class="flex justify-between">
+                          <input type="text"  class="bg-transparent focus:outline-none  py-2 px-3 w-full" placeholder="Location">
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="my-10"></div>
+                  <div class="w-1/2 text-center">
+                      <button class="py-2 px-4 bg-teal-800 text-white">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -1666,7 +1734,18 @@ export default {
           show: false,
         },
         {
-          title: "Jobs",
+          title: "Candidates",
+          slug: "search-candidates",
+          isActive: false,
+          icon: "icon-park-outline:briefcase",
+          isForNewUser: false,
+          isForEmployee: false,
+          isForEmployer: false,
+          role: "2",
+          show:false,
+        },
+        {
+          title: "Posted Jobs",
           slug: "jobs",
           isActive: false,
           icon: "icon-park-outline:briefcase",
@@ -1845,6 +1924,28 @@ export default {
             hasError: false,
 
           }
+        }
+      },
+      searchCandidate: {
+        keyword: {
+          value: "",
+          hasError: false,
+          errorMessage: ""
+        },
+        minExperience: {
+          value: "",
+          hasError: false,
+          errorMessage: ""
+        },
+        maxExperience: {
+          value: '',
+          hasError: false,
+          errorMessage: ""
+        },
+        location: {
+          value: '',
+          hasError: false,
+          errorMessage: ""
         }
       },
       allIndustry: [],
@@ -2330,6 +2431,10 @@ export default {
 
         this.allJobs.isFetching = false;
         this.allJobs.isFetched = true;
+
+      }
+
+      if(m == "search-candidates") {
 
       }
 

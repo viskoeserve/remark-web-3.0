@@ -1,5 +1,5 @@
 <template>
-    <div v-if="jobStore.job">
+    <div v-if="jobStore.job != null">
 
        <VContainer :width="100">
         <div class="h-0 md:h-10"></div>
@@ -105,7 +105,6 @@
                             </div>
                         </div> -->
                         <!--  -->
-
                     </VFlex>
                 </VContainer>
             </div>
@@ -162,8 +161,8 @@ setTimeout(async() => {
     console.log(user.token);
 
 const { data, pending, error, refresh } = await useFetch('/api/job/single-job', {
-    method:'post',
-    body:  {
+    method:'POST',
+    body: {
         slug: slug,
         token: user.token.toString()
     },
@@ -176,7 +175,7 @@ if(data.value?.status) {
     console.log('got data');
     jobStore.setJob(data.value.job);
     useSeoMeta({
-     title: jobStore.job.job_title + ' - ' + jobStore.job?.company?.company_address + ' - Remark Job & Recruiter App'
+     title: jobStore.job?.job_title + ' - ' + jobStore.job?.company?.company_address + ' - Remark Job & Recruiter App'
     })
 }
     
