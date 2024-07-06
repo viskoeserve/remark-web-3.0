@@ -1097,7 +1097,7 @@
                           <small>{{ job.company.company_address }}</small>
                         </div>
                         <div>
-                          <div class="flex justify-end">
+                          <!-- <div class="flex justify-end">
                             <a
                             href="javascript:void(0)"
                           >
@@ -1107,7 +1107,7 @@
                               class="text-teal-800 text-sm"
                             />
                           </a>
-                          </div>
+                          </div> -->
                           <div class="flex justify-end">
                             <a
                             :href="
@@ -1125,11 +1125,7 @@
                           </div>
                           <div class="flex justify-end">
                             <a
-                            :href="
-                              'https://remarkhr.com/jobs/job-' +
-                              job.job_slug
-                            "
-                            target="_blank"
+                            href="javascript:void(0)"
                           >
                             <span class="bg-teal-800 px-1 py-1/2 text-xs text-white rounded-full mr-1">{{job.interactions.applied_interaction}}</span>
                             <small class="text-teal-800 mr-1">Applied Candidates</small>
