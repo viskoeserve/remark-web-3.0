@@ -12,7 +12,9 @@
     "deploy": "pm2 start .output/server/index.mjs"
   },
   "dependencies": {
+    "@nuxt/content": "^2.13.0",
     "@nuxtjs/sitemap": "^5.2.1",
+    "awesome-snackbar": "^2.0.7",
     "mitt": "^3.0.1",
     "nuxt": "^3.11.2",
     "nuxt-multi-cache": "^3.1.1",

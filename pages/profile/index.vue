@@ -1055,11 +1055,572 @@
           </div>
         </div>
       </div>
+      <div
+        v-if="activeMenu == 'jobs'"
+        class="jobs"
+        style="height: 38rem; overflow-y: scroll"
+      >
+        <div class="w-full rounded-lg">
+          <div class="px-3 py-3">
+            <p class="text-2xl text-teal-800 font-bold">Jobs</p>
+            <div class="h-5"></div>
+            <div
+              v-if="!allJobs.isFetching"
+              class="flex justify-start flex-wrap"
+            >
+              <div
+                v-for="(job, index) in allJobs.jobs"
+                :key="index"
+                class="w-4/12 px-2"
+              >
+                <div class="px-2 py-2 border rounded-xl mb-3">
+                  <div class="flex items-center gap-x-3">
+                    <!-- Logo -->
+                    <div>
+                      <VImage :link="job.company.company_logo[0] == '/' ? 'https://apimanager.remarkhr.com' + job.company.company_logo : job.company.company_logo" />
+                    </div>
+                    <!-- Name -->
+                    <div class="w-full">
+                      <div class="w-full flex justify-between">
+                        <div>
+                          <p class="font-semibold">
+                            {{ job.job_title }}
+                          </p>
+                          <p class="text-sm">
+                            {{ job.company.company_name }}
+                            <span v-if="job.company.verified_company == '1'"
+                              ><Icon
+                                class="text-teal-800"
+                                name="material-symbols:verified"
+                            /></span>
+                          </p>
+                          <small>{{ job.company.company_address }}</small>
+                        </div>
+                        <div>
+                          <div class="flex justify-end">
+                            <a
+                            href="javascript:void(0)"
+                          >
+                            <small class="text-teal-800 mr-1">Edit</small>
+                            <Icon
+                              name="icon-park-outline:pencil"
+                              class="text-teal-800 text-sm"
+                            />
+                          </a>
+                          </div>
+                          <div class="flex justify-end">
+                            <a
+                            :href="
+                              'https://remarkhr.com/jobs/job-' +
+                              job.job_slug
+                            "
+                            target="_blank"
+                          >
+                            <small class="text-teal-800 mr-1">View</small>
+                            <Icon
+                              name="material-symbols:open-in-new"
+                              class="text-teal-600 text-sm"
+                            />
+                          </a>
+                          </div>
+                          <div class="flex justify-end">
+                            <a
+                            :href="
+                              'https://remarkhr.com/jobs/job-' +
+                              job.job_slug
+                            "
+                            target="_blank"
+                          >
+                            <span class="bg-teal-800 px-1 py-1/2 text-xs text-white rounded-full mr-1">{{job.interactions.applied_interaction}}</span>
+                            <small class="text-teal-800 mr-1">Applied Candidates</small>
+                            <Icon
+                              name="clarity:users-solid"
+                              class="text-teal-600 text-sm"
+                            />
+                          </a>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="w-4/12 px-2">
+                <div
+                  class="px-4 py-8 border-dashed border-2 rounded-xl mb-3 cursor-pointer"
+                  @click="startJobPosting"
+                >
+                  <div class="flex justify-center items-center text-slate-500">
+                    <Icon name="material-symbols:add" class="text-md mr-1" />
+                    <p>Post New Job</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full text-center" v-else>
+              <icon name="svg-spinners:ring-resize" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        v-if="activeMenu == 'add-new-job'"
+        class="add-new-job"
+        style="height: 38rem; overflow-y: scroll"
+      >
+        <div class="w-full rounded-lg">
+          <div class="px-3 py-3">
+            <div class="flex items-center">
+              <button @click="activeMenu = 'jobs'" class="p-3">
+                <Icon  name="material-symbols:arrow-back-ios-rounded" class="text-teal-800" />
+              </button>
+              <p class="text-2xl text-teal-800 font-bold">Add Job</p>
+            </div>
+            <div class="h-5"></div>
+            <div>
+              <div class="w-full">
+                <form
+                  id="company_form"
+                  
+                  action="javascript:void(0)"
+                >
+                  <div class="company-job-section">
+                    <div class="mb-2">
+                      <p class="font-bold text-xl text-slate-500">Company & Industry</p>
+                    </div>
+                    <div class="flex gap-x-5">
+                      <div class="bg-grey-100 border border-teal-100 p-3 rounded-xl w-1/3">
+                        <div class="mb-0">
+                          <label class="block mb-1" for="company_name"
+                            >Select Company <span class="text-red-500">*</span></label
+                          >
+                          <select v-model="allJobs.postJob.company_id.value" class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"  >
+                            <option v-if="allJobs.postJob.company_id.value == '0'" value="0">--Select Company--</option>
+                            <option v-for="(company, ind) in allCompanies.companies" :key="ind" :value="company.company_id"> {{ company.company_name }} </option>
+                          </select>
+                          <small
+                            :class="
+                              !allJobs.postJob.company_id.hasError
+                                ? 'text-slate-500'
+                                : 'text-red-500'
+                            "
+                          >
+                            {{
+                              allJobs.postJob.company_id.hasError
+                                ? allJobs.postJob.company_id
+                                    .errorMessage
+                                : "Company is required"
+                            }}</small
+                          >
+                        </div>
+                        
+                      </div>
+                      <div class="bg-grey-100 border border-teal-100 p-3 rounded w-1/3">
+                        <div class="mb-0">
+                          <label class="block mb-1" for="website"
+                            >Job Industry</label
+                          >
+                          <!-- <input
+                            type="text"
+                            v-model="allCompanies.addCompany.inputs.website.value"
+                            name="website"
+                            id="website"
+                            class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                            placeholder="apple.com"
+                          /> -->
+                          <select v-model="allJobs.postJob.jobIndustry.value" class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg" name="" id="">
+                            <option v-if="allJobs.postJob.jobIndustry.value" value="0">-- Select Industry --</option>
+                            <option v-for="(industry, ind) in allIndustry" :key="ind" :value="industry.industry_id"> {{ industry.industry_title }} </option>
+                          </select>
+                          <small class="text-slate-500"
+                            >Please select the job industry</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-10"></div>
+
+                  <div class="basic-job-section">
+                    <div class="mb-2">
+                      <p class="font-bold text-xl text-slate-500">Basic Details</p>
+                    </div>
+                    <div class="border border-teal-100 p-3 rounded-xl">
+                      <div class="w-1/2 mb-10">
+                        <label class="block mb-1" for="job_title"
+                          >Job Title
+                          <span class="text-red-500">*</span></label
+                        >
+                        <input
+                          type="text"
+                          v-model="
+                            allJobs.postJob.jobTitle.value
+                          "
+                          name="job_title"
+                          id="job_title"
+                          class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                          placeholder="Web Developer"
+                        />
+                        <small
+                          :class="
+                            !allJobs.postJob.jobTitle.hasError
+                              ? 'text-slate-500'
+                              : 'text-red-500'
+                          "
+                        >
+                          {{
+                            allJobs.postJob.jobTitle.hasError
+                              ? allJobs.postJob.jobTitle
+                                  .errorMessage
+                              : ""
+                          }}</small
+                        >
+                      </div>
+                      <div class="flex gap-x-5 items-center">
+                        <div class="w-1/2 mb-5">
+                          <div class="flex justify-between items-center mb-2">
+                            <label class="block mb-1" for="description"
+                            >Description <span class="text-red-500">*</span></label
+                          >
+                          <div v-if="!allJobs.postJob.jobDescription.isGenerating" class="">
+                            <button @click="generateDescription" class="bg-teal-800 px-3 py-1 rounded-full text-white">
+                            <Icon name="material-symbols:magic-button" class="mr-1" />
+                            <span>Generate Description</span>
+                            </button>
+                          </div>
+                          <div v-else>
+                            <VLoading />
+                          </div>
+                          </div>
+                          <textarea
+                            type="text"
+                            v-model="allJobs.postJob.jobDescription.value"
+                            name="description"
+                            id="description"
+                            rows="10"
+                            class="bg-remark-light px-4 py-3 w-full focus:outline-none border rounded-lg"
+                            :class="!allJobs.postJob.jobDescription.hasError ? 'border-teal-100' : 'border-red-200'"
+                            placeholder="Enter the description"
+                          ></textarea>
+                          <small
+                            :class="
+                              !allJobs.postJob.jobDescription.hasError
+                                ? 'text-slate-500'
+                                : 'text-red-500'
+                            "
+                          >
+                            {{
+                              allJobs.postJob.jobDescription.hasError
+                                ? allJobs.postJob.jobDescription
+                                    .errorMessage
+                                : "Description is required"
+                            }}</small
+                          >
+                        </div>
+                        <div class="w-6/12">
+                          <div class="mb-5">
+                            <label class="block mb-1" for="no_of_hiring"
+                              >No of Hiring
+                              <span class="text-red-500">*</span></label
+                            >
+                            <input
+                              type="tel"
+                              v-model="
+                                allJobs.postJob.numberOfHiring.value
+                              "
+                              name="no_of_hiring"
+                              id="no_of_hiring"
+                              class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                              placeholder="5"
+                            />
+                            <small
+                              :class="
+                                !allCompanies.addCompany.inputs.business_phone.hasError
+                                  ? 'text-slate-500'
+                                  : 'text-red-500'
+                              "
+                            >
+                              {{
+                                allCompanies.addCompany.inputs.business_phone.hasError
+                                  ? allCompanies.addCompany.inputs.business_phone
+                                      .errorMessage
+                                  : "Please mention the number of hirings"
+                              }}</small
+                            >
+                          </div>
+                          <div class="grid grid-cols-2 gap-x-3">
+                            <div class="mb-5">
+                              <label class="block mb-1 text-slate-700" for="minimum_salary"
+                                >Minimum Salary <span class="text-xs  font-semibold">(Monthly)</span> <span class="text-red-500">*</span></label
+                              >
+                              <input
+                                type="tel"
+                                v-model="allJobs.postJob.minimumSalary.value"
+                                name="minimum_salary"
+                                id="minimum_salary"
+                                class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                                placeholder="10000"
+                              />
+                              <small
+                                :class="
+                                  !allJobs.postJob.minimumSalary.hasError
+                                    ? 'text-slate-500'
+                                    : 'text-red-500'
+                                "
+                              >
+                                {{
+                                  allJobs.postJob.minimumSalary.hasError
+                                    ? allJobs.postJob.minimumSalary.errorMessage
+                                    : ""
+                                }}</small
+                              >
+                            </div>
+                            <div class="mb-5">
+                              <label class="block mb-1" for="city"
+                                >Maximum Salary (Monthly) <span class="text-red-500">*</span></label
+                              >
+                              <input
+                                type="text"
+                                v-model="allJobs.postJob.maximumSalary.value"
+                                name="city"
+                                id="city"
+                                class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                                placeholder="20000"
+                              />
+                              <small
+                                :class="
+                                  !allJobs.postJob.maximumSalary.hasError
+                                    ? 'text-slate-500'
+                                    : 'text-red-500'
+                                "
+                              >
+                                {{
+                                  allJobs.postJob.maximumSalary.hasError
+                                    ? allJobs.postJob.maximumSalary.errorMessage
+                                    : ""
+                                }}</small
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="my-10"></div>
+                  
+                  <div class="qualification-job-section">
+                    <div class="mb-2">
+                      <p class="font-bold text-xl text-slate-500">
+                        Qualification Details
+                      </p>
+                    </div>
+                    <div class="flex gap-x-5 border border-teal-100 rounded-xl p-3">
+                      <div class="mb-5 w-1/3">
+                        <label class="block mb-1" for="state"
+                          >Basic Qualification</label
+                        >
+                        <input
+                          type="text"
+                          v-model="allJobs.postJob.basicQualification.value"
+                          name="state"
+                          id="state"
+                          class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg"
+                          placeholder="Any (Optional)"
+                        />
+                        <small
+                          :class="
+                            !allJobs.postJob.basicQualification.hasError
+                              ? 'text-slate-500'
+                              : 'text-red-500'
+                          "
+                        >
+                          {{
+                            allJobs.postJob.basicQualification.hasError
+                              ? allJobs.postJob.basicQualification.errorMessage
+                              : ""
+                          }}</small
+                        >
+                      </div>
+                      <div class="mb-5 w-1/3">
+                        <label class="block mb-1" for="state"
+                          >Required Qualification</label
+                        >
+                        <select v-model="allJobs.postJob.requiredQualification.value" name="" class="bg-remark-light px-4 py-3 w-full focus:outline-none border border-teal-200 rounded-lg" id="">
+                          <option v-if="allJobs.postJob.requiredQualification.value == '0'" value="0">--Select Qualification--</option>
+                          <option v-for="(education, ind) in allEducations" :key="ind" :value="education.education_name"> {{ education.education_name }} </option>
+                        </select>
+                        <small
+                          :class="
+                            !allJobs.postJob.requiredQualification.hasError
+                              ? 'text-slate-500'
+                              : 'text-red-500'
+                          "
+                        >
+                          {{
+                            allJobs.postJob.requiredQualification.hasError
+                              ? allJobs.postJob.requiredQualification.errorMessage
+                              : ""
+                          }}</small
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="my-10"></div>
+
+                  <div class="skills-job-section">
+                    <div class="mb-2">
+                      <p class="font-bold text-xl text-slate-500">
+                        Skills Details
+                      </p>
+                    </div>
+                    <div class="flex gap-x-5 border border-teal-100 rounded-xl p-3">
+                      <div class="mb-5 w-1/3">
+                        <label class="block mb-1" for="state"
+                          >Add Skills</label
+                        >
+                        <div class="flex justify-between bg-remark-light border border-teal-200 rounded-lg">
+                          <input
+                          type="text"
+                          v-model="allJobs.postJob.jobSkills.value"
+                          name="state"
+                          id="state"
+                          class="bg-transparent  focus:outline-none  px-4 py-3 w-full"
+                          placeholder="HTML"
+                        />
+                        <button @click="addJobSkill" class="bg-teal-800 text-white mx-3 my-2 px-5 rounded-full">
+                          Add
+                        </button>
+                        </div>
+                        <small
+                          :class="
+                            !allCompanies.addCompany.inputs.state.hasError
+                              ? 'text-slate-500'
+                              : 'text-red-500'
+                          "
+                        >
+                          {{
+                            allCompanies.addCompany.inputs.state.hasError
+                              ? allCompanies.addCompany.inputs.state.errorMessage
+                              : ""
+                          }}</small
+                        >
+                        <div class="my-2"></div>
+                        <div class="flex gap-x-2">
+                          <VChip  v-for="(skill,ind) in allJobs.postJob.jobSkills.skills" :key="ind" @click="removeJobSkill(ind)" :isDismissible="true"> {{ skill }} </VChip>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="my-10"></div>
+                  
+                  <div class="skills-job-section">
+                    <div class="flex gap-x-5">
+                      <div class="w-1/2">
+                        <div class="mb-2">
+                          <p class="font-bold text-xl text-slate-500">
+                            Job Type
+                          </p>
+                        </div>
+                        <div class="flex gap-x-5 border border-teal-100 rounded-xl p-3">
+                          <div class="mb-5 w-full">
+                            <label class="block mb-1" for="state"
+                              >Select Job Type</label
+                            >
+                            <div class="bg-remark-light border border-teal-200 rounded-lg">
+                              
+                            <select v-model="allJobs.postJob.jobType.value" name="" class="bg-transparent  focus:outline-none  px-4 py-3 w-full" id="">
+                              <option value="Full Time">Full Time</option>
+                              <option value="Part Time">Part Time</option>
+                            </select>
+                            </div>
+                            <small
+                              :class="
+                                !allCompanies.addCompany.inputs.state.hasError
+                                  ? 'text-slate-500'
+                                  : 'text-red-500'
+                              "
+                            >
+                              {{
+                                allCompanies.addCompany.inputs.state.hasError
+                                  ? allCompanies.addCompany.inputs.state.errorMessage
+                                  : ""
+                              }}</small
+                            >
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div class="w-1/2">
+                        <div class="mb-2">
+                          <p class="font-bold text-xl text-slate-500">
+                            Experience
+                          </p>
+                        </div>
+                        <div class="flex gap-x-5 border border-teal-100 rounded-xl p-3">
+                          <div class="mb-5 w-full">
+                            <label class="block mb-1" for="state"
+                              >Experienced Required</label
+                            >
+                            <div class="bg-remark-light border border-teal-200 rounded-lg">
+                              
+                            <select v-model="allJobs.postJob.jobExperience.value" name="" class="bg-transparent  focus:outline-none  px-4 py-3 w-full" id="">
+                              <option value="Fresher">Fresher</option>
+                              <option value="Experienced">Experienced</option>
+                            </select>
+                            </div>
+                            <small
+                              :class="
+                                !allJobs.postJob.jobExperience.hasError
+                                  ? 'text-slate-500'
+                                  : 'text-red-500'
+                              "
+                            >
+                              {{
+                                allJobs.postJob.jobExperience.hasError
+                                  ? allJobs.postJob.jobExperience.errorMessage
+                                  : ""
+                              }}</small
+                            >
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="my-10"></div>
+                  
+                </form>
+                <div class="w-full text-center">
+                  <button
+                    v-if="!allJobs.postJob.isPostingJob"
+                    type="submit"
+                    class="px-5 py-2 bg-teal-800 rounded"
+                    @click="postJob"
+                  >
+                    <span class="text-white">Post Job</span>
+                  </button>
+                  <VLoading v-else />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { generate } from '@vue/compiler-core';
+import Snackbar from 'awesome-snackbar';
+
+
 export default {
   data() {
     return {
@@ -1105,8 +1666,19 @@ export default {
           isForNewUser: false,
           isForEmployee: false,
           isForEmployer: true,
-          role: "1",
+          role: "2",
           show: false,
+        },
+        {
+          title: "Jobs",
+          slug: "jobs",
+          isActive: false,
+          icon: "icon-park-outline:briefcase",
+          isForNewUser: false,
+          isForEmployee: false,
+          isForEmployer: true,
+          role: "2",
+          show:false,
         },
         {
           title: "Profile",
@@ -1190,6 +1762,97 @@ export default {
           },
         },
       },
+      allJobs: {
+        isFetching: false,
+        jobs: [],
+        isFetched: false,
+        postJob: {
+          isPostingJob: false,
+          hasError: false,
+          errorMessage: "",
+          company_id: {
+            value: "0",
+            hasError: false,
+            errorMessage: ""
+          },
+          jobIndustry: {
+            value: "0",
+            hasError: false,
+            errorMessage:""
+          },
+          jobTitle: {
+            value: "",
+            hasError: false,
+            errorMessage: ""
+          },
+          jobDescription: {
+            value: "",
+            isGenerating: false,
+            hasError: false,
+            errorMessage: ""
+          },
+          numberOfHiring: {
+            value: "",
+            hasError: false,
+            errorMessage: ""
+          },
+          minimumSalary: {
+            value: "",
+            hasError: false,
+            errorMessage: ""
+          },
+          maximumSalary: {
+            value: "",
+            hasError: false,
+            errorMessage: ""
+          },
+          basicQualification: {
+            value: "",
+            hasError: false,
+            errorMessage: ""
+          },
+          requiredQualification: {
+            value: "0",
+            hasError: false,
+            errorMessage: ""
+          },
+          jobSkills: {
+            skills: [],
+            value: [],
+            hasError: false,
+            errorMessage: ""
+          },
+          jobType: {
+            value: "Full Time",
+            hasError: false,
+            errorMessage: ""
+          },
+          jobExperience: {
+            value: "Fresher",
+            addExperience: {
+              experienceTitle: {
+                value:"",
+                hasError: "",
+                errorMessage: ""
+              },
+              experienceMinYear: {
+                value: "",
+                hasError: "",
+                errorMessage: ""
+              },
+              experienceMinMonth: {
+                value: "",
+                hasError: "",
+                errorMessage: ""
+              }
+            },
+            hasError: false,
+
+          }
+        }
+      },
+      allIndustry: [],
+      allEducations: [],
       states: [],
       cities: [],
       profile: {
@@ -1647,6 +2310,33 @@ export default {
         this.allCompanies.isFetching = false;
         this.allCompanies.isFetched = true;
       }
+
+      if(m == "jobs") {
+
+        if (!this.allJobs.isFetching) {
+          this.allJobs.isFetching = true;
+        }
+
+        const { data, pending, error, refresh } = await useFetch(
+          "/api/job/employer-jobs",
+          {
+            method: "post",
+            body: {
+              token: this.userStore.token,
+            },
+          }
+        );
+
+        console.log(data.value);
+        if (data.value.status) {
+          this.allJobs.jobs = data.value.jobs;
+        }
+
+        this.allJobs.isFetching = false;
+        this.allJobs.isFetched = true;
+
+      }
+
     },
 
     addCompany() {
@@ -1709,6 +2399,231 @@ export default {
         input.state.hasError = false;
       }
     },
+
+    async startJobPosting() {
+
+      console.log("Job Posting Started");
+
+      // FETCH USER COMPANIES
+      if (!this.allCompanies.isFetching) {
+          this.allCompanies.isFetching = true;
+        }
+
+        const { data, pending, error, refresh } = await useFetch(
+          "/api/company/fetch-posted-companies",
+          {
+            method: "post",
+            body: {
+              token: this.userStore.token,
+            },
+          }
+        );
+
+        console.log(data.value);
+        if (data.value.status) {
+          this.allCompanies.companies = data.value.companies;
+        }
+
+        this.allCompanies.isFetching = false;
+        this.allCompanies.isFetched = true;
+      
+      // COMPANY FETCHING COMPLETED
+
+      // FETCH ALL INDUSTRIES
+
+      var industryResult = await this.fetchIndustries();
+      this.allIndustry = industryResult.industries;
+
+      // ENDED FETCH INDUSTRIES
+
+      // FETCH ALL EDUCATIONS
+
+      var educationResult = await this.fetchEducations();
+      this.allEducations = educationResult.educations;
+      // END FETCH ALL EDUCATIONS
+
+
+
+      this.activeMenu = 'add-new-job';
+
+
+    },
+
+    async postJob() {
+
+      this.allJobs.postJob.isPostingJob = true;
+      this.allJobs.postJob.hasError = false;
+      this.allJobs.postJob.errorMessage = '';
+
+      this.allJobs.postJob.jobTitle.hasError = false;
+        this.allJobs.postJob.jobTitle.errorMessage = '';
+      
+        this.allJobs.postJob.company_id.hasError = false;
+        this.allJobs.postJob.company_id.errorMessage = '';
+
+        this.allJobs.postJob.jobIndustry.hasError = false;
+        this.allJobs.postJob.jobIndustry.errorMessage = '';
+
+        // collect job data
+
+      if(this.allJobs.postJob.company_id.value == '0') {
+        this.allJobs.postJob.company_id.hasError = true;
+        this.allJobs.postJob.company_id.errorMessage = 'Please select a company';
+      }
+
+      if(this.allJobs.postJob.jobIndustry.value == '0') {
+        this.allJobs.postJob.jobIndustry.hasError = true;
+        this.allJobs.postJob.jobIndustry.errorMessage = 'Please select a industry for job';
+      }
+
+      if(this.allJobs.postJob.jobTitle.value == '') {
+        this.allJobs.postJob.jobTitle.hasError = true;
+        this.allJobs.postJob.jobTitle.errorMessage = 'Job title is required';
+      }
+
+      var extExperience = [];
+
+      if(this.allJobs.postJob.jobExperience.value == 'Fresher') {
+        extExperience = [];
+      }else{
+        extExperience = [];
+      }
+
+      var jobData = {
+        token: this.userStore.token,
+        company_status: true,
+        company_id: this.allJobs.postJob.company_id.value,
+        job_industry: this.allJobs.postJob.jobIndustry.value,
+        job_title: this.allJobs.postJob.jobTitle.value,
+        job_description: this.allJobs.postJob.jobDescription.value,
+        job_qualification: this.allJobs.postJob.basicQualification.value,
+        job_education: this.allJobs.postJob.requiredQualification.value,
+        job_hiring_count: this.allJobs.postJob.numberOfHiring.value,
+        job_minimum_salary: this.allJobs.postJob.minimumSalary.value,
+        job_maximum_salary: this.allJobs.postJob.maximumSalary.value,
+        job_salary_type: "Per Month",
+        job_schedule: this.allJobs.postJob.jobType.value,
+        job_ext_experience: extExperience,
+        job_key_skills: this.allJobs.postJob.jobSkills.skills
+      };
+
+      console.log(jobData);
+
+      const { data, pending, error, refresh } = await useFetch('/api/job/post-job',{
+          method: 'post',
+          body: jobData,
+      });
+
+      if(data.value) {
+
+        if(data.value.status) {
+          console.log('job posted');
+          new Snackbar('Job posted and will be live soon!', {
+            position: 'bottom-center'
+          });
+
+          this.fetchData('jobs');
+          this.activeMenu = 'jobs';
+
+        }else{
+          console.log(data.value.message);
+          this.allJobs.postJob.hasError = true;
+          this.allJobs.postJob.errorMessage = data.value.message;
+        }
+
+      }
+
+      if(error.value) {
+        console.log('error');
+        console.log(error.value);
+
+        this.allJobs.postJob.hasError = true;
+        this.allJobs.postJob.errorMessage = 'Something went wrong';
+      }
+
+      this.allJobs.postJob.isPostingJob = false;
+
+    },
+
+    addJobSkill() {
+
+      if(this.allJobs.postJob.jobSkills.value != '') {
+
+        var skills = this.allJobs.postJob.jobSkills.value.split(',');
+
+        skills.forEach((skill) => {
+          this.allJobs.postJob.jobSkills.skills.push(skill);
+        });
+
+        this.allJobs.postJob.jobSkills.value = "";
+
+      }
+
+    },
+    removeJobSkill(index) {
+      this.allJobs.postJob.jobSkills.skills.splice(index, 1);
+    },
+    async fetchIndustries() {
+      const { data, pending, error, refresh } = await useFetch(
+          "/api/industry/all-industry",
+          {
+            method: "post",
+            body: {
+              token: this.userStore.token,
+            },
+          }
+        );
+
+      return data.value;
+    },
+
+    async fetchEducations() {
+      const { data, pending, error, refresh } = await useFetch(
+          "/api/education/all-educations", {method: 'post'});
+
+      return data.value;
+    },
+
+    async generateDescription() {
+
+      this.allJobs.postJob.jobDescription.isGenerating = true;
+      this.allJobs.postJob.jobDescription.hasError = false;
+          this.allJobs.postJob.jobDescription.errorMessage = "";
+
+      const { data, pending, error, refresh } = await useFetch(
+          "/api/job/ai-jd",
+          {
+            method: "post",
+            body: {
+              job_title: this.allJobs.postJob.jobTitle.value,
+            },
+          }
+        );
+
+      if(data.value) {
+        if(data.value.status) {
+
+          this.allJobs.postJob.jobDescription.value = data.value.description.text;
+          
+          
+
+        }else{
+          this.allJobs.postJob.jobDescription.hasError = true;
+          this.allJobs.postJob.jobDescription.errorMessage = data.value.message;
+
+        }
+      }
+
+      if(error.value) {
+        console.log(error.value);
+        this.allJobs.postJob.jobDescription.hasError = true;
+        this.allJobs.postJob.jobDescription.errorMessage = "Something went wrong!";
+      }
+
+      this.allJobs.postJob.jobDescription.isGenerating = false;
+
+    },
+
     doLogout() {
       this.userStore.unsetUser();
 

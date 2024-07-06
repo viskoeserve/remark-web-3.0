@@ -46,9 +46,4 @@ export default defineNuxtConfig({
   piniaPersistedstate: {
     storage: 'localStorage'
   },
-  nitro: {
-    prerender: {
-      routes: ['/sitemap.xml']
-    }
-  }
 })
