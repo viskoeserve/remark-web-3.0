@@ -61,9 +61,9 @@
                                 </a>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
-                                <a href="/sitemap.xml" target="_blank">
+                                <NuxtLink to="/sitemap.xml" target="_blank">
                                     Sitemap XML
-                                </a>
+                                </NuxtLink>
                             </li>
 
                         </ul>

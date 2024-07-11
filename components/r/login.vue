@@ -1,5 +1,5 @@
 <template>
-  <VContainer :width="100">
+  <VContainer :width="100" :v-auto-animate="true">
     <VFlex justifyContent="center">
       <LogoDefaultLogo />
     </VFlex>
@@ -63,6 +63,7 @@
 
 <script>
 
+import { vAutoAnimate } from "@formkit/auto-animate";
 const userStore = useMyUserStore();
 
 export default {

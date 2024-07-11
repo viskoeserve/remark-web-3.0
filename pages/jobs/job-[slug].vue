@@ -69,7 +69,7 @@
                 <VGap :height="20" />
                 <VContainer class="border p-5 rounded-lg">
                     <p class="text-lg font-bold my-2">Description</p>
-                    <p> {{ jobStore.job.job_description }} </p>
+                    <div v-html="jobStore.job.job_description" >  </div>
                     <br />
                     <p class="text-sm my-2"><span class="font-semibold">Schedule:</span> {{ jobStore.job.job_schedule }}</p>
                     <p class="text-sm my-2"><span class="font-semibold">Education:</span> {{ jobStore.job.job_education }}</p>
@@ -174,9 +174,33 @@ console.log(data.value);
 if(data.value?.status) {
     console.log('got data');
     jobStore.setJob(data.value.job);
-    useSeoMeta({
-     title: jobStore.job?.job_title + ' - ' + jobStore.job?.company?.company_address + ' - Remark Job & Recruiter App'
-    })
+    // useSeoMeta({
+    //  title: jobStore.job?.job_title + ' - ' + jobStore.job?.company?.company_address + ' - Remark Job & Recruiter App'
+    // })
+
+    useHead({
+        templateParams: {
+         jobCompany: jobStore.job?.company.company_address,
+         jobDescription: jobStore.job?.job_description
+        },
+        title: jobStore.job?.job_title,
+        
+        titleTemplate: '%s %separator %jobCompany %separator %siteName',
+        meta: [
+            {
+                name: 'title',
+                content: '%s %separator %jobCompany %separator %siteName'
+            },
+            {
+                name: 'description',
+                content: '%s %separator %jobDescription'
+            },
+            {
+                name: 'keywords',
+                content: jobStore.job?.job_key_skills?.join(',')
+            }
+        ],
+    });
 }
     
 console.log(jobStore.job);

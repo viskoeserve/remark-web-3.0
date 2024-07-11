@@ -1,12 +1,14 @@
 <template>
   <div @click="searchCategory(slug)" class="shadow-lg bg-remark-light text-center hover:border-t-4 border-teal-800 duration-200 cursor-pointer w-full h-4/5">
-    <VGap :height="50" />
+    <VGap :height="30" />
     <!-- <Icon class="text-5xl" :name="icon" style="color:teal" /> -->
     <VFlex justifyContent="center" class="text-teal-800">
-      <img class="text-center text-teal-800" width="60" height="70" :src="`https://remarkhr.com/` + icon" />
+      <!-- <img class="text-center text-teal-800" width="60" height="70" :src="`https://remarkhr.com/` + icon" /> -->
+       <Icon :name="icon" class="text-7xl" />
     </VFlex>
-    <p class="text-md my-0"> {{ title }} </p>
-    <VButton paddingX="5" paddingY="1" style="border-radius:25px"> <small>{{ count }} Opening </small></VButton>
+    <!-- {{ icon }} -->
+    <p class="text-md my-2"> {{ title }} </p>
+    <VButton paddingX="5" paddingY="1" rounded="full"  style="border-radius:25px"> <small>{{ count }} Opening </small></VButton>
 </div>
 </template>
 

@@ -43,7 +43,7 @@
                     :companyName="job.company.company_name"
                     :companyLocation="job.company.company_address"
                     :salary="'Rs. '+ job.job_minimum_salary + ' - Rs. ' + job.job_maximum_salary "
-                    :experience="JSON.parse(job.job_ext_experience).length > 0 ? 'Experience' : 'Fresher'"
+                    :experience="job.job_ext_experience != '' ? JSON.parse(job.job_ext_experience).length > 0 ? 'Experience' : 'Fresher' : 'NA'"
                     :schedule="job.job_schedule"
                     :description="job.job_description"
                     :timeAgo="job.job_timeago"

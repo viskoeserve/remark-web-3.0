@@ -108,7 +108,7 @@
                 }"
                 >
                     <SwiperSlide class="px-2" v-for="(category, i) in db.homepage.categories" :key="i">
-                        <RCategory class="" :title="category.industry.industry_title" :slug="category.industry.industry_slug" :icon="category.industry.industry_svg" :count="category.count" />
+                        <RCategory class="" :title="category.industry.industry_title" :slug="category.industry.industry_slug" :icon="category.industry.industry_logo" :count="category.count" />
                     </SwiperSlide>
                 </Swiper>
                 </client-only>
@@ -291,7 +291,7 @@
 
     <VGap :height="80" />
 
-    <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm">
+    <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm" v-auto-animate>
         <div class="w-full">
             <p class="text-3xl font-bold">Get Instant Job!</p>
             <p class="text-slate-400 text-sm">Get your dream job instantly from <span class="text-red-500">Remark Support Team</span></p>
