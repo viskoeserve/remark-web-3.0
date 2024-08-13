@@ -1,23 +1,56 @@
 
 <template>
 
-    <VGap :height="50" />
-
     <!-- HERO SECTION -->
-    <div  :style="{ 'height': '350px' }" padding="50" class="bg-teal-0 w-full md:w-10/12 px-10 md:px-40 md:mx-28">
-        <VFlex :justifyContent="'space-between'" class="flex-wrap md:flex-none" >
-            <div class="flex justify-center w-full md:w-4/12 ">
-                <VContainer class="w-full text-center md:text-left md:px-10 md:py-0 md:my-0 ">
-                    <p class="text-3xl md:text-7xl font-bold tracking-wide">Find a Perfect Job</p>
+
+    <div class="hidden md:block h-20"></div>
+        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-orange-500 from-0% via-white via-50% to-green-600 to-100%">
+            <VFlex class="h-full items-center">
+                <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-vector/20220801/ourmid/pngtree-15-august-happy-independence-day-india-png-image_6094423.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
+
                 </VContainer>
-            </div>
+                <VContainer :width="150" class="text-slate-800 text-center">
+
+                    
+                    <p class="text-xl md:text-5xl font-bold">Happy Independence Day</p>
+                    <VGap :height="15"  />
+                    <small class="text-xs md:text-md font-semibold">Freedom is not just about independence; it is about self-discovery and self-realization.</small>
+                </VContainer>
+                <VContainer :width="80" class="text-white text-center">
+                    <VButton :isDisabled="isLikedPoster ? true : false" :onClick="!isLikedPoster ? () => {isLikedPoster = !isLikedPoster} : () => console.log('already liked')" class="rounded-full">
+                        <VFlex class="gap-x-2"><Icon :name="`icon-park-${isLikedPoster ? 'solid' : 'outline'}:like`" /> <p>Like</p></VFlex>
+                    </VButton>
+                </VContainer>
+            </VFlex>
+        </div>
+    <VGap :height="30" />
+    <div  padding="50" class="bg-teal-0 w-full md:w-full px-5 md:px-40">
+        
+        <div class="h-10"></div>
+        <VFlex :justifyContent="'center'">
+            <!-- <div class="flex justify-center w-full md:w-4/12 ">
+                <VContainer class="w-full text-center md:text-left md:px-5 md:py-0 md:my-0 ">
+                    <p class="text-3xl md:text-5xl font-bold tracking-wide">Remark <span class="text-red-500">Job</span> & <span class="text-red-500">Recruiter</span> Portal
+                    </p>
+                </VContainer>
+            </div> -->
             <div class="w-full md:w-8/12">
-                <!-- <VGap :height="100" /> -->
-                <div class="h-10 md:h-48"></div>
-                <div class="w-full flex justify-center">
+                <!-- <VGap :height="0" /> -->
+                <div class="h-0 md:h-2"></div>
+                <div class="w-full flex justify-center mb-2">
                     <!-- <img class="w-4/12 md:w-3/12" src="/img/svg/remark-ai.png" /> -->
+                     <div class="w-11/12">
+                        <p class="font-bold text-2xl md:text-6xl text-center">Best <span class="text-teal-500">Job Portal</span> in India Unleashing Growth for Everyone</p>
+                        <div class="my-2 md:my-5"></div>
+                        <div class="w-full flex justify-center text-center">
+                            <p class="w-10/12 text-slate-500 mt-2 text-center text-xs md:text-lg">
+                                Remark Jobs is making the recruitment process easy and seamless. Now, Apply for Jobs, Hire Candidates, and Expand the Team easily from a single platform.
+                            </p>
+                        </div>
+                     </div>
                 </div>
-                <VFlex  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex">
+                <div class="my-3 md:my-5"></div>
+                <VFlex  class="px-8 py-1 md:py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex">
                     <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
                     <VButton class="md:hidden" :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
                         <VFlex class="gap-x-2">
@@ -61,34 +94,40 @@
     </div>
 
     <!-- <VGap :height="100" /> -->
-    <div class="h-10 md:h-24">
-
-    </div>
+    <!-- <div class="h-10 md:h-48">
+        
+    </div> -->
+    <div class="h-10 md:h-24" ></div>
 
 
     <!-- CATEGORIES SECTION -->
     
-        <VContainer :width="80" :style="{'height' : '350px'}" class="">
-            <div class="p-4">
-                <div class="flex justify-between">
-                    <div class="w-8/12">
-                        <p class="text-2xl md:text-3xl font-semibold">Industries</p>
-                        <p class="text-slate-400 text-sm">Slide to explore more industries</p>
+        <div class="w-[100%] mb-20 flex justify-center ">
+            <div class="w-[95%] md:w-[80%]">
+                
+                <div class="w-full">
+                    <div class="p-4">
+                        <div class="flex justify-between">
+                            <div class="w-full text-center">
+                                <p class="text-2xl md:text-5xl font-semibold">Top Searches</p>
+                                <p class="text-slate-400 text-sm my-3">Browse Jobs by Industry</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="w-4/12 text-end">
-                        <span><Icon name="memory:chevron-left" /></span>
-                        <span><Icon name="memory:chevron-right" /></span>
-
+                    <!-- <VContainer :style="{'height' : '200px'}" class="border-x-4 px-6">
+                        <VFlex class="gap-x-5" >
+                            <RCategory v-for="(category, i) in categories" :key="i" :title="category.title" :icon="category.icon" :count="category.count" />
+                        </VFlex>
+                    </VContainer> -->
+                    
+                    <div class="flex flex-wrap justify-start md:gap-x-0">
+                        <div v-for="(category, i) in db.homepage.categories" :key="i" class="w-6/12 md:w-2/12 my-2 md:my-5 px-1 md:px-5">
+                            <RCategory class="" :title="category.industry.industry_title" :slug="category.industry.industry_slug" :icon="category.industry.industry_logo" :count="category.count" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- <VContainer :style="{'height' : '200px'}" class="border-x-4 px-6">
-                <VFlex class="gap-x-5" >
-                    <RCategory v-for="(category, i) in categories" :key="i" :title="category.title" :icon="category.icon" :count="category.count" />
-                </VFlex>
-            </VContainer> -->
-    
-            <VContainer :width="100" :style="{'height' : '200px'}" class="border-x-4 px-6">
+            <!-- <VContainer :width="100" :style="{'height' : '200px'}" class="border-x-4 px-6">
                 <client-only>
                     <Swiper 
                 :style="{'height' : '250px'}"
@@ -112,37 +151,17 @@
                     </SwiperSlide>
                 </Swiper>
                 </client-only>
-            </VContainer>
+            </VContainer> -->
     
     
-        </VContainer>
+        </div>
     
 
     <!-- <VGap :height="60" /> -->
 
-    <!-- <VContainer :width="80" :style="{'height': '150px'}" class="bg-gray-800 rounded-xl">
-        <VFlex>
-            <VContainer :width="80" class="text-center" style="margin:-60px">
-                <VFlex justifyContent="center">
-                    <img width="250" class="" src="https://pngbong.com/wp-content/uploads/2023/04/Lord-Ram-PNG.png" />
-                </VFlex>
-            </VContainer>
-            <VContainer :width="80" class="text-white text-center">
-                <VGap :height="5"  />
-                
-                <p class="text-5xl font-bold">Happy Ram Navami</p>
-                <VGap :height="15"  />
-                <small class="text-md">I hope Lord Rama brings you lots of happiness, peace, and good luck! 🙏</small>
-            </VContainer>
-            <VContainer :width="80" class="text-white text-center">
-                <VButton class="rounded-full">
-                    <VFlex class="gap-x-2"><Icon name="icon-park-outline:like" /> <p>Like</p></VFlex>
-                </VButton>
-            </VContainer>
-        </VFlex>
-    </VContainer> -->
-
-    <VGap :height="20" />
+    
+    <!-- <VGap :height="40" /> -->
+    <div class="h-0 md:h-10"></div>
     
 
     <!-- Banner -->
@@ -152,90 +171,97 @@
     <VGap :height="50" />
 
     <!-- TOP COMPANIES -->
-    <VContainer :width="80" class="h-full" >
-        <div class="p-4">
-            <div class="flex justify-between">
-                <div class="w-8/12">
-                    <p class="text-2xl md:text-3xl font-semibold">Top Companies</p>
-                    <p class="text-slate-400 text-sm">Slide to explore more companies</p>
+    <div class="flex justify-center" >
+        <div class="w-11/12 md:w-9/12 h-full">
+            <div class="py-20">
+                <div class="flex justify-center">
+                    <div class="w-full text-center">
+                        <p class="text-lg md:text-4xl mb-4 font-semibold">Recruiters Hiring From Top Companies</p>
+                        <!-- <p class="text-slate-400 text-md my-2">Explore the top companies and find your dream job</p> -->
+                    </div>
                 </div>
-                <div class="w-4/12 text-end">
-                    <span><Icon name="memory:chevron-left" /></span>
-                    <span><Icon name="memory:chevron-right" /></span>
-
+                <div>
+                    <div class="flex flex-wrap justify-center">
+                        <div v-for="(company, i) in db.homepage.topCompanies" :key="i" class="w-full md:w-3/12 my-5 px-5">
+                            <RTopCompanyCard :name="company.company_name" :slug="company.company_slug" :city="company.company_city" :state="company.company_state" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- <VContainer class="h-full mt-5 px-2 md:px-6">
+                <Swiper
+                class=" bg-white"
+                :modules="[SwiperAutoplay, SwiperEffectCoverflow, SwiperEffectCreative, SwiperEffectCards]"
+                :slides-per-view="viewPort == 'mobile' ? 1 : 3"
+                :loop="false"
+                :effect="'cube'"
+                :creative-effect="{
+                prev: {
+                    shadow: false,
+                    translate: ['-20%', 0, -1],
+                },
+                next: {
+                    translate: ['100%', 0, 0],
+                },
+                }"
+                >
+                    <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i" class="px-3 pb-8">
+                    <RTopCompanyCard :name="company.company_name" :slug="company.company_slug" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
+                </SwiperSlide>
+                </Swiper>
+                
+            </VContainer> -->
         </div>
-        <VContainer class="border-x-4 h-full px-2 md:px-6">
-            <Swiper
-            :style="{'height' : '320px'}"
-            class=" bg-white"
-            :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-            :slides-per-view="viewPort == 'mobile' ? 1 : 3"
-            :loop="false"
-            :effect="'cube'"
-            :creative-effect="{
-            prev: {
-                shadow: true,
-                translate: ['-20%', 0, -1],
-            },
-            next: {
-                translate: ['100%', 0, 0],
-            },
-            }"
-            >
-                <SwiperSlide v-for="(company, i) in db.homepage.topCompanies" :key="i" class="px-3">
-                <RTopCompanyCard  :name="company.company_name" :slug="company.company_slug" :logo="company.company_logo" :jobCount="company.job_count" :description="company.company_des" />
-            </SwiperSlide>
-            </Swiper>
-            
-        </VContainer>
 
-    </VContainer>
+    </div>
 
-    <div class="h-16"></div>
+    <!-- <div class="h-0"></div> -->
 
     <!-- RECENT JOBS -->
-    <VContainer :width="80"  class="">
-        <div class="p-4">
-            <div class="flex justify-between">
-                <div class="w-8/12">
-                    <p class="text-2xl md:text-3xl font-semibold">Recent Jobs</p>
-                    <p class="text-slate-400 text-sm">Slide to explore more jobs</p>
-                </div>
-                <div class="w-4/12 text-end">
-                    <span><Icon name="memory:chevron-left" /></span>
-                    <span><Icon name="memory:chevron-right" /></span>
-
+    <div class="flex justify-center">
+        <div class="w-11/12 md:w-9/12 h-full">
+            <div class="p-4">
+                <div class="flex justify-center">
+                    <div class="w-full text-center">
+                        <p class="text-lg md:text-3xl font-semibold">Exclusive Jobs for You!</p>
+                        <!-- <p class="text-slate-400 text-sm">Explore the jobs or</p> -->
+                    </div>
                 </div>
             </div>
+            <div>
+                <div class="flex flex-wrap justify-start">
+                    <div v-for="(job, i) in db.homepage.recentJobs" :key="i" class="w-full md:w-3/12 my-5 px-5">
+                        <RQuickJobCard  :title="job.job_title" :company="job.company_name" :company_city="job.company_city" :minimum_salary="job.job_minimum_salary" :maximum_salary="job.job_maximum_salary" :company_state="job.company_state" :logo="job.company_logo" :slug="job.job_slug" :hiring="job.job_hiring_count" :location="job.company_address" />
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="border-x-4 px-6 h-full">
+                <Swiper
+                class=" bg-white"
+                :style="{'height' : '230px'}"
+                :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
+                :slides-per-view="viewPort == 'mobile' ? 1 : 3"
+                :loop="false"
+                :effect="'cube'"
+                :creative-effect="{
+                prev: {
+                    shadow: false,
+                    translate: ['-20%', 0, -1],
+                },
+                next: {
+                    shadow: false,
+                    translate: ['100%', 0, 0],
+                },
+                }"
+                >
+                    <SwiperSlide v-for="(job, i) in db.homepage.recentJobs" :key="i" class="px-2 pb-0 md:pb-10">
+                    <RQuickJobCard  :title="job.job_title" :company="job.company_name" :logo="job.company_logo" :slug="job.job_slug" :hiring="job.job_hiring_count" :location="job.company_address" />
+                </SwiperSlide>
+                </Swiper>
+                
+            </div> -->
         </div>
-
-        <div class="border-x-4 px-6 h-full">
-            <Swiper
-            class=" bg-white"
-            :modules="[SwiperAutoplay, SwiperEffectCoverflow]"
-            :slides-per-view="viewPort == 'mobile' ? 1 : 3"
-            :loop="false"
-            :effect="'cube'"
-            :creative-effect="{
-            prev: {
-                shadow: false,
-                translate: ['-20%', 0, -1],
-            },
-            next: {
-                shadow: false,
-                translate: ['100%', 0, 0],
-            },
-            }"
-            >
-                <SwiperSlide v-for="(job, i) in db.homepage.recentJobs" :key="i" class="px-2 pb-0 md:pb-10">
-                <RQuickJobCard  :title="job.job_title" :company="job.company_name" :logo="job.company_logo" :slug="job.job_slug" :hiring="job.job_hiring_count" :location="job.company_address" />
-            </SwiperSlide>
-            </Swiper>
-            
-        </div>
-    </VContainer>
+    </div>
 
     <div class="h-20"></div>
 
@@ -290,7 +316,199 @@
     </VContainer>
 
     <VGap :height="80" />
-
+    
+    <div class="w-full border flex justify-center bg-slate-900 h-full md:py-10">
+        <div class="w-full md:w-10/12 px-5 md:px-40 flex flex-wrap md:flex-nowrap justify-center text-center md:text-left">
+            <div class="w-6/12 md:w-3/12 text-white my-3 md:my-0">
+                <h3 class="my-3 font-bold">Jobs by Function</h3>
+                <div>
+                    <ul class="text-sm leading-6 text-slate-400">
+                        <li>
+                            <a target="_blank" href="/industries/industry-it-contractor">IT Software Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=bpo jobs">BPO Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/industries/industry-sales-marketing">Sales Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=fresher jobs">Fresher Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=medical jobs">Medical Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=bank jobs">Bank Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs">All Functional Areas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-6/12 md:w-3/12 text-white my-3 md:my-0">
+                <h3 class="my-3 font-bold">IT Job Skills</h3>
+                <div>
+                    <ul class="text-sm leading-6 text-slate-400">
+                        <li>
+                            <a target="_blank" href="/jobs?j=java jobs">Java Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=sap jobs">SAP Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=.net jobs">.NET Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=oracle jobs">Oracle Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=sql">SQL Server Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=qa jobs">QA Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=html jobs">HTML Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=opengl es jobs">OpenGL ES Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=javafx jobs">JavaFX Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=flash lite jobs">Flash Lite Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=wml jobs">WML Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=blackberry jobs">Blackberry Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=uiq jobs">UIQ Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs">All IT Skills Jobs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-6/12 md:w-3/12 text-white my-3 md:my-0">
+                <h3 class="my-3 font-bold">Non-IT Job Skills</h3>
+                <div>
+                    <ul class="text-sm leading-6 text-slate-400">
+                        <li>
+                            <a target="_blank" href="/jobs?j=hr jobs">Human Resource Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=trade executive jobs">Trade Executive Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=sales jobs">Sales Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=marketing jobs">Marketing Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=account executive jobs">Accounts Executive Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=management jobs">Management Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=water treatment jobs">Water Treatment Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=graphic designer jobs">Graphic Designer Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=weaving jobs">Weaving Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=accountant jobs">Taxation Jobs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-6/12 md:w-3/12 text-white my-3 md:my-0">
+                <h3 class="my-3 font-bold">Jobs by Location</h3>
+                <div>
+                    <ul class="text-sm leading-6 text-slate-400">
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in delhi">Jobs in New Delhi</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in kolkata">Jobs in Kolkata</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in ahmedabad">Jobs in Ahmedabad</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in noida">Jobs in Noida</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in gurgaon">Jobs in Gurgaon</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in mumbai">Jobs in Mumbai</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in chennai">Jobs in Chennai</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in hyderabad">Jobs in Hyderabad</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in banglore">Jobs in Banglore</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in pune">Jobs in Pune</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=jobs in chandigarh">Jobs in Chandigarh</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs">All Locations</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-full md:w-3/12 text-white my-3 md:my-0">
+                <h3 class="my-3 font-bold">Jobs by Role</h3>
+                <div>
+                    <ul class="text-sm leading-6 text-slate-400">
+                        <li>
+                            <a target="_blank" href="/jobs?j=accountant jobs">Accountant Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=account executive jobs">Accountant Executive Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=manager jobs">Assistant Manager Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=manager jobs">Branch Manager Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=cmo jobs">Chief Marketing Officer Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=ceo jobs">Chief Executive Officer Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs?j=cto jobs">Chief Technology Officer Jobs</a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/jobs">All Roles</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <VModal @close="db.closeInstantJobForm" v-if="db.showInstantJobForm" v-auto-animate>
         <div class="w-full">
             <p class="text-3xl font-bold">Get Instant Job!</p>
@@ -323,6 +541,9 @@
 
 
     const db = useMyDbStore();
+    const swiperJs = await useSwiper();
+
+    console.log(swiperJs);
 
     console.log('homepage', db.homepage.isHomepageLoaded);
 
@@ -352,7 +573,8 @@ export default {
                     isError: false,
                     errorMessage: ''
                 }
-            }
+            },
+            isLikedPoster: false,
         }
     },
     methods: {

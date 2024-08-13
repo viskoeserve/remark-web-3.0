@@ -23,11 +23,11 @@ export default defineNuxtConfig({
         },
         {
           name: 'title',
-          content: "Remark | India's Best Job Portal | Jobs & Recruiter App"
+          content: "Remark Jobs | Best Job Portal in India | Reshaping Hiring"
         },
         {
           name: 'description',
-          content: "The best AI inbuilt job portal in India for HR professionals, recruiters, and job seekers. Use our user-friendly job application to simplify the hiring process."
+          content: "Find jobs & talents using native AI tools. Find the best jobs & growth opportunities. Best Job Portal in India. Get personalized job recommendations for Free."
         },
         {
           name: 'keywords',
@@ -63,8 +63,8 @@ export default defineNuxtConfig({
   },
   site: {
     url: 'https://remarkhr.com',
-    name: "Remark | India's Best Job Portal | Jobs & Recruiter App",
-    description: 'The best AI inbuilt job portal in India for HR professionals, recruiters, and job seekers. Use our user-friendly job application to simplify the hiring process.',
+    name: "Remark Jobs | Best Job Portal in India | Reshaping Hiring",
+    description: 'Find jobs & talents using native AI tools. Find the best jobs & growth opportunities. Best Job Portal in India. Get personalized job recommendations for Free.',
     defaultLocale: 'en', // not needed if you have @nuxtjs/i18n installed
   },
   seo: {

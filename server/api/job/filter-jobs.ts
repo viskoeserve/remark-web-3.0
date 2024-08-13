@@ -3,16 +3,18 @@ export default defineEventHandler(async (event) => {
   var response = {
     status: false,
     message: "Invalid Request",
-    count: {
+    counts: {
       searched_job: 0,
       all_jobs: 0,
-      filtered_jobs: 0
+      filtered_jobs: 0,
+      more_filtered: 0,
     },
     filter: [],
     jobs: [],
     skills: [],
     job_schedule: [],
-    locations: []
+    locations: [],
+    searched_query: ''
   };
 
 

@@ -15,9 +15,9 @@
                         <li>
                             <a class="text-sm font-semibold text-teal-800" href="/how-it-works">How it Works</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="text-sm font-semibold text-teal-800" href="/jobs">Latest Jobs</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a class="text-sm font-semibold text-teal-800" href="https://blogs.remarkhr.com" target="_blank">Blogs</a>
                         </li>

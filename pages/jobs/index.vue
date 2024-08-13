@@ -317,7 +317,7 @@ await this.loadMoreJobs(1);
   
         }
 
-        this.totalPages = Math.round(this.countJobs/15)
+        this.totalPages = Math.floor(this.countJobs/20);
 
         this.isLoadingJobs = false;
 
@@ -394,10 +394,13 @@ await this.loadMoreJobs(1);
 
 
       if(this.searchTitle != this.oldSearchTitle) {
+        console.log("Search Title is not matching");
         this.filter.skills = [];
         this.filter.skills.push("All");
         this.filter.schedules.push('All');
         this.filter.locations.push('All');
+      }else{
+        console.log("Search Title is matching");
       }
 
       if(this.showInMobile) {
@@ -409,15 +412,17 @@ await this.loadMoreJobs(1);
       this.isLoadingJobs = true;
       this.currentPage = pageNum;
 
+      console.log(this.filter);
+
       if(this.filter?.skills?.length == 0) {
         this.filter.skills.push('All');
       }
 
-      if(this.filter?.schedules.length == 0) {
+      if(this.filter?.schedules?.length == 0) {
         this.filter.schedules.push('All');
       }
 
-      if(this.filter?.locations.length == 0) {
+      if(this.filter?.locations?.length == 0) {
         this.filter.locations.push('All');
       }
 
@@ -447,10 +452,12 @@ await this.loadMoreJobs(1);
         }
         
  
+        this.searchTitle = data.value.searched_query.trim();
         this.oldSearchTitle = this.searchTitle;
+        this.storage.setItem('searchTitle', this.searchTitle);
 
         this.countJobs = data.value?.counts?.page_job_count;
-        this.totalPages = Math.ceil(this.countJobs/20);
+        this.totalPages = Math.ceil(data.value?.counts?.more_filtered/20);
         console.log('totalPages',this.totalPages);
 
        
@@ -458,7 +465,7 @@ await this.loadMoreJobs(1);
           
           job.job_key_skills = JSON.parse(job.job_key_skills);
 
-          job.job_ext_experience = JSON.parse(job.job_ext_experience);
+          job.job_ext_experience = job.job_ext_experience != "" ? JSON.parse(job.job_ext_experience) : [];
             if(job.job_ext_experience.length > 0) {
               job.is_experienced = true;
             }else{
@@ -476,11 +483,12 @@ await this.loadMoreJobs(1);
 
         });
 
-        console.log('filter', data.value.filter);
         this.doReadySkillFilter(data.value.skills, data.value.filter);
         this.doReadyScheduleFilter(data.value.job_schedule, data.value.filter);
         this.doReadyLocationFilter(data.value.locations, data.value.filter);
         data.value.filter = JSON.parse(data.value.filter);
+        this.filter = data.value.filter[0];
+        console.log('filter', this.filter);
 
         // this.filterLocations = data.value.locations;
 

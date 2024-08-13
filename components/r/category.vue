@@ -1,14 +1,16 @@
 <template>
-  <div @click="searchCategory(slug)" class="shadow-lg bg-remark-light text-center hover:border-t-4 border-teal-800 duration-200 cursor-pointer w-full h-4/5">
-    <VGap :height="30" />
+  <div @click="searchCategory(slug)" class="shadow-lg text-center hover:border-t-4 border-teal-800 duration-200 cursor-pointer w-full pb-3">
+    <VGap :height="10" />
     <!-- <Icon class="text-5xl" :name="icon" style="color:teal" /> -->
-    <VFlex justifyContent="center" class="text-teal-800">
+    <VFlex justifyContent="center" class="text-slate-600">
       <!-- <img class="text-center text-teal-800" width="60" height="70" :src="`https://remarkhr.com/` + icon" /> -->
-       <Icon :name="icon" class="text-7xl" />
+       <Icon :name="icon" class="text-3xl text-slate-600" />
     </VFlex>
     <!-- {{ icon }} -->
-    <p class="text-md my-2"> {{ title }} </p>
-    <VButton paddingX="5" paddingY="1" rounded="full"  style="border-radius:25px"> <small>{{ count }} Opening </small></VButton>
+    <p class="text-xs md:text-sm font-semibold py-1"> {{ title }} </p>
+    <div>
+      <small class="text-xs md:text-sm font-semibold text-teal-800 underline">{{ count }} Job(s)</small>
+    </div>
 </div>
 </template>
 

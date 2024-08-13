@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
       "l_contact" : body.number,
       "l_description": body.description,
       "l_source": body.source,
-      "l_assigned_by": "sapna_maru",
+      "l_assigned_by": "kratika_yadav",
       "l_category": "newuser"
     }
   });

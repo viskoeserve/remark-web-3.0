@@ -43,7 +43,7 @@
                     <div class="w-50 md:w-4/12 my-6 md:my-0">
                         <ul>
                             <li class="my-4">
-                                <p class="font-bold">Quick Menus</p>
+                                <p class="font-bold">Company Info</p>
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
                                 <a href="/how-it-works">
@@ -62,10 +62,15 @@
                             </li>
                             <li class="my-2 font-semibold text-teal-900">
                                 <NuxtLink to="/sitemap.xml" target="_blank">
-                                    Sitemap XML
+                                    Sitemap HTML
                                 </NuxtLink>
                             </li>
-
+                            <li class="my-2 font-semibold text-teal-900">
+                                <a href="https://blogs.remarkhr.com" target="_blank">
+                                    Blog
+                                </a>
+                            </li>
+                            
                         </ul>
                     </div>
                     <div class="w-50 md:w-3/12 my-6 md:my-0">
@@ -118,7 +123,7 @@
             <div class="w-full md:w-4/12 text-center border border-teal-800 p-4 rounded-lg">
                 <p class="font-bold text-2xl"> <Icon name="ph:eyes-fill" /> Looking for job?</p>
                 <VGap :height="5" />
-                <p class="text-slate-500 text-sm">Connect with the team and get the job.</p>
+                <p class="text-slate-500 text-sm">Let's connect and discuss your job requirements.</p>
                 <VGap :height="5" />
                 <p class="text-slate-500 text-sm font-bold">Enter your mobile number</p>
                 <VGap :height="5" />
@@ -127,7 +132,7 @@
                 </VContainer>
                 <VGap :height="10" />
                 <VContainer class="text-center">
-                    <button v-if="!instantForm.isAdding" class="bg-teal-800 px-5 py-2 text-white rounded" @click="submitRequestForm" >Request Call</button>
+                    <button v-if="!instantForm.isAdding" class="bg-teal-800 px-5 py-2 text-white rounded" @click="submitRequestForm" >Request a Call</button>
                     <icon v-else name="svg-spinners:ring-resize" />
 
                 </VContainer>
