@@ -30,7 +30,7 @@
                     </ul>
                 </div>
 
-                <div style="width:20%;" class="flex justify-center">
+                <div style="width:20%;" id="remark-logo" class="flex justify-center">
                     <a href="/">
                         <LogoDefaultLogo :width="80" />
                     </a>
@@ -201,7 +201,9 @@ export default {
 
             this.$listen('close', () => {
                 this.toggleLogin();
-            })
+            });
+
+            
             
         },
         toggleMobileMenu() {
@@ -215,9 +217,7 @@ export default {
         doLogout() {
 
             this.userStore.unsetUser();
-
             location.href = '';
-
         }
     },
     async created() {

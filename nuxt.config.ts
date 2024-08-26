@@ -13,6 +13,10 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
         }
       ],
       
@@ -37,6 +41,9 @@ export default defineNuxtConfig({
       script: [
         {
           src: 'https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js'
+        },
+        {
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js'
         }
       ]
     },

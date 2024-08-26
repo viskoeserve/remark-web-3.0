@@ -4,25 +4,32 @@
     <!-- HERO SECTION -->
 
     <div class="hidden md:block h-20"></div>
-        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-orange-500 from-0% via-white via-50% to-green-600 to-100%">
+        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-blue-500 to-blue-800">
             <VFlex class="h-full items-center">
-                <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-vector/20220801/ourmid/pngtree-15-august-happy-independence-day-india-png-image_6094423.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
+                <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-vector/20220814/ourmid/pngtree-blue-hindi-calligraphy-of-krishna-janmashtami-with-little-lord-dahi-handi-png-image_6110852.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
 
                 </VContainer>
                 <VContainer :width="150" class="text-slate-800 text-center">
 
                     
-                    <p class="text-xl md:text-5xl font-bold">Happy Independence Day</p>
+                    <p class="text-xl md:text-5xl font-bold text-white">Happy Shree Krishna Janmashtami</p>
                     <VGap :height="15"  />
-                    <small class="text-xs md:text-md font-semibold">Freedom is not just about independence; it is about self-discovery and self-realization.</small>
+                    <small class="text-xs md:text-md font-semibold text-white">Happy Janmashtami! May Lord Krishna's blessings be with you always.</small>
                 </VContainer>
                 <VContainer :width="80" class="text-white text-center">
-                    <VButton :isDisabled="isLikedPoster ? true : false" :onClick="!isLikedPoster ? () => {isLikedPoster = !isLikedPoster} : () => console.log('already liked')" class="rounded-full">
+                    <VButton :isDisabled="isLikedPoster ? true : false" bgColor="white" :onClick="!isLikedPoster ? () => {isLikedPoster = !isLikedPoster} : () => console.log('already liked')" class="rounded-full">
                         <VFlex class="gap-x-2"><Icon :name="`icon-park-${isLikedPoster ? 'solid' : 'outline'}:like`" /> <p>Like</p></VFlex>
                     </VButton>
                 </VContainer>
             </VFlex>
         </div>
+        <div class="flex items-center space-x-4">
+            <USkeleton class="h-12 w-12" :ui="{ rounded: 'rounded-full' }" />
+            <div class="space-y-2">
+              <USkeleton class="h-4 w-[250px]" />
+              <USkeleton class="h-4 w-[200px]" />
+            </div>
+          </div>
     <VGap :height="30" />
     <div  padding="50" class="bg-teal-0 w-full md:w-full px-5 md:px-40">
         
@@ -37,7 +44,7 @@
             <div class="w-full md:w-8/12">
                 <!-- <VGap :height="0" /> -->
                 <div class="h-0 md:h-2"></div>
-                <div class="w-full flex justify-center mb-2">
+                <div class="w-full flex justify-center mb-2 animate__animated animate__fadeIn">
                     <!-- <img class="w-4/12 md:w-3/12" src="/img/svg/remark-ai.png" /> -->
                      <div class="w-11/12">
                         <p class="font-bold text-2xl md:text-6xl text-center">Best <span class="text-teal-500">Job Portal</span> in India Unleashing Growth for Everyone</p>
@@ -50,7 +57,7 @@
                      </div>
                 </div>
                 <div class="my-3 md:my-5"></div>
-                <VFlex  class="px-8 py-1 md:py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex">
+                <VFlex  class="px-8 py-1 md:py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200 hidden md:flex animate__animated animate__fadeIn">
                     <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
                     <VButton class="md:hidden" :to=" searchInput == '' ? 'javascript:void(0)' : 'jobs?j=' + searchInput" fullBgColor="bg-red-600" :isLink="true" paddingY="3" rounded="full">
                         <VFlex class="gap-x-2">
@@ -58,7 +65,7 @@
                         </VFlex>
                     </VButton>
                 </VFlex>
-                <div class="block md:hidden text-center">
+                <div class="block md:hidden text-center animate__animated animate__fadeIn">
                     <div>
                         <div  class="bg-remark-light px-8 py-2 shadow-none border border-teal-300 rounded-full hover:shadow-xl hover:shadow-red-100 duration-200">
                             <input v-model="searchInput" @keyup="searchJob" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
@@ -77,7 +84,7 @@
                     </div>
                 </div>
                 <VGap :height="20" />
-                <VContainer class="text-center">
+                <VContainer class="text-center animate__animated animate__fadeIn">
                     <div class="font-bold text-slate-800">
                         Download Remark Job & Recruiter App
                     </div>
@@ -102,7 +109,7 @@
 
     <!-- CATEGORIES SECTION -->
     
-        <div class="w-[100%] mb-20 flex justify-center ">
+        <div class="w-[100%] mb-20 flex justify-center animate__animated animate__fadeInUp">
             <div class="w-[95%] md:w-[80%]">
                 
                 <div class="w-full">
@@ -165,7 +172,7 @@
     
 
     <!-- Banner -->
-    <RMobilePromoBand />
+    <RMobilePromoBand class="animate__animated animate__fadeIn" />
     
 
     <VGap :height="50" />
@@ -218,7 +225,7 @@
     <!-- <div class="h-0"></div> -->
 
     <!-- RECENT JOBS -->
-    <div class="flex justify-center">
+    <div class="flex justify-center animate__animated animate__fadeIn">
         <div class="w-11/12 md:w-9/12 h-full">
             <div class="p-4">
                 <div class="flex justify-center">
@@ -266,7 +273,7 @@
     <div class="h-20"></div>
 
     <!-- BANNER 2 -->
-    <VContainer :width="80" class="border bg-slate-900 rounded-lg h-full md:py-20">
+    <VContainer :width="80" class="border bg-slate-900 rounded-lg h-full md:py-20 animate__animated animate__fadeIn">
         <VFlex  justifyContent="space-between" class="mx-auto w-10/12 flex-wrap md:flex-none">
             <div class="text-white mt-20 mb-10 md:my-0 flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
@@ -317,7 +324,7 @@
 
     <VGap :height="80" />
     
-    <div class="w-full border flex justify-center bg-slate-900 h-full md:py-10">
+    <div class="w-full border flex justify-center bg-slate-900 h-full md:py-10 animate__animated animate__fadeIn">
         <div class="w-full md:w-10/12 px-5 md:px-40 flex flex-wrap md:flex-nowrap justify-center text-center md:text-left">
             <div class="w-6/12 md:w-3/12 text-white my-3 md:my-0">
                 <h3 class="my-3 font-bold">Jobs by Function</h3>
@@ -592,7 +599,7 @@ export default {
             }else{
                 this.homeDb.closeInstantJobForm();
 
-            }
+            }                                                                                       
 
         },
         searchJob(ev) {

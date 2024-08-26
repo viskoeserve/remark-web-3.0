@@ -9,7 +9,7 @@
                     <LogoDefaultLogo :width="100" />
                 </a>
                 <p class="text-slate-500">
-                    Remark is a platform that brings together Jobseekers and Employers.
+                    Remark, the best job portal in India, is a platform that brings Jobseekers and Employers together.
                 </p>
                 <VContainer class="my-3">
                     <p>Follow Us:</p>
