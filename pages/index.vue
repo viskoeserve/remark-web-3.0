@@ -4,17 +4,17 @@
     <!-- HERO SECTION -->
 
     <div class="hidden md:block h-20"></div>
-        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-blue-500 to-blue-800">
+        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-teal-500 to-teal-800">
             <VFlex class="h-full items-center">
-                <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-vector/20220814/ourmid/pngtree-blue-hindi-calligraphy-of-krishna-janmashtami-with-little-lord-dahi-handi-png-image_6110852.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
+                <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-clipart/20240212/original/pngtree-lord-ganesh-png-image_14296248.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
 
                 </VContainer>
                 <VContainer :width="150" class="text-slate-800 text-center">
 
                     
-                    <p class="text-xl md:text-5xl font-bold text-white">Happy Shree Krishna Janmashtami</p>
+                    <p class="text-xl md:text-5xl font-bold text-white">Happy Ganesh Chaturthi</p>
                     <VGap :height="15"  />
-                    <small class="text-xs md:text-md font-semibold text-white">Happy Janmashtami! May Lord Krishna's blessings be with you always.</small>
+                    <small class="text-xs md:text-md font-semibold text-white">Celebrate Ganesh Chaturthi with joy and devotion.</small>
                 </VContainer>
                 <VContainer :width="80" class="text-white text-center">
                     <VButton :isDisabled="isLikedPoster ? true : false" bgColor="white" :onClick="!isLikedPoster ? () => {isLikedPoster = !isLikedPoster} : () => console.log('already liked')" class="rounded-full">
