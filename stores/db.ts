@@ -21,7 +21,7 @@ export const useMyDbStore = defineStore({
     
       async loadHomepage() {
 
-        if(this.homepage.categories.length == 0) {
+        // if(this.homepage.categories.length == 0) {
           const user = useMyUserStore();
 
         const {data, pending, refresh} = await useFetch('/api/home/main', {
@@ -42,11 +42,11 @@ export const useMyDbStore = defineStore({
 
             this.homepage.recentJobs = data.value.recent_jobs;
 
-            this.homepage.isHomepageLoaded = true;
+            // this.homepage.isHomepageLoaded = true;
             
 
         }
-        }
+        // }
 
 
       },

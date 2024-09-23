@@ -86,7 +86,7 @@
       <div class="w-full" :class="!showFilter ? 'md:w-6/12' : 'md:w-5/12' ">
         <VContainer class="">
           <VFlex :width="100" class="bg-remark-light px-8 py-2 shadow-xl hover:shadow-none duration-200" style="border-radius: 10px;">
-            <input v-model="searchTitle" style="width:100%" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
+            <input v-model="searchTitle" style="width:100%" id="search-title" placeholder="Development, Back Office, Sales" class="py-3 bg-transparent outline-none border-none" />
             <button paddingY="3" @click="filterJobs(1)" class="bg-teal-800 p-3 rounded-full text-white" >
                     <Icon name="material-symbols:search" class="text-2xl" />
               </button>
@@ -96,8 +96,11 @@
         <VGap :height="30" />
 
         <VContainer v-if="isSearched && jobs.length > 0" class="mx-3 font-semibold w-full">
+          <Head>
+            <Title>{{countJobs}} {{searchTitle}} jobs in {{ filter.locations[0] }} location</Title>
+          </Head>
           <VFlex class="gap-x-2 mx-3" justifyContent="space-between">
-            <p> Showing ({{ jobs.length }}) jobs </p> 
+            <p> {{countJobs}} {{searchTitle}} jobs in {{ filter.locations[0] }} location </p> 
             <div @click="showInMobile = !showInMobile" class="block md:hidden text-3xl text-teal-800">
               <span class="text-lg">Filter</span> <icon name="material-symbols:filter-alt" />
             </div>
@@ -180,6 +183,7 @@
 
 </template>
 
+
 <script>
 export default {
   data() {
@@ -251,6 +255,7 @@ await this.loadMoreJobs(1);
 
       }
 
+     
       
     },
     async showJobs(pageNum) {

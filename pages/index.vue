@@ -4,7 +4,7 @@
     <!-- HERO SECTION -->
 
     <div class="hidden md:block h-20"></div>
-        <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-teal-500 to-teal-800">
+        <!-- <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-teal-500 to-teal-800">
             <VFlex class="h-full items-center">
                 <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-clipart/20240212/original/pngtree-lord-ganesh-png-image_14296248.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">
 
@@ -30,7 +30,7 @@
               <USkeleton class="h-4 w-[200px]" />
             </div>
           </div>
-    <VGap :height="30" />
+    <VGap :height="30" /> -->
     <div  padding="50" class="bg-teal-0 w-full md:w-full px-5 md:px-40">
         
         <div class="h-10"></div>
@@ -273,8 +273,8 @@
     <div class="h-20"></div>
 
     <!-- BANNER 2 -->
-    <VContainer :width="80" class="border bg-slate-900 rounded-lg h-full md:py-20 animate__animated animate__fadeIn">
-        <VFlex  justifyContent="space-between" class="mx-auto w-10/12 flex-wrap md:flex-none">
+    <VContainer :width="100" class="border bg-slate-900 rounded-lg h-full md:py-20 animate__animated animate__fadeIn">
+        <VFlex  justifyContent="space-between" class="mx-auto w-8/12 flex-wrap md:flex-none">
             <div class="text-white mt-20 mb-10 md:my-0 flex justify-center w-full md:w-20">
                 <VFlex class="gap-x-3">
                     <div>
@@ -292,7 +292,7 @@
                         <Icon class="text-6xl text-teal-200" name="gridicons:multiple-users" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">10000+</p>
+                        <p class="text-3xl font-bold text-slate-400">50000+</p>
                         <p>Employees</p>
                     </div>
                 </VFlex>
@@ -303,7 +303,7 @@
                         <Icon class="text-6xl text-teal-200" name="material-symbols:apartment-rounded" />
                     </div>
                     <div>
-                        <p class="text-3xl font-bold text-slate-400">1,000+</p>
+                        <p class="text-3xl font-bold text-slate-400">2,000+</p>
                         <p>Companies</p>
                     </div>
                 </VFlex>
@@ -550,13 +550,13 @@
     const db = useMyDbStore();
     const swiperJs = await useSwiper();
 
-    console.log(swiperJs);
+    // console.log(swiperJs);
+// 
+    // console.log('homepage', db.homepage.isHomepageLoaded);
 
-    console.log('homepage', db.homepage.isHomepageLoaded);
-
-    if(!db.homepage.isHomepageLoaded) {
+    // if(!db.homepage.isHomepageLoaded) {
         await db.loadHomepage();
-    }
+    // }
 
     
 

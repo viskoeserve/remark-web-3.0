@@ -144,7 +144,7 @@
         </VFlex>
         <VGap :height="40" />
         <VContainer class="text-center text-sm text-slate-400">
-            © 2024 Remark Developed by <a href="/">Visko HR Private Limited</a>
+            © 2024 Remark Developed by <a target="_blank" href="https://viskohr.com">Visko HR Private Limited</a>
         </VContainer>
         </div>
     </div>
