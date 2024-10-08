@@ -608,7 +608,7 @@
               <div
                 v-for="(job, index) in savedJobs.jobs"
                 :key="index"
-                class="w-4/12 px-2"
+                class="w-4/12"
               >
                 <RJobCard
                   :title="job.job_title"
@@ -816,12 +816,19 @@
             <div class="h-5"></div>
             <div>
               <div class="w-full">
+                <div class=" mb-2">
+                  <img width="100" :src="allCompanies.addCompany.previewImage.image" alt="" srcset="">
+                  <button v-if="allCompanies.addCompany.previewImage.isChanged" @click="removeNewImage()" class="w-24 flex justify-start py-0 px-2 mt-1 border border-red-200">
+                  <div></div>
+                  <VIconText icon="ic:baseline-delete" text="Remove" class="text-red-600" ></VIconText>
+
+                  </button>
+                </div>
                 <div class="mb-5 relative">
-                  <div class=" ">
-                    <input type="file" class="absolute opacity-0" accept="image/*" name="" id="">
-                    Upload Logo
+                  <div class="w-32 text-center bg-teal-800 text-white py-2 px-1 flex justify-center rounded cursor-pointer z-1">
+                    <input type="file" @change="previewCompanyLogo" :v-model="allCompanies.addCompany.inputs.company_logo.value" class="absolute opacity-0 z-0 w-32" accept="image/*" name="" id="company-logo">
+                    <p>Upload Logo</p>
                   </div>
-                  <small>Logo</small>
                 </div>
                 <form
                   id="company_form"
@@ -1044,11 +1051,13 @@
                 <div class="w-full text-center">
                   <button
                     type="submit"
+                    v-if="!allCompanies.addCompany.isAddingCompany"
                     class="px-5 py-2 bg-teal-800 rounded"
                     @click="addCompany"
                   >
                     <span class="text-white">Add Company</span>
                   </button>
+                  <VLoading v-else  />
                 </div>
               </div>
             </div>
@@ -1793,7 +1802,20 @@ export default {
         companies: [],
         isFetched: false,
         addCompany: {
+          isAddingCompany: false,
+          hasError: false,
+          errorMessage: "",
+          previewImage: {
+            isChanged: false,
+            image: 'http://localhost:3000/logo/remark-logo-1000.png',
+            oldImage: 'http://localhost:3000/logo/remark-logo-1000.png'
+          },
           inputs: {
+            company_logo: {
+              value: '',
+              hasError: false,
+              errorMessage: ''
+            },
             company_name: {
               value: "",
               hasError: false,
@@ -2111,6 +2133,21 @@ export default {
 
     stopEditProfile() {
       this.profile.updateProfile.isEditStarted = false;
+    },
+
+    previewCompanyLogo() {
+      this.allCompanies.addCompany.previewImage.isChanged = true;
+      var companyLogo = document.getElementById('company-logo');
+      console.log(companyLogo.files[0]);
+      this.allCompanies.addCompany.previewImage.image = URL.createObjectURL(companyLogo.files[0]);
+
+    },
+
+    removeNewImage() {
+      this.allCompanies.addCompany.previewImage.isChanged = false;
+      this.allCompanies.addCompany.previewImage.image = this.allCompanies.addCompany.previewImage.oldImage;
+      var companyLogo = document.getElementById('company-logo');
+      companyLogo.files.length = 0;
     },
 
     async getCities() {
@@ -2440,13 +2477,22 @@ export default {
 
     },
 
-    addCompany() {
+    uploadLogo() {
+      
+    },
+
+    async addCompany() {
+
+      this.allCompanies.addCompany.isAddingCompany = true;
+
       var input = this.allCompanies.addCompany.inputs;
       var companyForm = document.getElementById("company_form");
 
       if (input.company_name.value == "") {
         input.company_name.hasError = true;
         input.company_name.errorMessage = "Company name is required";
+      this.allCompanies.addCompany.isAddingCompany = false;
+
         return false;
       } else {
         input.company_name.hasError = false;
@@ -2455,6 +2501,8 @@ export default {
       if (input.business_email.value == "") {
         input.business_email.hasError = true;
         input.business_email.errorMessage = "Business Email is required";
+      this.allCompanies.addCompany.isAddingCompany = false;
+
         return false;
       } else {
         input.business_email.hasError = false;
@@ -2463,6 +2511,8 @@ export default {
       if (input.business_phone.value == "") {
         input.business_phone.hasError = true;
         input.business_phone.errorMessage = "Business Phone Number is required";
+      this.allCompanies.addCompany.isAddingCompany = false;
+
         return false;
       } else {
         input.business_phone.hasError = false;
@@ -2471,6 +2521,7 @@ export default {
       if (input.description.value == "") {
         input.description.hasError = true;
         input.description.errorMessage = "Description is required";
+        this.allCompanies.addCompany.isAddingCompany = false;
         return false;
       } else {
         input.description.hasError = false;
@@ -2479,6 +2530,7 @@ export default {
       if (input.address.value == "") {
         input.address.hasError = true;
         input.address.errorMessage = "Address is required";
+        this.allCompanies.addCompany.isAddingCompany = false;
         return false;
       } else {
         input.address.hasError = false;
@@ -2487,6 +2539,7 @@ export default {
       if (input.city.value == "") {
         input.city.hasError = true;
         input.city.errorMessage = "City is required";
+        this.allCompanies.addCompany.isAddingCompany = false;
         return false;
       } else {
         input.city.hasError = false;
@@ -2495,10 +2548,79 @@ export default {
       if (input.state.value == "") {
         input.state.hasError = true;
         input.state.errorMessage = "State is required";
+        this.allCompanies.addCompany.isAddingCompany = false;
         return false;
       } else {
         input.state.hasError = false;
       }
+
+
+      // COLLECT DATA FROM THE COMPANY FORM
+      var company_logo_input = document.getElementById('company-logo');
+
+      var company_logo = company_logo_input.files[0];
+
+      var company_name = this.allCompanies.addCompany.inputs.company_name.value;
+      var company_website = this.allCompanies.addCompany.inputs.website.value;
+      var company_email = this.allCompanies.addCompany.inputs.business_email.value;
+      var company_phone = this.allCompanies.addCompany.inputs.business_phone.value;
+      var company_description = this.allCompanies.addCompany.inputs.description.value;
+      var company_address = this.allCompanies.addCompany.inputs.address.value;
+      var company_city = this.allCompanies.addCompany.inputs.city.value;
+      var company_state = this.allCompanies.addCompany.inputs.state.value;
+
+      var formData = new FormData();
+
+      // formData.append('company_logo', company_logo);
+      // formData.append('company_name', company_name);
+      // formData.append('company_website', company_website);
+      // formData.append('company_email', company_email);
+      // formData.append('company_phone', company_phone);
+      // formData.append('company_des', company_description);
+      // formData.append('company_location', company_address);
+      // formData.append('company_city', company_city);
+      // formData.append('company_state', company_state);
+
+      var companyData = {
+        "company_logo": company_logo,
+        "company_name": company_name,
+        "company_website": company_website,
+        "company_email": company_email,
+        "company_phone": company_phone,
+        "company_des": company_description,
+        "company_location": company_address,
+        "company_city": company_city,
+        "company_state": company_state
+      };
+
+      const { data, pending, error, refresh } = await useFetch('/api/company/add-company',{
+          method: 'POST',
+          body: {
+            token: this.userStore.token,
+            formData: companyData
+          }
+      });
+
+      if(data?.value) {
+        
+        if(data?.value?.status) {
+
+          this.activeMenu = 'companies';
+          this.allCompanies.addCompany.isAddingCompany = false;
+          this.allCompanies.addCompany.hasError = false;
+          this.allCompanies.addCompany.errorMessage = "";
+        }else{
+          this.allCompanies.addCompany.isAddingCompany = false;
+          this.allCompanies.addCompany.hasError = true;
+          this.allCompanies.addCompany.errorMessage = data?.value?.message;
+        }
+
+      }
+
+      if(error?.value) {
+        console.log(error.value);
+      }
+
     },
 
     async startJobPosting() {

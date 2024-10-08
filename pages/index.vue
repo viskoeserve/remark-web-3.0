@@ -3,7 +3,7 @@
 
     <!-- HERO SECTION -->
 
-    <div class="hidden md:block h-20"></div>
+    <div class="hidden md:block h-12"></div>
         <!-- <div :style="{'height': '200px'}" class="hidden md:block bg-gradient-to-br from-teal-500 to-teal-800">
             <VFlex class="h-full items-center">
                 <VContainer :width="80" class="text-center" :style="{'background-image':'url(https://png.pngtree.com/png-clipart/20240212/original/pngtree-lord-ganesh-png-image_14296248.png)', 'height' : '300px', 'background-size': 'contain' , 'background-position': 'top', 'background-repeat': 'no-repeat'}">

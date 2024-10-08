@@ -46,7 +46,7 @@
       </div>
     </div>
     <VGap :height="15" />
-    <p class="px-4 line-clamp-1  text-ellipses overflow-hidden">{{ description }}</p>
+    <!-- <p class="px-4 line-clamp-1  text-ellipses overflow-hidden" :v-html="description"></p> -->
     <hr class="my-3" />
     <VContainer class="px-3">
       <VFlex class="gap-x-5" justifyContent="space-between">
