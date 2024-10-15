@@ -721,7 +721,7 @@
   </VModal>
 </template>
 
-<script lang="js" setup>
+<script lang="js" setup>    
 definePageMeta({
   title: "Remark Jobs | Best Job Portal in India | Reshaping Hiring",
   meta: [

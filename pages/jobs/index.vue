@@ -320,7 +320,6 @@
 </template>
 
 <script>
-import { useHead } from "@vueuse/head";
 
 export default {
   data() {
