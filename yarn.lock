@@ -4115,7 +4115,12 @@ function-bind@^1.1.2:
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-fuse.js@^6, fuse.js@^7.0.0:
+fuse.js@^6:
+  version "6.6.2"
+  resolved "https://registry.npmjs.org/fuse.js/-/fuse.js-6.6.2.tgz"
+  integrity sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==
+
+fuse.js@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/fuse.js/-/fuse.js-7.0.0.tgz"
   integrity sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==
@@ -9408,6 +9413,11 @@ vue-router@^4.1.0, vue-router@^4.3.0:
     "@vue/runtime-dom" "3.4.22"
     "@vue/server-renderer" "3.4.22"
     "@vue/shared" "3.4.22"
+
+vue3-compare-image@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.npmjs.org/vue3-compare-image/-/vue3-compare-image-1.2.5.tgz"
+  integrity sha512-E20sBmHDE3eAPOiBeiOgK1BEc+ieXdOdfjw7TaiaDweIOIuisXsM/Lwrw3UdifXImyZ3/+IdwF2ktdbcX35z9A==
 
 w3c-keyname@^2.2.4:
   version "2.2.8"

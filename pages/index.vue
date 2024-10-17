@@ -153,8 +153,10 @@
         <div class="p-4">
           <div class="flex justify-between">
             <div class="w-full text-center">
-              <p class="text-2xl md:text-5xl font-semibold">Top Searches</p>
-              <p class="text-slate-400 text-sm my-3">Browse Jobs by Industry</p>
+              <h6 class="text-2xl md:text-5xl font-semibold">Top Searches</h6>
+              <h6 class="text-slate-400 text-sm my-3">
+                Browse Jobs by Industry
+              </h6>
             </div>
           </div>
         </div>
@@ -224,9 +226,9 @@
       <div class="py-20">
         <div class="flex justify-center">
           <div class="w-full text-center">
-            <p class="text-lg md:text-4xl mb-4 font-semibold">
+            <h5 class="text-lg md:text-4xl mb-4 font-semibold">
               Recruiters Hiring From Top Companies
-            </p>
+            </h5>
             <!-- <p class="text-slate-400 text-md my-2">Explore the top companies and find your dream job</p> -->
           </div>
         </div>
@@ -278,15 +280,24 @@
 
   <!-- <div class="h-0"></div> -->
 
+  <!-- Image Comapre  -->
+  <!-- <div class="flex justify-center animate__animated animate__fadeIn w-100">
+   
+     <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" style="width: 100%;">
+
+  </div> -->
+
+  <!-- Image Compare end  -->
+
   <!-- RECENT JOBS -->
   <div class="flex justify-center animate__animated animate__fadeIn">
     <div class="w-11/12 md:w-9/12 h-full">
       <div class="p-4">
         <div class="flex justify-center">
           <div class="w-full text-center">
-            <p class="text-lg md:text-3xl font-semibold">
+            <h4 class="text-lg md:text-3xl font-semibold">
               Exclusive Jobs for You!
-            </p>
+            </h4>
             <!-- <p class="text-slate-400 text-sm">Explore the jobs or</p> -->
           </div>
         </div>
@@ -363,8 +374,8 @@
             />
           </div>
           <div>
-            <p class="text-3xl font-bold text-slate-400">5000+</p>
-            <p>Jobs</p>
+            <h3 class="text-3xl font-bold text-slate-400">5000+</h3>
+            <h6>Jobs</h6>
           </div>
         </VFlex>
       </div>
@@ -377,8 +388,8 @@
             />
           </div>
           <div>
-            <p class="text-3xl font-bold text-slate-400">50000+</p>
-            <p>Employees</p>
+            <h3 class="text-3xl font-bold text-slate-400">50000+</h3>
+            <h6>Employees</h6>
           </div>
         </VFlex>
       </div>
@@ -391,8 +402,8 @@
             />
           </div>
           <div>
-            <p class="text-3xl font-bold text-slate-400">2,000+</p>
-            <p>Companies</p>
+            <h3 class="text-3xl font-bold text-slate-400">2,000+</h3>
+            <h6>Companies</h6>
           </div>
         </VFlex>
       </div>
@@ -405,8 +416,8 @@
             />
           </div>
           <div>
-            <p class="text-3xl font-bold text-slate-400">200+</p>
-            <p>Consultancies</p>
+            <h3 class="text-3xl font-bold text-slate-400">200+</h3>
+            <h6>Consultancies</h6>
           </div>
         </VFlex>
       </div>
@@ -721,7 +732,7 @@
   </VModal>
 </template>
 
-<script lang="js" setup>    
+<script lang="js" setup>
 definePageMeta({
   title: "Remark Jobs | Best Job Portal in India | Reshaping Hiring",
   meta: [

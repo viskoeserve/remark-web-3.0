@@ -5,7 +5,7 @@
       <div class="mb-4">
         <div class="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
           <h2 class=" mb-4 font-bold  text-gray-900  text-3xl sm:text-5xl">
-            Report a fraud
+            Report a fraud  
           </h2>
           <!-- <p class="mx-auto mt-4 max-w-3xl text-xl text-gray-600 ">Lorem ipsum dolor sit amet consectetur adipisicing
             elit. Sed provident beatae est architecto

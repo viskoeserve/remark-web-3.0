@@ -24,7 +24,8 @@
     "pinia-plugin-persistedstate": "^4.1.1",
     "ui": "^0.2.4",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-compare-image": "^1.2.5"
   },
   "devDependencies": {
     "@nuxtjs/svg-sprite": "^1.0.2",

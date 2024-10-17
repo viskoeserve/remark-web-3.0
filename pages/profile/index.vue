@@ -2609,6 +2609,9 @@ export default {
           this.allCompanies.addCompany.isAddingCompany = false;
           this.allCompanies.addCompany.hasError = false;
           this.allCompanies.addCompany.errorMessage = "";
+
+          this.allCompanies.companies.push(data?.value?.company);
+
         }else{
           this.allCompanies.addCompany.isAddingCompany = false;
           this.allCompanies.addCompany.hasError = true;
